@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+</head>
+<style>
+.card{
+    box-shadow: 15px 15px 10px rgba(0, 0, 0, 0.1);
+    background-color: #d9d9d9;
+}
+.card-header {
+    background-color: #d9d9d9;
+}
+.card-body {
+    background-color: #FFFBFB;
+}
+.mb-3 {
+    display: flex;
+    flex-direction: column;
+    margin: 25px
+    }
+.btn-primary , .btn-danger {
+    color: white;
+    padding: 10px 20px;
+    margin: 0 23px;
+}
+</style>
+<body>
+    <div class="container">
+        <div class="row justify-content-center py-5">
+            <div class="col-md-5">
+                <div class="card">
+                    <div class="card-header mb-0">
+                        <h5 class="text-center">Selamat Datang di<br/><span class="navbar-brand">Perpustakaan Digital</span></h5>
+                    </div>
+            <div class="card-body">
+                <form action="login.php" method="get">
+                    <div class="mb-3">
+                        <label for="Username" class="form-label">Username</label>
+                        <input type="Username" class="form-control" id="Username" aria-describedby="emailHelp" name="Username">
+                    </div>
+                    <div class="mb-3">
+                        <label for="exampleInputPassword1" class="form-label">Password</label>
+                        <input type="password" class="form-control" id="exampleInputPassword1" name="Password">
+                    </div>
+                    <div class="button justify-content-between d-flex" style="margin-top: 40px;">
+                        <input type="submit" class="btn btn-primary" value="Login">
+                        <input type="button" class="btn btn-danger" value="register" onclick="window.location.href='register.html'">
+                    </div>
+                </form>
+                </div>
+                <div class="card-footer mb-0">
+                    <h5 class="text-center">© 2025 Perpustakaan Digital.</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>
