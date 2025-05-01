@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+      .searchbar {
+    width: 100%;
+    height: 50px;
+    max-width: 650px;
+}
+.nav-item{
+    margin :5px 5px 5px 5px;
+  }
+
+.search-icon{
+    width: 50px;
+    height: 50px;
+    cursor: pointer;
+    position: relative;
+    right: 56px;
+
+}
+
+    </style>
+    <title>Homepage</title>
+</head>
+<body>
+   <!-- awal navbar -->
+    <div class="navbar-container d-flex flex-column">
+   <nav class="navbar navbar-expand-lg bg-body-tertiary " data-bs-theme = "dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">
+        <img src="storage/img/logo.svg" alt="" width="50" height="51" class="d-inline-block">
+        Perpustakaan Digital
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mb-2 mb-lg-0">
+        </ul>
+        <form class="searchbar d-flex justify-content-center mx-auto" role="search">
+            <input class="form-control me-2 " data-bs-theme="light" type="search" placeholder="Cari..." aria-label="Search" style="border-radius: 50px;">
+            <button class="search-icon btn btn-success" type="submit" style="border-radius: 50px; "><i class="fa-solid fa-magnifying-glass"></i></button>
+          </form>
+      </div>
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="fa-regular fa-circle-user"></i> Account profile
+        </button>
+        <ul class="dropdown-menu">
+          <li><a class="dropdown-item" href="#">edit profil</a></li>
+          <li><a class="dropdown-item" href="logout.php">Log out</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="grey" style="height: 52px;">
+    <div class="container-fluid justify-content-center">
+        <ul class="navbar-nav" style=" display: flex ; flex-direction: row; flex-wrap: nowrap;;" >
+            <li class="nav-item">
+                <a class="nav-link" href="#">Home
+                    <span class="sr-only"></span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Books</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Peminjaman</a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="#">Koleksi</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About us</a>
+            </li>
+        </ul>
+    </div>
+  </nav>
+</div>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-I7E8VVD/ismYTF4hNIPjVp/Zjvgyol6VFvRkX/vR+Vc4jQkC+hVqc2pM8ODewa9r" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.min.js" integrity="sha384-VQqxDN0EQCkWoxt/0vsQvZswzTHUVOImccYmSyhJTp7kGtPed0Qcx8rK9h9YEgx+" crossorigin="anonymous"></script>    
+</body>
+</html>

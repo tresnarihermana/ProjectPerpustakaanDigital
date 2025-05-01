@@ -8,8 +8,8 @@ $cek = mysqli_num_rows($data);
 $role = mysqli_fetch_array($data)['role'];
 if($cek > 0 && $role == 'user'){
     $_SESSION['username']= $username;
-    $_SESSION['status'] = "login";
-    header ("location: index.html");
+    $_SESSION['status'] = 'login';
+    header ("location: index.php");
 }else if($cek > 0 && $role == 'admin' or $role == 'petugas'){
     header ("location: admin/index.html");
 }else{
