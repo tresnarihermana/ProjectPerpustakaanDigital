@@ -14,9 +14,41 @@ include 'layout/navbar.php';
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Halaman User</title>
     <style>
+        .row{
+          display: flex;
+          flex-wrap: wrap;
+        }
+      .card{
+        width: 338px;
+        margin-top: 40px;
+        margin-left: 50px;
+        cursor: pointer;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.2), 0 1px 2px 0 rgba(0, 0, 0, 0.19);
+      }
+      .card:hover{
+        transform: scale(1.05);
+        transition: 0.5s;
+      }
+      .card-img-top{
+        width: 90%;
+        margin-left: 15px;
+        margin-top: 10px;
+      }
         .carousel-item{
             height: 480px;
-            width: 1246px;
+        }
+        .white-box{
+          position: relative;
+          z-index: 2;
+          color: #000000;
+          font-weight: 600;
+          text-align: center;
+          padding: 12px;
+          font-size: 14px;
+          font-family: "Oswald", sans-serif;
+          font-optical-sizing: auto;
+          font-weight: 600;
+          font-style: normal;
         }
     </style>
 </head>
@@ -56,5 +88,53 @@ include 'layout/navbar.php';
         </button>
       </div>
     </div>
+    <!-- akhir carousel -->
+    
+    <div class="container mt-4">
+        <div class="row">
+          <h1>Kategori Populer</h1>
+            <div class="col-lg-4 col-md-4">    
+                <div class="card">
+                    <img src="storage/img/card.png" class="card-img-top"  alt=""> 
+                    <span class="white-box">PENDIDIKAN </span>
+                
+              </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="card">
+                    <img src="storage/img/card.png" class="card-img-top"  alt="">
+                    <span class="white-box">FIKSI </span>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <div class="card">
+                    <img src="storage/img/card.png" class="card-img-top"  alt="">
+                    <span class="white-box">SAINS & TEKNOLOGI </span>
+                  </div>
+            </div>
+        </div>
+    </div>
+    <div class="container mt-4">
+      <div class="row">
+          <div class="col-lg-4 col-md-4">
+              <div class="card">
+                  <img src="storage/img/card.png" class="card-img-top"  alt="">
+                    <span class="white-box">HOBI & KETERAMPILAN </span>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-4">
+              <div class="card">
+                  <img src="storage/img/card.png" class="card-img-top"  alt="">
+                  <span class="white-box">NON-FIKSI </span>
+              </div>
+          </div>
+          <div class="col-lg-4 col-md-4">
+              <div class="card">
+                  <img src="storage/img/card.png" class="card-img-top"  alt="">
+                  <span class="white-box">KOMIK </span>
+                </div>
+          </div>
+      </div>
+  </div>
 </body>
 </html>
