@@ -1,5 +1,11 @@
 <?php
-include '../layout/sidebar-navbar-footbar.php';
+session_start();
+if (!isset($_SESSION['status']) || $_SESSION['role'] !== 'admin') {
+    header("Location: ../login.php");
+    exit;
+} else {
+    include '../layout/sidebar-navbar-footbar.php';
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
