@@ -81,10 +81,10 @@ body {
           ><i class="fas fa-book fa-fw me-3"></i><span>BUKU</span></a
         >
         <a href="ulasan.php" class="list-group-item list-group-item-action py-2"
-          ><i class="fas fa-chart-line fa-fw me-3"></i><span>ULASAN</span></a
+          ><i class="fas fa-comment fa-fw me-3"></i><span>ULASAN</span></a
         >
         <a href="peminjaman.php" class="list-group-item list-group-item-action py-2">
-          <i class="fas fa-chart-pie fa-fw me-3"></i><span>PEMINJAMAN</span>
+          <i class="fas fa-book-open-reader fa-fw me-3"></i><span>PEMINJAMAN</span>
         </a>
         <a href="pengguna.php" class="list-group-item list-group-item-action py-2"
           ><i class="fas fa-users fa-fw me-3"></i><span>PENGGUNA</span></a
