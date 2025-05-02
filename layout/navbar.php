@@ -22,9 +22,20 @@
     cursor: pointer;
     position: relative;
     right: 56px;
-
 }
-
+.dropdown{
+    position: relative;
+    right: 20px;
+}
+.dropdown-menu{
+  margin-left: 10px;
+}
+.btn-profile{
+    border-radius: 50px;
+    background-color: #8EAEFF;
+    padding: 10px 20px;
+    border: none;
+  }
     </style>
     <title>Homepage</title>
 </head>
@@ -49,7 +60,7 @@
           </form>
       </div>
       <div class="dropdown">
-        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        <button class="btn-profile dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
           <i class="fa-regular fa-circle-user"></i> Account profile
         </button>
         <ul class="dropdown-menu">
