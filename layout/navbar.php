@@ -64,6 +64,13 @@
           <i class="fa-regular fa-circle-user"></i> Account profile
         </button>
         <ul class="dropdown-menu">
+          <?php
+          if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+            echo '<li><a class="dropdown-item" href="admin/index.php">Dashboard Admin</a></li>';
+          }else{
+
+          };
+          ?>
           <li><a class="dropdown-item" href="#">edit profil</a></li>
           <li><a class="dropdown-item" href="logout.php">Log out</a></li>
         </ul>
