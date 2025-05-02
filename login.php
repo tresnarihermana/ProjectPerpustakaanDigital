@@ -11,6 +11,9 @@ if($cek > 0 && $role == 'user'){
     $_SESSION['status'] = 'login';
     header ("location: index.php");
 }else if($cek > 0 && $role == 'admin' or $role == 'petugas'){
+    $_SESSION['username']= $username;
+    $_SESSION['status'] = 'login';
+    $_SESSION['role'] = $role;
     header ("location: admin/index.php");
 }else{
     header ("location: login.html?pesan=gagal");
