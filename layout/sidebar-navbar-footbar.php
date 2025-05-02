@@ -151,6 +151,9 @@ body {
             aria-labelledby="navbarDropdownMenuLink"
           >
             <li>
+              <a class="dropdown-item" href="../index.php">Halaman Utama</a>
+            </li>
+            <li>
               <a class="dropdown-item" href="../logout.php">Logout</a>
             </li>
           </ul>
