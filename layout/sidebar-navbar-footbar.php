@@ -105,7 +105,7 @@ body {
     </button>
 
     <!-- Brand -->
-    <a class="navbar-brand" href="#">
+    <a class="navbar-brand" href="index.php">
       <img src="../storage/img/logo.svg" height="50px" alt="PD Logo" loading="lazy" />
       <span style="color: white;">Perpustakaan Digital</span>
     </a>
