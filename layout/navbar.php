@@ -72,12 +72,30 @@
           };
           ?>
           <li><a class="dropdown-item" href="#">edit profil</a></li>
-          <li><a class="dropdown-item" href="logout.php">Log out</a></li>
+          <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Log out</a></li>
         </ul>
       </div>
     </div>
   </nav>
-
+<!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #8EAEFF; color: white;">
+        <h1 class="modal-title fs-5 " id="exampleModalLabel"><i class="fa-solid fa-right-from-bracket color-black"></i> Log Out</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <h4 class="my-2"> <i class="fa-solid fa-triangle-exclamation" style="color: #ff0000;"></i> Do you really wish to leave and logout?</h1>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">No, Cancel</button>
+        <a href="logout.php" class="btn btn-danger">Yes, Logout</a>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- akhir modal -->
   <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="grey" style="height: 52px;">
     <div class="container-fluid justify-content-center">
         <ul class="navbar-nav" style=" display: flex ; flex-direction: row; flex-wrap: nowrap;;" >
