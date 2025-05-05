@@ -17,7 +17,7 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] !== 'admin') {
 
 </style>
 <body>
-<h1 class="mt-4">Dashboard</h1>
+<h1 class="mt-4 ms-5">Dashboard</h1>
     <div class="row mx-5">
         <div class="col-4">
             <div class="card bg-primary text-white mb-4">
