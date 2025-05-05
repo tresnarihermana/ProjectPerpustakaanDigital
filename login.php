@@ -1,22 +1,27 @@
 <?php
 session_start();
 include 'koneksi.php';
-$username = $_GET['Username'];
-$password = $_GET['Password'];
-$data = mysqli_query($koneksi,"select * from user where Username ='$username'and Password='$password'");
+
+$username = $_POST['Username'];
+$password = $_POST['Password'];
+
+$data = mysqli_query($koneksi,"SELECT * FROM user WHERE Username='$username' AND Password='$password'");
 $cek = mysqli_num_rows($data);
-$role = mysqli_fetch_array($data)['role'];
-if($cek > 0 && $role == 'user'){
-    $_SESSION['username']= $username;
-    $_SESSION['status'] = 'login';
-    header ("location: index.php");
-}else if($cek > 0 && $role == 'admin' or $role == 'petugas'){
-    $_SESSION['username']= $username;
+
+if($cek > 0){
+    $user = mysqli_fetch_assoc($data);
+    $role = $user['role'];
+
+    $_SESSION['username'] = $username;
     $_SESSION['status'] = 'login';
     $_SESSION['role'] = $role;
-    header ("location: admin/index.php");
-}else{
-    header ("location: login.html?pesan=gagal");
-}
 
+    if($role == 'user'){
+        header("location: index.php");
+    } else if($role == 'admin' || $role == 'petugas'){
+        header("location: admin/index.php");
+    }
+} else {
+    header("location: login.html?pesan=gagal");
+}
 ?>
