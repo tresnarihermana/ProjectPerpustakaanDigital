@@ -1,12 +1,16 @@
 <?php
-include '../layout/sidebar-navbar-footbar.php';
-include '../koneksi.php';
-
+if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
+    header("Location: ../login.php");
+    exit;
+} else {
+    include '../layout/sidebar-navbar-footbar.php';
+    include '../koneksi.php';
+}
 // Ambil KategoriID dari URL
 if (isset($_GET['id'])) {
     $kategoriID = $_GET['id']; // Mengambil ID kategori dari parameter URL
 } else {
-    echo "Kategori ID tidak ditemukan!";
+    echo "<h1 class='mt-4' style='margin-left:249px;'>Kategori ID tidak ditemukan!</h1>";
     exit;
 }
 

@@ -1,6 +1,11 @@
 <?php
-include '../layout/sidebar-navbar-footbar.php';
-include '../koneksi.php';
+if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
+    header("Location: ../login.php");
+    exit;
+} else {
+    include '../layout/sidebar-navbar-footbar.php';
+    include '../koneksi.php';
+}
 
 // Ambil PenggunaID dari URL
 if (isset($_GET['id'])) {

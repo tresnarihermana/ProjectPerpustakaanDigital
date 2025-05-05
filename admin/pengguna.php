@@ -1,16 +1,19 @@
 <?php
-include 'layout/sidebar-navbar-footbar.php';
-require '../koneksi.php';
 
-// Ambil data kategori
+if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
+    header("Location: ../login.php");
+    exit;
+} else {
+    include '../layout/sidebar-navbar-footbar.php';
+    include '../koneksi.php';
+}
+
+
 $result = mysqli_query(
     $koneksi,
     "SELECT * FROM User"
 ) or die("Query gagal: " . mysqli_error($koneksi));
 
-// Include layout (sidebar + navbar)
-include '../layout/sidebar-navbar-footbar.php';
-include '../layout/alert.php';
 ?>
 <style>
   @media (min-width: 992px) {

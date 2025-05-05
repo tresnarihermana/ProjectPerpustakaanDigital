@@ -1,6 +1,11 @@
 <?php
-require '../koneksi.php';
-require '../layout/sidebar-navbar-footbar.php';
+if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
+    header("Location: ../login.php");
+    exit;
+} else {
+    include '../layout/sidebar-navbar-footbar.php';
+    include '../koneksi.php';
+}
 
 
 ?>
