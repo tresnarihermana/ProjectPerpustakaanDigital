@@ -48,9 +48,6 @@
         <img src="storage/img/logo.svg" alt="" width="50" height="51" class="d-inline-block">
         Perpustakaan Digital
       </a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mb-2 mb-lg-0">
         </ul>
@@ -65,7 +62,7 @@
         </button>
         <ul class="dropdown-menu">
           <?php
-          if (isset($_SESSION['role']) && $_SESSION['role'] == 'admin') {
+          if (isset($_SESSION['role']) && ($_SESSION['role'] == 'admin' || $_SESSION['role'] == 'petugas')) {
             echo '<li><a class="dropdown-item" href="admin/index.php">Dashboard Admin</a></li>';
           }else{
 
