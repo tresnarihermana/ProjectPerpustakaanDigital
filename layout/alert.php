@@ -6,7 +6,7 @@ if (isset($_GET['pesan'])) {
     } elseif ($_GET['pesan'] == 'gagal') {
         echo '<div class="alert alert-danger">Terjadi kesalahan, coba lagi.</div>';
     } elseif ($_GET['pesan'] == 'duplikat') {
-        echo '<div class="alert alert-warning">Nama kategori sudah digunakan!</div>';
+        echo '<div class="alert alert-warning">Duplikasi data Terdeteksi! coba lagi</div>';
     }
 }
 ?>
