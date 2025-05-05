@@ -1,3 +1,10 @@
+<?php
+session_start();
+if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
+    header('Location: ../login.php');
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,14 +93,19 @@ body {
         <a href="peminjaman.php" class="list-group-item list-group-item-action py-2">
           <i class="fas fa-book-open-reader fa-fw me-3"></i><span>PEMINJAMAN</span>
         </a>
-        <a href="pengguna.php" class="list-group-item list-group-item-action py-2"
-          ><i class="fas fa-users fa-fw me-3"></i><span>PENGGUNA</span></a
-        >
+        <?php
+        if (($_SESSION['role'] == 'admin')) {
+            echo '<a href="petugas.php" class="list-group-item list-group-item-action py-2"><i class="fas fa-user-shield fa-fw me-3"></i><span>PETUGAS</span></a>';
+            echo '<a href="pengguna.php" class="list-group-item list-group-item-action py-2"><i class="fas fa-users fa-fw me-3"></i><span>USER</span></a>';
+          } else {
+        }
+        
+        ?>
         
       </div>
     </div>
   </nav>
-  <!-- Sidebar -->
+  <!-- AkhitSidebar -->
 
   <!-- Navbar -->
 <nav id="main-navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
