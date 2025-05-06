@@ -29,7 +29,7 @@ include 'layout/navbar.php';
         transform: scale(1.05);
         transition: 0.5s;
       }
-      .card-img-top{
+      .card .card-img-top{
         width: 90%;
         margin-left: 15px;
         margin-top: 10px;
@@ -136,5 +136,8 @@ include 'layout/navbar.php';
           </div>
       </div>
   </div>
+  <?php
+  include 'layout/footer.php';
+  ?>
 </body>
 </html>
