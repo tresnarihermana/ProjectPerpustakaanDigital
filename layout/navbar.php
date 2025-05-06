@@ -1,3 +1,8 @@
+<?php
+include 'koneksi.php';
+$data = mysqli_query($koneksi, "SELECT * FROM user where Username = '$_SESSION[username]'");
+$cek = mysqli_fetch_assoc($data);
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +31,7 @@
 .dropdown{
     position: relative;
     right: 20px;
+    z-index: 1;
 }
 .dropdown-menu{
   margin-left: 10px;
@@ -36,6 +42,10 @@
     padding: 10px 20px;
     border: none;
   }
+.nav-item a:hover{
+    color: #8EAEFF;
+    cursor: pointer;
+}
     </style>
     <title>Homepage</title>
 </head>
@@ -44,7 +54,7 @@
     <div class="navbar-container d-flex flex-column">
    <nav class="navbar navbar-expand-lg bg-body-tertiary " data-bs-theme = "dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">
+      <a class="navbar-brand" href="index.php">
         <img src="storage/img/logo.svg" alt="" width="50" height="51" class="d-inline-block">
         Perpustakaan Digital
       </a>
@@ -58,7 +68,7 @@
       </div>
       <div class="dropdown">
         <button class="btn-profile dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <i class="fa-regular fa-circle-user"></i> Account profile
+          <i class="fa-regular fa-circle-user"></i> <?php echo $_SESSION['username']?>'s profile
         </button>
         <ul class="dropdown-menu">
           <?php
@@ -68,7 +78,7 @@
 
           };
           ?>
-          <li><a class="dropdown-item" href="#">edit profil</a></li>
+          <li><a class="dropdown-item" href="edit-profile.php">edit profil</a></li>
           <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#exampleModal">Log out</a></li>
         </ul>
       </div>
@@ -97,9 +107,7 @@
     <div class="container-fluid justify-content-center">
         <ul class="navbar-nav" style=" display: flex ; flex-direction: row; flex-wrap: nowrap;;" >
             <li class="nav-item">
-                <a class="nav-link" href="#">Home
-                    <span class="sr-only"></span>
-                </a>
+                <a class="nav-link" href="index.php">Home </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="#">Books</a>
