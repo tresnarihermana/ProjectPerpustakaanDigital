@@ -1,19 +1,12 @@
 <?php
 session_start();
-if (!isset($_SESSION['status']) || $_SESSION['role'] !== 'admin') {
+if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
     header('Location: ../login.php');
     exit;
 }
 
 require '../koneksi.php';
 
-// if ($_SERVER['REQUEST_METHOD'] === 'POST' && !empty($_POST['nama_kategori'])) {
-//     $nama = mysqli_real_escape_string($koneksi, $_POST['nama_kategori']);
-//     mysqli_query($koneksi, "INSERT INTO kategoribuku (Namakategori) VALUES ('$nama')")
-//         or die('Gagal menyimpan: '.mysqli_error($koneksi));
-//     header('Location: kategori.php');
-//     exit;
-// }
 
 require '../layout/sidebar-navbar-footbar.php';
 ?>
