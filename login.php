@@ -9,10 +9,12 @@ $data = mysqli_query($koneksi,"SELECT * FROM user WHERE Username='$username' AND
 $cek = mysqli_num_rows($data);
 $user = mysqli_fetch_assoc($data);
 $role = $user['role'];
+$userid = $user['UserID'];
 
 $_SESSION['username'] = $username;
 $_SESSION['status'] = 'login';
 $_SESSION['role'] = $role;
+$_SESSION['UserID'] = $userid;
 
 if($cek > 0){
 
