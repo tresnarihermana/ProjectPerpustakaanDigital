@@ -8,6 +8,18 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
 require '../koneksi.php';
 require '../layout/sidebar-navbar-footbar.php';
 
+// Ambil PenggunaID dari URL
+if (isset($_GET['id'])) {
+    $id = $_GET['id']; // Mengambil ID Pengguna dari parameter URL
+} else {
+    echo "Pengguna ID tidak ditemukan!";
+    exit;
+}
+
+// Ambil data Pengguna berdasarkan PenggunaID
+$query = mysqli_query($koneksi, "SELECT * FROM buku WHERE BukuID = '$id'");
+$data = mysqli_fetch_assoc($query);
+
 ?>
 
 <style>
@@ -22,41 +34,41 @@ require '../layout/sidebar-navbar-footbar.php';
           <div class="mb-3 row">
             <label for="BukuID" class="col-sm-2 col-form-label">BukuID</label>
             <div class="col-sm-10">
-              <input type="number" class="form-control bg-light" id="BukuID" name="BukuID" required>
+              <input type="number" class="form-control bg-light" id="BukuID" name="BukuID" placeholder="<?php echo htmlspecialchars($data['BukuID']); ?>" required>
             </div>
           </div>
           
         <div class="mb-3 row">
           <label for="Judul" class="col-sm-2 col-form-label">Judul</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control bg-light" id="Judul" name="Judul" required>
+            <input type="text" class="form-control bg-light" id="Judul" name="Judul" placeholder="<?php echo htmlspecialchars($data['Judul']); ?>" required>
           </div>
         </div>
         <div class="mb-3 row">
           <label for="Deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control bg-light" id="Deskripsi" name="Deskripsi" required>
+            <input type="text" class="form-control bg-light" id="Deskripsi" name="Deskripsi" placeholder="<?php echo htmlspecialchars($data['Deskripsi']); ?>" required>
           </div>
         </div>
 
         <div class="mb-3 row">
           <label for="Penulis" class="col-sm-2 col-form-label">Penulis</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control bg-light" id="Penulis" name="Penulis" required>
+            <input type="text" class="form-control bg-light" id="Penulis" name="Penulis" placeholder="<?php echo htmlspecialchars($data['Penulis']); ?>" required>
           </div>
         </div>
 
         <div class="mb-3 row">
           <label for="Penerbit" class="col-sm-2 col-form-label">Penerbit</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control bg-light" id="Penerbit" name="Penerbit" required>
+            <input type="text" class="form-control bg-light" id="penerbit" name="penerbit" placeholder="<?php echo htmlspecialchars($data['penerbit']); ?>" required>
           </div>
         </div>
 
         <div class="mb-3 row">
           <label for="TahunTerbit" class="col-sm-2 col-form-label">Tahun Terbit</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control bg-light" id="TahunTerbit" name="TahunTerbit" required>
+            <input type="text" class="form-control bg-light" id="TahunTerbit" name="TahunTerbit" placeholder="<?php echo htmlspecialchars($data['TahunTerbit']); ?>" required>
           </div>
         </div>
 

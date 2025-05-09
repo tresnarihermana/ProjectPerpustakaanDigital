@@ -16,16 +16,29 @@ if (isset($_GET['hapus'])) {
 }
 
 // Ambil data ulasan buku
-$query = "
-    SELECT ub.UlasanID, u.namalengkap AS UserNama, b.Judul AS BukuJudul, ub.Ulasan, ub.Rating 
-    FROM ulasanbuku ub 
-    JOIN user u ON ub.UserID = u.UserID 
-    JOIN buku b ON ub.BukuID = b.BukuID
-";
-$result = mysqli_query($koneksi, $query) or die("Query gagal: " . mysqli_error($koneksi));
+// $query = "
+//     SELECT ub.UlasanID, u.namalengkap AS UserNama, b.Judul AS BukuJudul, ub.Ulasan, ub.Rating 
+//     FROM ulasanbuku ub 
+//     JOIN user u ON ub.UserID = u.UserID 
+//     JOIN buku b ON ub.BukuID = b.BukuID
+// ";
+$query = mysqli_query($koneksi, "
+    SELECT 
+        ulasanbuku.UlasanID,
+        user.namalengkap AS NamaUser,
+        buku.Judul AS JudulBuku,
+        ulasanbuku.Ulasan,
+        ulasanbuku.Rating
+    FROM ulasanbuku
+    JOIN user ON ulasanbuku.UserID = user.UserID
+    JOIN buku ON ulasanbuku.BukuID = buku.BukuID
+") or die("Query gagal: " . mysqli_error($koneksi));
+
+// $result = mysqli_query($koneksi, $query) or die("Query gagal: " . mysqli_error($koneksi));
 
 // Layout
 include '../layout/sidebar-navbar-footbar.php';
+include '../layout/alert.php';
 ?>
 
 <style>
@@ -54,19 +67,19 @@ include '../layout/sidebar-navbar-footbar.php';
             </tr>
           </thead>
           <tbody>
-            <?php if (mysqli_num_rows($result) === 0): ?>
+            <?php if (mysqli_num_rows($query) === 0): ?>
               <tr><td colspan="6" class="text-center">Belum ada ulasan.</td></tr>
             <?php else:
               $no = 1;
-              while ($row = mysqli_fetch_assoc($result)): ?>
+              while ($row = mysqli_fetch_assoc($query)): ?>
                 <tr>
                   <td><?= $no++ ?></td>
-                  <td><?= htmlspecialchars($row['UserNama']) ?></td>
-                  <td><?= htmlspecialchars($row['BukuJudul']) ?></td>
+                  <td><?= htmlspecialchars($row['NamaUser']) ?></td>
+                  <td><?= htmlspecialchars($row['JudulBuku']) ?></td>
                   <td><?= htmlspecialchars($row['Ulasan']) ?></td>
                   <td><?= htmlspecialchars($row['Rating']) ?></td>
                   <td>
-                    <a href="ubah_ulasan.php?id=<?= $row['UlasanID'] ?>" class="btn btn-info btn-sm me-1">Ubah</a>
+                    <a href="ulasan-edit.php?id=<?= $row['UlasanID'] ?>" class="btn btn-info btn-sm me-1">Ubah</a>
                     <a href="?hapus=<?= $row['UlasanID'] ?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm">Hapus</a>
                   </td>
                 </tr>

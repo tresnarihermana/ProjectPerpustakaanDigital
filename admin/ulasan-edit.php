@@ -8,6 +8,22 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
 require '../koneksi.php';
 require '../layout/sidebar-navbar-footbar.php';
 
+// Ambil PenggunaID dari URL
+if (isset($_GET['id'])) {
+    $id = $_GET['id']; // Mengambil ID Pengguna dari parameter URL
+} else {
+    echo "Pengguna ID tidak ditemukan!";
+    exit;
+}
+
+// Ambil data Pengguna berdasarkan PenggunaID
+$query = "
+    SELECT ub.UlasanID, u.namalengkap AS UserNama, b.Judul AS BukuJudul, ub.Ulasan, ub.Rating 
+    FROM ulasanbuku ub 
+    JOIN user u ON ub.UserID = u.UserID 
+    JOIN buku b ON ub.BukuID = b.BukuID
+";
+$data = mysqli_fetch_assoc($query);
 ?>
 
 <style>
