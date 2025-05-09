@@ -20,6 +20,7 @@ $result = mysqli_query($koneksi, "SELECT * FROM buku") or die("Query gagal: " . 
 
 // Include layout
 include '../layout/sidebar-navbar-footbar.php';
+include '../layout/alert.php';
 ?>
 <style>
   @media (min-width: 992px) {
@@ -64,8 +65,8 @@ include '../layout/sidebar-navbar-footbar.php';
                   <td><?= htmlspecialchars($row['penerbit']) ?></td>
                   <td><?= htmlspecialchars($row['TahunTerbit']) ?></td>
                   <td>
-                    <a href="ubah_buku.php?id=<?= $row['BukuID'] ?>" class="btn btn-info btn-sm me-1">Ubah</a>
-                    <a href="?hapus=<?= $row['BukuID'] ?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm">Hapus</a>
+                    <a href="buku-edit.php?id=<?= $row['BukuID'] ?>" class="btn btn-info btn-sm me-1">Ubah</a>
+                    <a href="crud-delete-buku.php?id=<?= $row['BukuID'] ?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm">Hapus</a>
                   </td>
                 </tr>
             <?php endwhile; endif; ?>
