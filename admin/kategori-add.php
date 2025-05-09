@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
+if (!isset($_SESSION['status']) || $_SESSION['role'] === 'user') {
     header('Location: ../login.php');
     exit;
 }
@@ -18,7 +18,11 @@ require '../layout/sidebar-navbar-footbar.php';
   <h2 class="mb-3 fw-bold">Kategori Buku</h2>
   <div class="card shadow-sm">
     <div class="card-body">
-      <form method="post" action="crud-add-kategori.php" class="p-4">
+      <form method="post" action="crud-add-kategori.php" class="p-4" enctype="multipart/form-data">
+      <div class="mb-3">
+        <label for="formFile" class="form-label">Default file input example</label>
+        <input class="form-control" type="file" id="formFile" name="image_kategori" accept="image/*">
+        </div>
         <div class="mb-3">
           <label for="nama_kategori" class="form-label">Nama Kategori</label>
           <input type="text" class="form-control bg-light" id="nama_kategori" name="nama_kategori" placeholder="Masukkan nama kategori..." required>
