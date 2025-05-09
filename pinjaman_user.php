@@ -16,7 +16,7 @@ require 'layout/navbar.php';
     
     <!-- Gambar Buku -->
     <div class="me-4">
-      <img src="../assets/img/buku-kue.jpg" alt="Kreativitas Pengolahan Kue & Roti" class="img-fluid" style="max-width: 200px;">
+      <img src="storage/img/cover-kreativitas.png" alt="Kreativitas Pengolahan Kue & Roti" class="img-fluid" style="max-width: 200px;">
     </div>
 
     <!-- Formulir Peminjaman -->
@@ -37,9 +37,9 @@ require 'layout/navbar.php';
           <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" required>
         </div>
 
-        <p class="text-muted">
-          Apakah anda ingin meminjam buku ini dari <i>ddd-mmm-yyyy</i> sampai <i>ddd-mmm-yyyy</i>?<br>
-          Penjelasan singkat tentang S&K peminjaman buku dan penalti jika tidak mengembalikan, 
+        <p class="text-muted" >
+         <span style="color:black;"> Apakah anda ingin meminjam buku ini dari <i>ddd-mmm-yyyy</i> sampai <i>ddd-mmm-yyyy</i>?<br>
+          <span style="color:grey;">Penjelasan singkat tentang S&K peminjaman buku dan penalti jika tidak mengembalikan, </span>
           <a href="#" class="text-danger">baca lengkap S&K</a>.
         </p>
 
