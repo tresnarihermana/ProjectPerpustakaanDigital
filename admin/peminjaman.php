@@ -27,6 +27,7 @@ $result = mysqli_query($koneksi, $query) or die("Query gagal: " . mysqli_error($
 
 // Layout
 include '../layout/sidebar-navbar-footbar.php';
+include '../layout/alert.php';
 ?>
 
 <style>

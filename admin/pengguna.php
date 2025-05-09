@@ -6,6 +6,7 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
 } else {
     include '../layout/sidebar-navbar-footbar.php';
     include '../koneksi.php';
+    include '../layout/alert.php';
 }
 
 
@@ -63,7 +64,7 @@ $result = mysqli_query(
                   <td>
                     <a href="pengguna-edit.php?id=<?= $row['UserID'] ?>"
                        class="btn btn-info btn-sm me-1">Ubah</a>
-                    <a href="crud-pengguna-edit.php?id=<?= $row['UserID'] ?>"
+                    <a href="crud-delete-pengguna.php?id=<?= $row['UserID'] ?>"
                        onclick="return confirm('Yakin ingin menghapus?')"
                        class="btn btn-danger btn-sm">Hapus</a>
                   </td>

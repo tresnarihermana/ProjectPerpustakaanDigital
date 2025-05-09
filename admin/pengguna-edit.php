@@ -27,12 +27,13 @@ if (!$data) {
 }
 
 ?>
+
 <head>
     <title>Edit Pengguna</title>
 </head>
 <body>
-    <h1 class="mt-4 ms-5">Ubah Pengguna</h1>
-    <form method="post" action="crud-edit-pengguna.php" class="card p-5" style="width: 40rem; margin: 50px auto;">
+    <h1 style="margin-left:33rem;">Ubah Pengguna</h1>
+    <form method="post" action="crud-edit-pengguna.php" class="card p-5" style="width: 40rem; margin: 30px auto;">
         <div class="mb-3">
           <label for="exampleInputusername" class="form-label">Username</label>
           <input type="text" class="form-control" id="exampleInputtext" aria-describedby="nameHelp" required value="<?php echo htmlspecialchars($data['Username']); ?>" name="username">

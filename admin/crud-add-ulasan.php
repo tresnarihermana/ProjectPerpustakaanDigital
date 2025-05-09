@@ -5,18 +5,24 @@ $user = $_POST['user'];
 $buku = $_POST['buku'];
 $ulasan = $_POST['ulasan'];
 $rating = $_POST['rating'];
-
-// Cek apakah user sudah pernah mengulas buku ini
-$cek = mysqli_query($koneksi, "SELECT * FROM ulasan WHERE id_user = '$user' AND id_buku = '$buku'");
+// Validasi: Cek apakah user sudah pernah mengulas buku tersebut
+$cek = mysqli_query($koneksi, "
+    SELECT *
+    FROM ulasanbuku ub 
+    JOIN user u ON ub.UserID = u.UserID 
+    JOIN buku b ON ub.BukuID = b.BukuID 
+    WHERE ub.Username = '$user' AND ub.judul = '$buku'
+");
 
 if (mysqli_num_rows($cek) > 0) {
+    // Jika sudah pernah ulas, kembali dengan pesan
     header("location: ulasan.php?pesan=duplikat");
     exit;
 } else {
-    $query = mysqli_query($koneksi, 
-        "INSERT INTO ulasan (id_user, id_buku, isi_ulasan, rating) 
-        VALUES ('$user', '$buku', '$ulasan', '$rating')"
-    );
+    // Insert data ulasan
+    $query = mysqli_query($koneksi, "
+        INSERT INTO ulasanbuku VALUES ('','',''
+    ");
 
     if ($query) {
         header("location: ulasan.php?pesan=berhasil");
