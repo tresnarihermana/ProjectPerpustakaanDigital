@@ -1,31 +1,29 @@
 <?php
-include '../koneksi.php';
+session_start();
+if (!isset($_SESSION['status']) || $_SESSION['role'] !== 'admin') {
+    header('Location: ../login.php');
+    exit;
+}
 
-$id_user = $_POST['id_user'];
-$id_buku = $_POST['id_buku'];
+require '../koneksi.php';
+
+// Ambil data dari form
+$user = $_POST['user'];
+$buku = $_POST['buku'];
 $tgl_pinjam = $_POST['tgl_pinjam'];
 $tgl_kembali = $_POST['tgl_kembali'];
 $status = $_POST['status'];
 
-// Validasi duplikat (opsional, contoh: user tidak bisa pinjam buku yang sama dua kali saat masih dipinjam)
-$cek = mysqli_query($koneksi, 
-    "SELECT * FROM peminjaman 
-     WHERE id_user = '$id_user' AND id_buku = '$id_buku' AND status = 'Dipinjam'"
-);
+// // Validasi data (opsional, tapi disarankan)
+// if (empty($user) || empty($buku) || empty($tgl_pinjam) || empty($tgl_kembali) || empty($status)) {
+//     die("Semua data harus diisi!");
+// }
 
-if (mysqli_num_rows($cek) > 0) {
-    header("location: peminjaman.php?pesan=duplikat");
-    exit;
-} else {
-    $query = mysqli_query($koneksi, 
-        "INSERT INTO peminjaman (id_user, id_buku, tanggal_pinjam, tanggal_kembali, status) 
-         VALUES ('$id_user', '$id_buku', '$tgl_pinjam', '$tgl_kembali', '$status')"
-    );
+// Masukkan ke database
+$query = "INSERT INTO peminjaman (UserID, BukuID, TanggalPeminjaman, TanggalPengembalian, StatusPeminjaman) 
+          VALUES ('$user', '$buku', '$tgl_pinjam', '$tgl_kembali', '$status')";
+mysqli_query($koneksi, $query) or die("Gagal tambah data: " . mysqli_error($koneksi));
 
-    if ($query) {
-        header("location: peminjaman.php?pesan=berhasil");
-    } else {
-        header("location: peminjaman.php?pesan=gagal");
-    }
-}
+header('Location: peminjaman.php');
+exit;
 ?>
