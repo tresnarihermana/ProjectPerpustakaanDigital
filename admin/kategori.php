@@ -28,7 +28,7 @@ include '../layout/alert.php';
   <!-- Judul -->
   <h1 class="mb-3">Kategori Buku</h1>
   <!-- Tombol di bawah judul -->
-  <a href="kategori-add.php" class="btn btn-primary mb-4">+ Tambah Data</a>
+  <a href="kategori-add.php" class="btn btn-success mb-4">+ Tambah Data</a>
 
   <!-- Tabel dalam card -->
   <div class="card shadow-sm mb-4">
