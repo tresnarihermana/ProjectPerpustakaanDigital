@@ -8,22 +8,26 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] !== 'admin') {
 require '../koneksi.php';
 
 // Proses hapus peminjaman jika diminta
-if (isset($_GET['hapus'])) {
-    $id = (int) $_GET['hapus'];
-    mysqli_query($koneksi, "DELETE FROM peminjaman WHERE PeminjamanID = $id") or die("Gagal hapus: " . mysqli_error($koneksi));
-    header('Location: peminjaman_buku.php');
-    exit;
-}
+// if (isset($_GET['hapus'])) {
+//     $id = (int) $_GET['hapus'];
+//     mysqli_query($koneksi, "DELETE FROM peminjaman WHERE PeminjamanID = $id") or die("Gagal hapus: " . mysqli_error($koneksi));
+//     header('Location: peminjaman.php');
+//     exit;
+// }
 
 // Ambil data peminjaman buku
-$query = "
-    SELECT p.PeminjamanID, u.namalengkap AS UserNama, b.Judul AS BukuJudul, 
-           p.TanggalPeminjaman, p.TanggalPengembalian, p.StatusPeminjaman 
-    FROM peminjaman p 
-    JOIN user u ON p.UserID = u.UserID 
-    JOIN buku b ON p.BukuID = b.BukuID
-";
-$result = mysqli_query($koneksi, $query) or die("Query gagal: " . mysqli_error($koneksi));
+$query = mysqli_query($koneksi, "
+    SELECT 
+        peminjaman.PeminjamanID,
+        user.namalengkap AS Username,
+        buku.Judul AS Judul,
+        peminjaman.TanggalPeminjaman,
+        peminjaman.TanggalPengembalian,
+        peminjaman.StatusPeminjaman
+    FROM peminjaman
+    JOIN user ON peminjaman.UserID = user.UserID
+    JOIN buku ON peminjaman.BukuID = buku.BukuID
+") or die("Query gagal: " . mysqli_error($koneksi));
 
 // Layout
 include '../layout/sidebar-navbar-footbar.php';
@@ -57,25 +61,25 @@ include '../layout/alert.php';
             </tr>
           </thead>
           <tbody>
-            <?php if (mysqli_num_rows($result) === 0): ?>
+            <?php if (mysqli_num_rows($query) === 0): ?>
               <tr><td colspan="7" class="text-center">Belum ada data peminjaman.</td></tr>
             <?php else:
               $no = 1;
-              while ($row = mysqli_fetch_assoc($result)): ?>
+              while ($row = mysqli_fetch_assoc($query)): ?>
                 <tr>
                   <td><?= $no++ ?></td>
-                  <td><?= htmlspecialchars($row['UserNama']) ?></td>
-                  <td><?= htmlspecialchars($row['BukuJudul']) ?></td>
+                  <td><?= htmlspecialchars($row['Username']) ?></td>
+                  <td><?= htmlspecialchars($row['Judul']) ?></td>
                   <td><?= htmlspecialchars($row['TanggalPeminjaman']) ?></td>
                   <td><?= htmlspecialchars($row['TanggalPengembalian']) ?></td>
                   <td>
-                    <span class="badge bg-<?= $row['Status'] == 'Selesai' ? 'success' : 'warning' ?>">
-                      <?= htmlspecialchars($row['Status']) ?>
+                    <span class="badge bg-<?= $row['StatusPeminjaman'] == 'Dikembalikan' ? 'success' : 'warning' ?>">
+                      <?= htmlspecialchars($row['StatusPeminjaman']) ?>
                     </span>
                   </td>
                   <td>
-                    <a href="ubah_peminjaman.php?id=<?= $row['PeminjamanID'] ?>" class="btn btn-info btn-sm me-1">Ubah</a>
-                    <a href="?hapus=<?= $row['PeminjamanID'] ?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm me-1">Hapus</a>
+                    <a href="peminjaman-edit.php?id=<?= $row['PeminjamanID'] ?>" class="btn btn-info btn-sm me-1">Ubah</a>
+                    <a href="crud-delete-peminjaman.php?id=<?= $row['PeminjamanID'] ?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm me-1">Hapus</a>
                     <a href="cetak_peminjaman.php?id=<?= $row['PeminjamanID'] ?>" class="btn btn-success btn-sm">Cetak</a>
                   </td>
                 </tr>
