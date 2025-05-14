@@ -26,7 +26,7 @@ $result = mysqli_query(
   <!-- Judul -->
   <h1 class="mb-3">Daftar Pengguna</h1>
   <!-- Tombol di bawah judul -->
-  <a href="pengguna-add.php" class="btn btn-primary mb-4">+ Tambah Data</a>
+  <a href="pengguna-add.php" class="btn btn-success mb-4">+ Tambah Data</a>
 
   <!-- Tabel dalam card -->
   <div class="card shadow-sm mb-4">

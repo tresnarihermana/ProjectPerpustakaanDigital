@@ -7,13 +7,7 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] !== 'admin') {
 
 require '../koneksi.php';
 
-// Proses hapus ulasan jika diminta
-if (isset($_GET['hapus'])) {
-    $id = (int) $_GET['hapus'];
-    mysqli_query($koneksi, "DELETE FROM ulasanbuku WHERE UlasanID = $id") or die("Gagal hapus: " . mysqli_error($koneksi));
-    header('Location: ulasan_buku.php');
-    exit;
-}
+
 
 // Ambil data ulasan buku
 // $query = "
@@ -80,7 +74,7 @@ include '../layout/alert.php';
                   <td><?= htmlspecialchars($row['Rating']) ?></td>
                   <td>
                     <a href="ulasan-edit.php?id=<?= $row['UlasanID'] ?>" class="btn btn-info btn-sm me-1">Ubah</a>
-                    <a href="?hapus=<?= $row['UlasanID'] ?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm">Hapus</a>
+                    <a href="crud-delete-ulasan.php?id=<?= $row['UlasanID'] ?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm">Hapus</a>
                   </td>
                 </tr>
             <?php endwhile; endif; ?>
