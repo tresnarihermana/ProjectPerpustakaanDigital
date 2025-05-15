@@ -30,7 +30,7 @@ $data = mysqli_fetch_assoc($query);
   <h2 class="mb-3 fw-bold">Buku</h2>
   <div class="card shadow-sm">
     <div class="card-body">
-      <form method="post" action="crud-edit-buku.php" class="p-4">
+      <form method="post" action="crud-edit-buku.php" class="p-4" enctype="multipart/form-data">
           <div class="mb-3 row">
             <label for="BukuID" class="col-sm-2 col-form-label"></label>
             <div class="col-sm-10">
@@ -71,6 +71,36 @@ $data = mysqli_fetch_assoc($query);
             <input type="text" class="form-control bg-light" id="TahunTerbit" name="TahunTerbit" value="<?php echo htmlspecialchars($data['TahunTerbit']); ?>" required>
           </div>
         </div>
+<div class="mb-3 row">
+  <label for="image" class="col-sm-2 col-form-label">Upload Gambar Cover Baru</label>
+  <div class="col-sm-10">
+    <input 
+      type="file" 
+      name="image" 
+      id="image" 
+      class="form-control" 
+      accept="image/*"
+      aria-describedby="imageHelp"
+    >
+    <div id="imageHelp" class="form-text">Kosongkan jika tidak ingin mengganti gambar cover.</div>
+  </div>
+</div>
+
+<div class="mb-3 row">
+  <label class="col-sm-2 col-form-label">Gambar Cover Saat Ini</label>
+  <div class="col-sm-10">
+    <?php if (!empty($data['imagecover'])): ?>
+      <img 
+        src="../storage/upload/<?php echo htmlspecialchars($data['imagecover']); ?>" 
+        alt="Cover Buku" 
+        class="img-thumbnail" 
+        style="max-height: 200px;"
+      >
+    <?php else: ?>
+      <p><em>Tidak ada gambar cover</em></p>
+    <?php endif; ?>
+  </div>
+</div>
 
         <div class="text-end">
           <button type="submit" class="btn btn-primary">Simpan</button>
