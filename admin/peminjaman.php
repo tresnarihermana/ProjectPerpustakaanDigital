@@ -80,7 +80,7 @@ include '../layout/alert.php';
                   <td>
                     <a href="peminjaman-edit.php?id=<?= $row['PeminjamanID'] ?>" class="btn btn-info btn-sm me-1">Ubah</a>
                     <a href="crud-delete-peminjaman.php?id=<?= $row['PeminjamanID'] ?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm me-1">Hapus</a>
-                    <a href="cetak_peminjaman.php?id=<?= $row['PeminjamanID'] ?>" class="btn btn-success btn-sm">Cetak</a>
+                    <a href="cetak.php?id=<?= $row['PeminjamanID'] ?>" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak</a>
                   </td>
                 </tr>
             <?php endwhile; endif; ?>
