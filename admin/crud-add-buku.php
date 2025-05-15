@@ -12,13 +12,12 @@ function generatorRandom($length = 10){
 
 }
 
-$bukuid = $_POST['BukuID'];
 $judul = $_POST['Judul'];
 $deskripsi = $_POST['Deskripsi'];
 $penulis = $_POST['Penulis'];
 $penerbit = $_POST['Penerbit'];
 $tahun = $_POST['TahunTerbit'];
-
+$kategori = $_POST['kategori'];
 $target_dir = "../storage/upload/";
 $image_name = basename($_FILES["image"]["name"]);
 $target_file = $target_dir . $image_name;
@@ -28,7 +27,7 @@ $random_name = generatorRandom(20);
 $new_image_name = $random_name . "." . $file_type;
 
 // Cek apakah buku dengan judul yang sama sudah ada
-// $cek = mysqli_query($koneksi, "SELECT * FROM buku WHERE Judul = '$judul'");
+$cek = mysqli_query($koneksi, "SELECT * FROM buku WHERE Judul = '$judul'");
 
 // if (mysqli_num_rows($cek) > 0) {
 //     header("location: buku.php?pesan=duplikat");
@@ -47,14 +46,16 @@ $new_image_name = $random_name . "." . $file_type;
 //     }
 // }
 
-if ($image_size > 5000000) {
+if ($image_size > 50000000) { //50MB
     echo "file terlalu besar";
 } elseif (!in_array($file_type, ['jpg', 'jpeg', 'png', 'gif'])) {
     echo "format file tidak valid";
 } else {
-  if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir . $new_image_name)) {
-          $query = mysqli_query($koneksi, "INSERT INTO buku (BukuID, Judul, Deskripsi, Penulis, Penerbit, TahunTerbit, imagecover) 
-        VALUES ('$bukuid', '$judul', '$deskripsi', '$penulis', '$penerbit', '$tahun', '$new_image_name')");
+if (mysqli_num_rows($cek) > 0) {
+    header("location: buku.php?pesan=duplikat");
+}elseif (move_uploaded_file($_FILES["image"]["tmp_name"], $target_dir . $new_image_name)) {
+          $query = mysqli_query($koneksi, "INSERT INTO buku (BukuID, Judul, Deskripsi, Penulis, Penerbit, TahunTerbit, imagecover, KategoriID) 
+        VALUES ('$bukuid', '$judul', '$deskripsi', '$penulis', '$penerbit', '$tahun', '$new_image_name', '$kategori')");
         if ($query) {
             header("location: buku.php?pesan=berhasil");
             exit;

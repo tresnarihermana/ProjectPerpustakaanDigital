@@ -5,7 +5,10 @@ if (!isset($_SESSION['status'])) {
     exit;
 } else {
     include 'layout/navbar.php';
+    include 'koneksi.php';
 }
+$data = mysqli_query($koneksi, "SELECT * FROM buku WHERE BukuID = '$_GET[id]'");
+$buku = mysqli_fetch_assoc($data);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -24,15 +27,15 @@ if (!isset($_SESSION['status'])) {
     <div class="card-body d-flex">
       <img src="storage/img/cover-kreativitas.png" alt="Cover Buku" class="me-4" style="width: 200px; height: auto;">
       <div>
-        <h4 class="fw-bold">Kreativitas Pengolahan Kue & Roti</h4>
+        <h4 class="fw-bold"><?=htmlspecialchars($buku['Judul'])?></h4>
         <table class="table table-borderless">
           <tr>
             <th>Bahasa</th><td>: bahasa-buku</td>
             <th>Halaman</th><td>: ...pages</td>
           </tr>
           <tr>
-            <th>Tanggal Rilis</th><td>: dd-mm-yyyy</td>
-            <th>Penerbit</th><td>: nama-penerbit</td>
+            <th>Tahun Rilis</th><td>:<?=htmlspecialchars($buku['TahunTerbit'])?></td>
+            <th>Penerbit</th><td>:<?=htmlspecialchars($buku['penerbit'])?></td>
           </tr>
           <tr>
             <th>Penulis</th><td>: nama-penulis</td>

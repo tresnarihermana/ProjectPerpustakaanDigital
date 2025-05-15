@@ -16,7 +16,7 @@ if (isset($_GET['hapus'])) {
 }
 
 // Ambil data buku
-$result = mysqli_query($koneksi, "SELECT * FROM buku") or die("Query gagal: " . mysqli_error($koneksi));
+$result = mysqli_query($koneksi, "SELECT  buku.*, kategoribuku.* FROM buku,kategoribuku WHERE kategoribuku.KategoriID = buku.KategoriID ") or die("Query gagal: " . mysqli_error($koneksi));
 
 // Include layout
 include '../layout/sidebar-navbar-footbar.php';
@@ -60,7 +60,13 @@ include '../layout/alert.php';
                   <td><?= $no++ ?></td>
                   <td><?= htmlspecialchars($row['BukuID']) ?></td>
                   <td><?= htmlspecialchars($row['Judul']) ?></td>
-                  <td><?= htmlspecialchars($row['Deskripsi']) ?></td>
+                  <td><?php 
+
+                  echo strlen($row['Deskripsi']) > 25 
+                  ? htmlspecialchars(substr($row['Deskripsi'], 0, 25)) . '...' 
+                  : htmlspecialchars($row['Deskripsi']);       
+                  
+                  ?></td>
                   <td><?= htmlspecialchars($row['Penulis']) ?></td>
                   <td><?= htmlspecialchars($row['penerbit']) ?></td>
                   <td><?= htmlspecialchars($row['TahunTerbit']) ?></td>

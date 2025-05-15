@@ -20,12 +20,12 @@ require '../layout/sidebar-navbar-footbar.php';
   <div class="card shadow-sm">
     <div class="card-body">
       <form method="post" action="crud-add-buku.php" class="p-4" enctype="multipart/form-data">
-          <div class="mb-3 row">
+          <!-- <div class="mb-3 row">
             <label for="BukuID" class="col-sm-2 col-form-label">BukuID</label>
             <div class="col-sm-10">
               <input type="number" class="form-control bg-light" id="BukuID" name="BukuID" required>
             </div>
-          </div>
+          </div> -->
           
         <div class="mb-3 row">
           <label for="Judul" class="col-sm-2 col-form-label">Judul</label>
@@ -40,6 +40,20 @@ require '../layout/sidebar-navbar-footbar.php';
           </div>
         </div>
 
+       <div class="mb-3 row">
+          <label for="user" class="col-sm-2 col-form-label">Nama Kategori</label>
+          <div class="col-sm-10">
+            <select name="kategori" id="user" class="form-control bg-light" required>
+              <option value="" selected>-- Pilih kategori --</option>
+              <?php
+              $data = mysqli_query($koneksi, "SELECT * FROM kategoribuku");
+              while ($k = mysqli_fetch_array($data)) {
+                  echo "<option value='$k[kategoribukuID]'>$k[Namakategori]</option>";
+              }
+              ?>
+            </select>
+          </div>
+        </div>
         <div class="mb-3 row">
           <label for="Penulis" class="col-sm-2 col-form-label">Penulis</label>
           <div class="col-sm-10">
