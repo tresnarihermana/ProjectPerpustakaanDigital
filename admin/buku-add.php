@@ -8,6 +8,7 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
 require '../koneksi.php';
 require '../layout/sidebar-navbar-footbar.php';
 
+
 ?>
 
 <style>
@@ -18,7 +19,7 @@ require '../layout/sidebar-navbar-footbar.php';
   <h2 class="mb-3 fw-bold">Buku</h2>
   <div class="card shadow-sm">
     <div class="card-body">
-      <form method="post" action="crud-add-buku.php" class="p-4">
+      <form method="post" action="crud-add-buku.php" class="p-4" enctype="multipart/form-data">
           <div class="mb-3 row">
             <label for="BukuID" class="col-sm-2 col-form-label">BukuID</label>
             <div class="col-sm-10">
@@ -59,7 +60,12 @@ require '../layout/sidebar-navbar-footbar.php';
             <input type="text" class="form-control bg-light" id="TahunTerbit" name="TahunTerbit" required>
           </div>
         </div>
-
+        <div class="mb-3 row">
+            <label for="image" class="col-sm-2 col-form-label">Upload Image</label>
+            <div class="col-sm-10">
+            <input type="file" name="image" id="image" class="form-control" required>
+            </div>
+        </div>
         <div class="text-end">
           <button type="submit" class="btn btn-primary">Simpan</button>
           <button type="reset" class="btn btn-secondary">Reset</button>
