@@ -87,6 +87,10 @@ body {
         <a href="buku.php" class="list-group-item list-group-item-action py-2"
           ><i class="fas fa-book fa-fw me-3"></i><span>BUKU</span></a
         >
+        <a href="koleksi-kategori.php" class="list-group-item list-group-item-action py-2"
+          ><i class="fas fa-archive fa-fw me-3"></i><span>KOLEKSI</span></a
+        >
+        
         <a href="ulasan.php" class="list-group-item list-group-item-action py-2"
           ><i class="fas fa-comment fa-fw me-3"></i><span>ULASAN</span></a
         >
