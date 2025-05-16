@@ -1,5 +1,5 @@
 <div align="center">
-  <h1 align="center">    Proyek Membuat Perpustakaan Digital Berbasis Web Kelompok 5<br/>
+  <h1 align="center">    Proyek Perpustakaan Digital Berbasis Web Kelompok 5<br/>
      SMK Negeri 7 Baleendah</h1>
   <img src="https://github.com/user-attachments/assets/81c3569b-9f4b-4638-a0db-728d6ef84333"></img>
 </div>
