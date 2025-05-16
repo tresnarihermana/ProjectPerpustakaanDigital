@@ -34,7 +34,7 @@ $cek = mysqli_fetch_assoc($data);
     z-index: 1;
 }
 .dropdown-menu{
-  margin-left: 10px !important;
+  margin-left: 10px;
 }
 .btn-profile{
     border-radius: 50px;
@@ -52,7 +52,7 @@ $cek = mysqli_fetch_assoc($data);
 <body>
    <!-- awal navbar -->
     <div class="navbar-container d-flex flex-column">
-   <nav class="navbar navbar-expand-lg bg-body-tertiary " data-bs-theme = "dark" style="height: 4rem;">
+   <nav class="navbar navbar-expand-lg bg-body-tertiary " data-bs-theme = "dark">
     <div class="container-fluid">
       <a class="navbar-brand" href="index.php">
         <img src="storage/img/logo.svg" alt="" width="50" height="51" class="d-inline-block">
@@ -103,7 +103,7 @@ $cek = mysqli_fetch_assoc($data);
   </div>
 </div>
 <!-- akhir modal -->
-  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="grey" style="height: 2rem;">
+  <nav class="navbar navbar-expand-lg bg-body-tertiary" data-bs-theme="grey" style="height: 52px;">
     <div class="container-fluid justify-content-center">
         <ul class="navbar-nav" style=" display: flex ; flex-direction: row; flex-wrap: nowrap;;" >
             <li class="nav-item">

@@ -61,7 +61,7 @@ $books = array_fill(0, 10, [
     <a href="#" class="btn btn-primary">Lihat Lebih Banyak</a>
   </div>
 </div>
-<?php
+<?php 
     include 'layout/footer.php';
     ?>
 </body>
