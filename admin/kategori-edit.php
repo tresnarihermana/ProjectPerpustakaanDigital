@@ -32,23 +32,6 @@ if (!$data) {
 <body>
     <h1 class="mt-4 ms-5">Ubah Kategori</h1>
     <form method="post" action="crud-edit-kategori.php" class="card p-5" style="width: 40rem; margin: 50px auto;">
-   <?php
-  $result = $koneksi->query("SELECT imagecover FROM kategoribuku WHERE KategoriID = '$kategoriID'");
-
-  if ($result && $result->num_rows > 0) {
-    $row = $result->fetch_assoc();
-    $imageData = $row['imagecover'];
-    echo '<img src="data:image/jpeg;base64,' . base64_encode($imageData) . '" style="max-width: 500px;">';
-  } else {
-    echo 'No image uploaded yet.';
-  }
-  
-   ?>
-   
-    <div class="mb-3">
-        <label for="formFile" class="form-label">Cover Kategori</label>
-        <input class="form-control" type="file" id="formFile" name="image_kategori" accept="image/*">
-        </div>   
     <div class="mb-3">
           <label for="exampleInputEmail1" class="form-label">Nama Kategori</label>
           <input type="text" class="form-control" id="exampleInputtext" aria-describedby="nameHelp" required value="<?php echo htmlspecialchars($data['Namakategori']); ?>" name="namakategori">
