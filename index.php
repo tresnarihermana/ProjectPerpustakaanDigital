@@ -18,7 +18,7 @@ body {
     font-family: Arial, sans-serif;
 }
 
-.row1 {
+.baris {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -126,7 +126,7 @@ body {
     <!-- akhir carousel -->
     
     <div class="container mt-4">
-        <div class="row1">
+        <div class="row baris">
             <h1>Kategori Populer</h1>
             <div class="col-lg-3 col-md-6 col-sm-12">    
                 <div class="card">
