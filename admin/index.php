@@ -18,6 +18,7 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
 </style>
 <body>
 <h1 class="mt-4 ms-5">Dashboard, Selamat datang <?php echo $_SESSION['username']?></h1>
+<br></br>
     <div class="row mx-5">
         <div class="col-4">
             <div class="card bg-primary text-white mb-4">
@@ -27,7 +28,7 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
                 ?>
                 Total Buku</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretche-link" href="#"> View Details</a>
+                    <a class="small text-white stretche-link" href="buku.php"> View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -40,7 +41,7 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
                 ?>    
                 Total User</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretche-link" href="#"> View Details</a>
+                    <a class="small text-white stretche-link" href="pengguna.php"> View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
@@ -53,7 +54,7 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
                 ?>    
                 Total Peminjaman</div>
                 <div class="card-footer d-flex align-items-center justify-content-between">
-                    <a class="small text-white stretche-link" href="#"> View Details</a>
+                    <a class="small text-white stretche-link" href="peminjaman.php"> View Details</a>
                     <div class="small text-white"><i class="fas fa-angle-right"></i></div>
                 </div>
             </div>
