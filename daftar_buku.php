@@ -8,61 +8,55 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
 require 'koneksi.php';
 require 'layout/navbar.php';
 
-// Contoh data dummy koleksi buku kategori
-$books = array_fill(0, 10, [
-    'judul' => 'Judul Buku',
-    'deskripsi' => 'Deskripsi singkat buku.',
-    'gambar' => 'storage/img/cover-nonfiksi.png'
-]);
+$books = mysqli_query($koneksi, "SELECT * FROM buku");
 ?>
 
 <style>
 @media (min-width: 992px) {
     body { margin-left: 240px; }
 }
-.card-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    gap: 1rem;
+.ratio {
+  aspect-ratio: 2/3;
 }
-.card-item {
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 0.75rem;
-    text-align: center;
+.card:hover{
+  cursor: pointer;
 }
-.card-item img {
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 4px;
-}
-.card-item h6 {
-    margin-top: 0.5rem;
-    font-weight: 600;
-}
+
 </style>
 
 <div class="mx-5 mt-4">
   <a href="javascript:history.back()">&lt; back</a>
-  <h2 class="fw-bold mt-3">Koleksi “kategoribuku”</h2>
-  
-  <div class="card-grid mt-4">
-    <?php foreach ($books as $book): ?>
-      <div class="card-item">
-        <img src="storage/img/cover-nonfiksi.png" alt="cover buku">
-        <h6><?= $book['judul']; ?></h6>
-        <p class="text-muted" style="font-size: 0.875rem;"><?= $book['deskripsi']; ?></p>
+  <h2 class="fw-bold mt-3">Koleksi Buku</h2>
+
+  <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 mt-3">
+  <?php while ($row = mysqli_fetch_assoc($books)): ?>
+    <?php
+      $image = !empty($row['imagecover']) && file_exists('storage/upload/' . $row['imagecover']) 
+          ? 'storage/upload/' . htmlspecialchars($row['imagecover']) 
+          : 'storage/img/default-cover.png';
+    ?>
+    <div class="col">
+      <a href="detail-buku.php?id=<?= $row['BukuID'] ?>">
+      <div class="card h-100 shadow-sm border-0">
+        <div class="ratio">
+          <img src="<?= $image; ?>" class="card-img-top rounded" alt="cover buku" style="object-fit: cover;">
+        </div>
+        <div class="card-body text-center px-2 py-3">
+          <h6 class="card-title mb-1"><?= htmlspecialchars($row['Judul']); ?></h6>
+          <p class="text-muted small mb-0"><?= htmlspecialchars($row['Penulis'] ?? ''); ?></p>
+        </div>
       </div>
-    <?php endforeach; ?>
-  </div>
+      </a>
+    </div>
+  <?php endwhile; ?>
+</div>
+
 
   <div class="text-center mt-4">
     <a href="#" class="btn btn-primary">Lihat Lebih Banyak</a>
   </div>
 </div>
-<?php
-    include 'layout/footer.php';
-    ?>
+
+<?php include 'layout/footer.php'; ?>
 </body>
 </html>
