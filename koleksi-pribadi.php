@@ -16,9 +16,6 @@ $koleksi = [
 ];
 ?>
 
-<style>
-@media (min-width: 992px) { body { margin-left: 180px; } }
-</style>
 
 <div class="mx-5 mt-4">
   <h2 class="mb-3 fw-bold">Koleksi Pribadi</h2>
