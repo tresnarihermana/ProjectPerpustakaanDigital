@@ -24,6 +24,7 @@ $query = "
 $result = mysqli_query($koneksi, $query);
 ?>
 
+<body>
 <div class="mx-5 mt-4">
   <h2 class="mb-3 fw-bold">Koleksi Pribadi</h2>
   <p>Hai, <?= htmlspecialchars($_SESSION['username']); ?>! Berikut buku yang kamu miliki di koleksi pribadimu:</p>
@@ -55,10 +56,10 @@ $result = mysqli_query($koneksi, $query);
   <?php endif; ?>
 
   <div class="text-center mt-4">
-    <a href="beranda.php" class="btn btn-outline-secondary">Kembali ke Beranda</a>
+    <a href="index.php" class="btn btn-outline-secondary">Kembali ke Beranda</a>
   </div>
 </div>
-
+</div>
 <?php include 'layout/footer.php'; ?>
 </body>
 </html>
