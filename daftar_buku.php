@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
+if (!isset($_SESSION['status'])) {
     header('Location: ../login.php');
     exit;
 }
@@ -53,7 +53,8 @@ $books = mysqli_query($koneksi, "SELECT * FROM buku");
     <a href="#" class="btn btn-primary">Lihat Lebih Banyak</a>
   </div>
 </div>
-
-<?php include 'layout/footer.php'; ?>
+<?php
+    include 'layout/footer.php';
+    ?>
 </body>
 </html>
