@@ -15,12 +15,17 @@ $buku = mysqli_fetch_assoc($data);
 $user = $_SESSION['UserID'];
 
 if(isset($_POST['proses'])){
-  $koleksi = mysqli_query($koneksi, "INSERT INTO koleksipribadi (KoleksiID, BukuID, UserID) VALUES ('','$id_buku','$user')");
-if($koleksi){
-            header('Location: koleksi-pribadi.php');
-            exit;  // Jangan lupa exit setelah header
-        }
-      }
+  $cekk = mysqli_query($koneksi, "SELECT * FROM koleksipribadi WHERE UserID = '$user' && BukuID = '$id_buku'");
+  $cekkk= mysqli_fetch_assoc($cekk);
+ if($cekkk > 0){
+    header('Location: koleksi-pribadi.php?pesan=duplikat');
+    exit;
+ } else{
+   $koleksi = mysqli_query($koneksi, "INSERT INTO koleksipribadi (KoleksiID, BukuID, UserID) VALUES ('','$id_buku','$user')");
+ } if($koleksi){
+  header('Location: koleksi-pribadi.php');
+ }
+}
 
 $data_ulasan = mysqli_query($koneksi, "
   SELECT ulasanbuku.*, user.Username
