@@ -61,10 +61,11 @@ $cek = mysqli_fetch_assoc($data);
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mb-2 mb-lg-0">
         </ul>
-        <form class="searchbar d-flex justify-content-center mx-auto" role="search">
-            <input class="form-control me-2 " data-bs-theme="light" type="search" placeholder="Cari..." aria-label="Search" style="border-radius: 50px;">
-            <button class="search-icon btn btn-success" type="submit" style="border-radius: 50px; "><i class="fa-solid fa-magnifying-glass"></i></button>
-          </form>
+      <form class="searchbar d-flex justify-content-center mx-auto" role="search" action="pencarian.php" method="GET">
+        <input class="form-control me-2" type="search" name="keyword" placeholder="Cari..." aria-label="Search" style="border-radius: 50px;">
+        <button class="search-icon btn btn-success" type="submit" style="border-radius: 50px;"><i class="fa-solid fa-magnifying-glass"></i></button>
+      </form>
+
       </div>
       <div class="dropdown">
         <button class="btn-profile dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -110,7 +111,7 @@ $cek = mysqli_fetch_assoc($data);
                 <a class="nav-link" href="index.php">Home </a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="daftar_buku.php">Books</a>
+                <a class="nav-link" href="daftar-buku.php">Books</a>
             </li>
 
             <li class="nav-item">

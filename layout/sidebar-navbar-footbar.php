@@ -94,7 +94,7 @@ body {
         </a>
         <?php
         if (($_SESSION['role'] == 'admin')) {
-            echo '<a href="petugas.php" class="list-group-item list-group-item-action py-2"><i class="fas fa-user-shield fa-fw me-3"></i><span>PETUGAS</span></a>';
+            // echo '<a href="petugas.php" class="list-group-item list-group-item-action py-2"><i class="fas fa-user-shield fa-fw me-3"></i><span>PETUGAS</span></a>';
             echo '<a href="pengguna.php" class="list-group-item list-group-item-action py-2"><i class="fas fa-users fa-fw me-3"></i><span>USER</span></a>';
           } else {
         }

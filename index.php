@@ -190,6 +190,10 @@ if (!isset($_SESSION['status'])) {
         </div>
     </div>
 
+    <?php
+    include 'layout/footer.php';
+    ?>
+
 <?php
 $data = mysqli_query($koneksi, "SELECT * FROM buku");
 ?>
