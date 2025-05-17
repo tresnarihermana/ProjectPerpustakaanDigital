@@ -12,9 +12,7 @@ $books = mysqli_query($koneksi, "SELECT * FROM buku");
 ?>
 
 <style>
-@media (min-width: 992px) {
-    body { margin-left: 240px; }
-}
+
 .ratio {
   aspect-ratio: 2/3;
 }
