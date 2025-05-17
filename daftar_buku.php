@@ -25,7 +25,7 @@ $books = mysqli_query($koneksi, "SELECT * FROM buku");
 </style>
 
 <div class="mx-5 mt-4">
-  <a href="javascript:history.back()">&lt; back</a>
+  <a href="javascript:history.back()" style="text-decoration: none; color:black;">&lt; back</a>
   <h2 class="fw-bold mt-3">Koleksi Buku</h2>
 
   <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 mt-3">
@@ -33,7 +33,7 @@ $books = mysqli_query($koneksi, "SELECT * FROM buku");
     <?php
       $image = !empty($row['imagecover']) && file_exists('storage/upload/' . $row['imagecover']) 
           ? 'storage/upload/' . htmlspecialchars($row['imagecover']) 
-          : 'storage/img/default-cover.png';
+          : 'storage/img/default-cover.jpg';
     ?>
     <div class="col">
       <a href="detail-buku.php?id=<?= $row['BukuID'] ?>">
