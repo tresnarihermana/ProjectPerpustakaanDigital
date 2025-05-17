@@ -15,6 +15,12 @@ if (mysqli_num_rows($data) == 0) {
         header("location: kategori.php?pesan=gagal");
     }
 }
-
-
+// Hapus file cover jika ada
+$cover = $cek['coverkategori'];
+if (!empty($cover)) {
+    $filePath = "../storage/upload/" . $cover;
+    if (file_exists($filePath)) {
+        unlink($filePath);
+    }
+}
 ?>
