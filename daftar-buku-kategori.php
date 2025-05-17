@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
+if (!isset($_SESSION['status'])) {
     header('Location: ../login.php');
     exit;
 }
@@ -14,14 +14,12 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     exit;
 }
 $kategoriID = $_GET['id'];
-$lihatSemua = isset($_POST['lihat_semua']);
 // Ambil nama kategori untuk ditampilkan di judul
 $getNamaKategori = mysqli_query($koneksi, "SELECT Namakategori FROM Kategoribuku WHERE KategoriID = $kategoriID");
 $namaKategoriData = mysqli_fetch_assoc($getNamaKategori);
 $namaKategori = $namaKategoriData['Namakategori'] ?? 'Kategori Tidak Diketahui';
 
 // Query buku berdasarkan kategori
-$queryLimit = $lihatSemua ? "" : "LIMIT 15";
 $result = mysqli_query(
     $koneksi,
     "SELECT Kategoribuku_relasi.*, buku.*, Kategoribuku.* 
@@ -29,8 +27,7 @@ $result = mysqli_query(
     JOIN buku ON Kategoribuku_relasi.BukuID = buku.BukuID
     JOIN Kategoribuku ON Kategoribuku_relasi.KategoriID = Kategoribuku.KategoriID
     WHERE Kategoribuku_relasi.KategoriID = $kategoriID
-    ORDER BY buku.Judul ASC
-    $queryLimit"
+    ORDER BY buku.Judul ASC"
 ) or die("Query gagal: " . mysqli_error($koneksi));
 ?>
 
@@ -70,9 +67,6 @@ $result = mysqli_query(
     <?php endwhile; ?>
   </div>
 
-<form method="post">
-    <button type="submit" name="lihat_semua" class="btn btn-primary text-center mt-4">Lihat Semua Buku</button>
-</form>
 
 </div>
 

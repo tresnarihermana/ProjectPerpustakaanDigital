@@ -1,6 +1,6 @@
 <?php
 session_start();
-if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
+if (!isset($_SESSION['status'])) {
     header('Location: ../login.php');
     exit;
 }
@@ -48,11 +48,6 @@ $books = mysqli_query($koneksi, "SELECT * FROM buku");
     </div>
   <?php endwhile; ?>
 </div>
-
-
-  <div class="text-center mt-4">
-    <a href="#" class="btn btn-primary">Lihat Lebih Banyak</a>
-  </div>
 </div>
 
 <?php include 'layout/footer.php'; ?>
