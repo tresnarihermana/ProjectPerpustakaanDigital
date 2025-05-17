@@ -7,6 +7,7 @@ if (!isset($_SESSION['status'])) {
 
 require 'koneksi.php';
 require 'layout/navbar.php';
+require 'layout/alert.php';
 
 $user_id = $_SESSION['UserID'];
 
@@ -38,10 +39,12 @@ $result = mysqli_query($koneksi, $query);
             <div class="card-body">
               <h5 class="card-title"><?= htmlspecialchars($buku['Judul']) ?></h5>
               <p class="card-text mb-2"><small class="text-muted">
-                Ditambahkan ke koleksi: <?= date('d M Y', strtotime($buku['TanggalDitambahkan'])) ?>
+                Penulis : <?= htmlspecialchars($buku['Penulis'])?> </br>
+                Penerbit : <?= htmlspecialchars($buku['penerbit'])?> </br>
+                Tahun Terbit : <?= htmlspecialchars($buku['TahunTerbit'])?> </br>
               </small></p>
               <a href="detail-buku.php?id=<?= $buku['BukuID'] ?>" class="btn btn-primary btn-sm me-2">Lihat Detail Buku</a>
-              <a href="hapus-koleksi.php?id=<?= $buku['BukuID'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus buku ini dari koleksi?')">Hapus</a>
+              <a href="user/hapus-koleksi.php?id=<?=$buku['koleksiID'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus buku ini dari koleksi?')">Hapus</a>
             </div>
           </div>
         </div>
