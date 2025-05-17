@@ -25,9 +25,6 @@ if ($keyword) {
 ?>
 
 <style>
-@media (min-width: 992px) {
-    body { margin-left: 240px; }
-}
 .ratio {
   aspect-ratio: 2/3;
 }
