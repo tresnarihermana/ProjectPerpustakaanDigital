@@ -50,6 +50,6 @@ Perpustakaan Digital adalah sebuah platform perpustakaan digital yang menawarkan
 | Nama |  Contributor |
 | :---: |  :---: |
 | **[Tresnariyadi Hermana](https://github.com/tresnarihermana)**   | Projek Manajer |
-| **[Fahmi](link profil github)**  | jabatan |
-| **[Nadya](link profil github)**  | jabatan |
-| **[Moch.yanuar](link profil github)**   | jabatan |
+| **[Fahmi](https://github.com/ikanemo)**  | Member |
+| **[Nadya](https://github.com/nadyanafisah)**  | Member |
+| **[Moch.yanuar](link profil github)**   | Member |
