@@ -1,9 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
-    header('Location: ../login.php');
-    exit;
-}
+require 'config/session.php';
 
 require '../koneksi.php';
 require '../layout/sidebar-navbar-footbar.php';

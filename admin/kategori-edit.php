@@ -1,12 +1,8 @@
 <?php
-session_start();
-if (!isset($_SESSION['status']) || $_SESSION['role'] === 'user') {
-    header("Location: ../login.php");
-    exit;
-} else {
+require 'config/session.php';
+
     include '../layout/sidebar-navbar-footbar.php';
     include '../koneksi.php';
-}
 // Ambil KategoriID dari URL
 if (isset($_GET['id'])) {
     $kategoriID = $_GET['id']; // Mengambil ID kategori dari parameter URL
