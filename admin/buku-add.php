@@ -9,6 +9,10 @@ require '../layout/sidebar-navbar-footbar.php';
 
 <style>
 @media (min-width: 992px) { body { margin-left: 240px; } }
+#drop-area.highlight {
+  background-color: #e0f7ff;
+  border-color: #007bff;
+}
 </style>
 
 <div class="mx-5 mt-4">
@@ -71,11 +75,15 @@ require '../layout/sidebar-navbar-footbar.php';
           </div>
         </div>
         <div class="mb-3 row">
-            <label for="image" class="col-sm-2 col-form-label">Upload Image</label>
-            <div class="col-sm-10">
-            <input type="file" name="image" id="image" class="form-control" required>
-            </div>
-        </div>
+  <label for="image" class="col-sm-2 col-form-label">Upload Image</label>
+  <div class="col-sm-10">
+    <div id="drop-area" class="border border-2 border-secondary rounded bg-light p-4 text-center" style="cursor: pointer;">
+      <p class="mb-2">Drag & drop gambar di sini atau klik untuk memilih</p>
+      <input type="file" name="image" id="image" class="form-control d-none" accept="image/*" required>
+      <img id="preview" src="#" alt="Preview" style="max-width: 200px; display: none; margin-top: 10px;">
+    </div>
+  </div>
+</div>
         <div class="text-end">
           <button type="submit" class="btn btn-primary">Simpan</button>
           <button type="reset" class="btn btn-secondary">Reset</button>
@@ -85,6 +93,57 @@ require '../layout/sidebar-navbar-footbar.php';
     </div>
   </div>
 </div>
+<script>
+const dropArea = document.getElementById("drop-area");
+const fileInput = document.getElementById("image");
+const preview = document.getElementById("preview");
+
+// Klik area = buka file input
+dropArea.addEventListener("click", () => fileInput.click());
+
+// Drag over & enter
+["dragenter", "dragover"].forEach(eventName => {
+  dropArea.addEventListener(eventName, e => {
+    e.preventDefault();
+    e.stopPropagation();
+    dropArea.classList.add("highlight");
+  });
+});
+
+// Drag leave & drop
+["dragleave", "drop"].forEach(eventName => {
+  dropArea.addEventListener(eventName, e => {
+    e.preventDefault();
+    e.stopPropagation();
+    dropArea.classList.remove("highlight");
+  });
+});
+
+// Saat file dijatuhkan
+dropArea.addEventListener("drop", e => {
+  const files = e.dataTransfer.files;
+  if (files.length > 0) {
+    fileInput.files = files; // Set file ke input hidden
+    showPreview(files[0]);
+  }
+});
+
+// Saat file dipilih manual
+fileInput.addEventListener("change", () => {
+  if (fileInput.files.length > 0) {
+    showPreview(fileInput.files[0]);
+  }
+});
+
+function showPreview(file) {
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    preview.src = e.target.result;
+    preview.style.display = "block";
+  };
+  reader.readAsDataURL(file);
+}
+</script>
 
 </body>
 </html>
