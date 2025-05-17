@@ -5,16 +5,28 @@ $id = $_GET['id'];
 $data = mysqli_query($koneksi, "SELECT * FROM buku WHERE BukuID = '$id'");
 $cek = mysqli_fetch_assoc($data);
 
-if (mysqli_num_rows($data) == 0) {
+if (!$cek) {
     header("location: buku.php?pesan=gagali");
-} else {
-$query = "DELETE FROM buku WHERE BukuID = '$id'";
+    exit;
+}
 
-    if (mysqli_query($koneksi, $query) && $id > 0) {
-        header("location: buku.php?pesan=berhasil");
-    } else {
-        header("location: buku.php?pesan=gagalo");
+// Hapus relasi dari tabel terkait
+mysqli_query($koneksi, "DELETE FROM kategoribuku_relasi WHERE BukuID = '$id'");
+
+// Hapus file cover jika ada
+$cover = $cek['imagecover'];
+if (!empty($cover)) {
+    $filePath = "../storage/upload/" . $cover;
+    if (file_exists($filePath)) {
+        unlink($filePath);
     }
 }
 
+// Hapus buku
+$query = "DELETE FROM buku WHERE BukuID = '$id'";
+if (mysqli_query($koneksi, $query)) {
+    header("location: buku.php?pesan=berhasil");
+} else {
+    header("location: buku.php?pesan=gagalo");
+}
 ?>

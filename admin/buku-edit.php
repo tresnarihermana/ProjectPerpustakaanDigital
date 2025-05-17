@@ -1,10 +1,5 @@
 <?php
-session_start();
-if (!isset($_SESSION['status']) || $_SESSION['role'] == 'user') {
-    header('Location: ../login.php');
-    exit;
-}
-
+require 'config/session.php';
 require '../koneksi.php';
 require '../layout/sidebar-navbar-footbar.php';
 
@@ -48,6 +43,21 @@ $data = mysqli_fetch_assoc($query);
           <label for="Deskripsi" class="col-sm-2 col-form-label">Deskripsi</label>
           <div class="col-sm-10">
             <input type="text" class="form-control bg-light" id="Deskripsi" name="Deskripsi" value="<?php echo htmlspecialchars($data['Deskripsi']); ?>" required>
+          </div>
+        </div>
+        <div class="mb-3 row">
+          <label for="user" class="col-sm-2 col-form-label">Nama Kategori</label>
+          <div class="col-sm-10">
+          <select name="kategori" id="kategori" class="form-control bg-light" required>
+            <option value="" disabled selected>-- Pilih kategori --</option>
+            <?php
+            $dataKategori = mysqli_query($koneksi, "SELECT * FROM kategoribuku");
+            while ($k = mysqli_fetch_array($dataKategori)) {
+                $selected = ($k['KategoriID'] == $kategoriTerpilih) ? 'selected' : '';
+                echo "<option value='{$k['KategoriID']}' $selected>{$k['Namakategori']}</option>";
+            }
+            ?>
+          </select>
           </div>
         </div>
 
