@@ -92,8 +92,8 @@ include '../layout/alert.php';
           <label for="StatusPeminjaman" class="col-sm-3 col-form-label">Status Pengembalian</label>
           <div class="col-sm-9">
             <select class="form-control bg-light" id="StatusPeminjaman" name="StatusPeminjaman" required>
-              <option value="dipinjam" <?php if ($data['StatusPeminjaman'] == 'dipinjam') echo 'selected'; ?>>Dipinjam</option>
-              <option value="dikembalikan" <?php if ($data['StatusPeminjaman'] == 'dikembalikan') echo 'selected'; ?>>Dikembalikan</option>
+              <option value="dipinjam" <?php if ($data['StatusPeminjaman'] = 'Dipinjam') echo 'selected'; ?>>Dipinjam</option>
+              <option value="dikembalikan" <?php if ($data['StatusPeminjaman'] = 'Dikembalikan') echo 'selected'; ?>>Dikembalikan</option>
             </select>
           </div>
         </div>
