@@ -12,7 +12,7 @@ function generatorRandom($length = 10) {
 }
 
 $judul = $_POST['Judul'];
-$deskripsi = $_POST['Deskripsi'];
+$deskripsi = mysqli_real_escape_string($koneksi, $_POST['Deskripsi']);
 $penulis = $_POST['Penulis'];
 $penerbit = $_POST['Penerbit'];
 $tahun = $_POST['TahunTerbit'];
