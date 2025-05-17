@@ -129,7 +129,7 @@ $cek = mysqli_fetch_assoc($data);
             </li>
 
             <li class="nav-item">
-                <a class="nav-link" href="#">Peminjaman</a>
+                <a class="nav-link" href="daftar-peminjaman.php">Peminjaman</a>
             </li>
 
             <li class="nav-item">
