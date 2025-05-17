@@ -1,9 +1,5 @@
 <?php
 session_start();
-if (!isset($_SESSION['status'])) {
-    header('Location: ../login.php');
-    exit;
-}
 
 require '../koneksi.php';
 
@@ -26,9 +22,9 @@ $query = "INSERT INTO peminjaman (UserID, BukuID, TanggalPeminjaman, TanggalPeng
           VALUES ('$user_id', '$buku', '$tgl_pinjam', '$tgl_kembali', '$status')";
 
 if (mysqli_query($koneksi, $query)) {
-    header('Location: ../pinjam-buku.php?pesan=berhasil');
+    header('Location: ../daftar-peminjaman.php?pesan=berhasil');
     exit;
 } else {
-    header('Location: ../pinjam-buku.php?pesan=gagal');
+    header('Location: ../daftar-peminjaman.php?pesan=gagal');
 }
 ?>
