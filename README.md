@@ -32,15 +32,15 @@ Perpustakaan Digital adalah sebuah platform perpustakaan digital yang menawarkan
 <!-- GETTING STARTED -->
 
 ## Default Akun Untuk Login
-** Admin Default Akun **
+**Admin Default Akun**
 - Username: Admin
 - Password: admin123
 
-** Petugas Default Akun**
+**Petugas Default Akun**
 - Username : Petugas
 - Password : petugas123
 
-** Pengguna Default Akun **
+**Pengguna Default Akun**
 - Username: User
 - Password: user123
 
