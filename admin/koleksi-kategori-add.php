@@ -19,7 +19,7 @@ require '../layout/sidebar-navbar-footbar.php';
 </style>
 
 <div class="mx-5 mt-4">
-  <h2 class="mb-3 fw-bold">Kategori Buku</h2>
+  <h2 class="mb-3 fw-bold">Tambah Koleksi Kategori Buku</h2>
   <div class="card shadow-sm">
     <div class="card-body">
       <form method="post" action="crud-add-koleksi-kategori.php" class="p-4" enctype="multipart/form-data">

@@ -26,7 +26,7 @@ include '../layout/alert.php';
 
 <div class="mx-5 mt-4">
   <!-- Judul -->
-  <h1 class="mb-3">Kategori Buku</h1>
+  <h1 class="mb-3">Koleksi Kategori Buku</h1>
   <!-- Tombol di bawah judul -->
   <a href="koleksi-kategori-add.php" class="btn btn-success mb-4">+ Tambah Data</a>
 
