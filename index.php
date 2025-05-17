@@ -14,8 +14,6 @@ if (!isset($_SESSION['status'])) {
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Halaman User</title>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
 
     <!-- Slick Carousel CSS -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.css"/>
@@ -148,51 +146,31 @@ if (!isset($_SESSION['status'])) {
     </div>
     <!-- akhir carousel -->
 
-    <div class="container mt-4">
-        <div class="row baris">
-            <h1>Kategori Populer</h1>
-            <div class="col-lg-3 col-md-6 col-sm-12">    
-                <div class="card">
-                    <img src="storage/img/cover-pendidikan.png" class="card-img-top" alt="Pendidikan"> 
-                    <span class="white-box">PENDIDIKAN</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card">
-                    <img src="storage/img/Cover-fiksi.png" class="card-img-top" alt="Fiksi">
-                    <span class="white-box">FIKSI</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card">
-                    <img src="storage/img/cover-Sains.png" class="card-img-top" alt="Sains & Teknologi">
-                    <span class="white-box">SAINS & TEKNOLOGI</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card">
-                    <img src="storage/img/cover-Kreativitas.png" class="card-img-top" alt="Hobi & Keterampilan">
-                    <span class="white-box">HOBI & KETERAMPILAN</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card">
-                    <img src="storage/img/cover-fiksi.png" class="card-img-top" alt="Non-Fiksi">
-                    <span class="white-box">NON-FIKSI</span>
-                </div>
-            </div>
-            <div class="col-lg-3 col-md-6 col-sm-12">
-                <div class="card">
-                    <img src="storage/img/cover-komik.png" class="card-img-top" alt="Komik">
-                    <span class="white-box">KOMIK</span>
-                </div>
-            </div>
-        </div>
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">📖 Jelajahi Kategori Buku</h2>
+        <p class="text-muted">Temukan buku favoritmu berdasarkan kategori yang telah kami sediakan.</p>
     </div>
 
-    <?php
-    include 'layout/footer.php';
-    ?>
+    <div class="row baris">
+
+        <?php
+        include 'koneksi.php'; // Pastikan koneksi database dimuat
+
+        $kategori = mysqli_query($koneksi, "SELECT * FROM kategoribuku LIMIT 6");
+
+        while ($data = mysqli_fetch_assoc($kategori)) :
+        ?>
+            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+                <div class="card" style="cursor: pointer;" onclick="location.href='daftar-buku-kategori.php?id=<?= $data['KategoriID']; ?>'">
+                    <img src="storage/upload/<?= htmlspecialchars($data['coverkategori']); ?>" class="card-img-top" alt="<?= htmlspecialchars($data['Namakategori']); ?>">
+                    <span class="white-box"><?= strtoupper(htmlspecialchars($data['Namakategori'])); ?></span>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
+</div>
+
 
 <?php
 $data = mysqli_query($koneksi, "SELECT * FROM buku");
@@ -202,11 +180,7 @@ $data = mysqli_query($koneksi, "SELECT * FROM buku");
     <div class="text-center mb-4">
         <h2 class="fw-bold">📚 Koleksi Buku Terpopuler</h2>
         <p class="text-muted">Jelajahi berbagai kategori buku yang tersedia di perpustakaan digital kami.</p>
-        <div class="btn-group" role="group">
-            <button class="btn btn-danger">Best Seller</button>
-            <button class="btn btn-outline-dark">E-Books</button>
-            <button class="btn btn-outline-dark">Text-Books</button>
-        </div>
+
     </div>
 
     <div class="book-slider">
