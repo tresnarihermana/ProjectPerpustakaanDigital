@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Footer</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet">
+  
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
   <link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&display=swap" rel="stylesheet">
   <style>
@@ -75,7 +75,7 @@
         <div class="col-md-3 footer-section mb-4">
           <h6>Tentang</h6>
           <ul>
-            <li><a href="#">Tentang Kami</a></li>
+            <li><a href="about-us.php">Tentang Kami</a></li>
             <li><a href="#">Fitur</a></li>
             <li><a href="#">Testimoni</a></li>
             <li><a href="#">Kebijakan Privasi</a></li>
@@ -86,10 +86,10 @@
         <div class="col-md-3 footer-section mb-4">
           <h6>Layanan</h6>
           <ul>
-            <li><a href="#">Pinjam Buku</a></li>
-            <li><a href="#">Katalog</a></li>
-            <li><a href="#">Favorit</a></li>
-            <li><a href="#">Riwayat</a></li>
+            <li><a href="#">Riwayat Pinjam Buku</a></li>
+            <li><a href="daftar-buku.php">Daftar Buku</a></li>
+            <li><a href="#">Koleksi Pribadi</a></li>
+            <li><a href="daftar-kategori.php">Daftar Kategori</a></li>
           </ul>
         </div>
 
@@ -97,9 +97,9 @@
         <div class="col-md-3 footer-section mb-4">
           <h6>Bantuan</h6>
           <ul>
-            <li><a href="#">FAQ</a></li>
-            <li><a href="#">Hubungi Kami</a></li>
-            <li><a href="#">Syarat & Ketentuan</a></li>
+            <li><a href="FAQ.php">FAQ</a></li>
+            <li><a href="contact-us.php">Hubungi Kami</a></li>
+            <li><a href="syarat-dan-ketentuan.php">Syarat & Ketentuan</a></li>
           </ul>
         </div>
       </div>
