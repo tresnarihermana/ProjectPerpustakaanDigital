@@ -16,12 +16,21 @@ $result = mysqli_query($koneksi, "SELECT * FROM buku") or die("Query gagal: " . 
 // Include layout
 include '../layout/sidebar-navbar-footbar.php';
 include '../layout/alert.php';
+  function limit_words($text, $limit = 25) {
+    $words = explode(' ', strip_tags($text)); // Hapus tag HTML jika ada
+    if (count($words) <= $limit) {
+        return implode(' ', $words);
+    }
+    return implode(' ', array_slice($words, 0, $limit)) . '...';
+}
 ?>
 <style>
   @media (min-width: 992px) {
     body { margin-left: 240px; }
   }
+
 </style>
+
 
 <div class="mx-5 mt-4">
   <h1 class="mb-3">Buku</h1>
@@ -55,7 +64,7 @@ include '../layout/alert.php';
                   <td><?= $no++ ?></td>
                   <td><?= htmlspecialchars($row['BukuID']) ?></td>
                   <td><?= htmlspecialchars($row['Judul']) ?></td>
-                  <td><?= htmlspecialchars($row['Deskripsi']) ?></td>
+                  <td><?= htmlspecialchars(limit_words($row['Deskripsi'], 7)) ?></td>
                   <td><?= htmlspecialchars($row['Penulis']) ?></td>
                   <td><?= htmlspecialchars($row['penerbit']) ?></td>
                   <td><?= htmlspecialchars($row['TahunTerbit']) ?></td>
