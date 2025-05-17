@@ -155,7 +155,7 @@ if (!isset($_SESSION['status'])) {
     <div class="row baris">
 
         <?php
-        include 'koneksi.php'; // Pastikan koneksi database dimuat
+        include 'koneksi.php';
 
         $kategori = mysqli_query($koneksi, "SELECT * FROM kategoribuku LIMIT 6");
 
