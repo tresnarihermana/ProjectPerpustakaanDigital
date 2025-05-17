@@ -106,7 +106,11 @@ $query = mysqli_query($koneksi, "
                   <td><?= htmlspecialchars($row['TanggalPeminjaman']) ?></td>
                   <td><?= htmlspecialchars($row['TanggalPengembalian']) ?></td>
                   <td>
-                    <span class="badge bg-<?= $row['StatusPeminjaman'] == 'Dikembalikan' ? 'success' : 'warning' ?>">
+                    <?php
+                    $warna = $row['StatusPeminjaman'] == 'dikembalikan' ? 'success' :
+                     ($row['StatusPeminjaman'] == 'dipinjam' ? 'warning' : 'danger');
+                    ?>
+                    <span class="badge bg-<?=$warna?>">
                       <?= htmlspecialchars($row['StatusPeminjaman']) ?>
                     </span>
                   </td>
