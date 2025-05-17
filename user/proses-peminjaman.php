@@ -11,13 +11,11 @@ $buku = mysqli_real_escape_string($koneksi, $_POST['buku_id']);
 $tgl_pinjam = $_POST['tanggal_pinjam'];
 $tgl_kembali = $_POST['tanggal_kembali'];
 $status = "Dipinjam";
-// Validasi: tanggal kembali tidak boleh lebih awal dari tanggal pinjam
-if (strtotime($tgl_kembali) < strtotime($tgl_pinjam)) {
-    echo "<script>alert('Tanggal pengembalian tidak boleh lebih awal dari tanggal peminjaman!'); window.history.back();</script>";
-    exit;
-}
 
-// Masukkan ke database
+$cek = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE BukuID = '$buku' && UserID = '$user_id' && StatusPeminjaman = '$status'");
+if(mysqli_num_rows($cek) > 0){
+    header('Location: ../daftar-peminjaman.php?pesan=duplikat');
+} else{
 $query = "INSERT INTO peminjaman (UserID, BukuID, TanggalPeminjaman, TanggalPengembalian, StatusPeminjaman) 
           VALUES ('$user_id', '$buku', '$tgl_pinjam', '$tgl_kembali', '$status')";
 
@@ -27,4 +25,6 @@ if (mysqli_query($koneksi, $query)) {
 } else {
     header('Location: ../daftar-peminjaman.php?pesan=gagal');
 }
+}
+
 ?>
