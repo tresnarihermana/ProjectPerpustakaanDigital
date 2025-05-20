@@ -91,9 +91,9 @@ include '../koneksi.php';
                 <th>Status</th>
                 <td>
                     <?php
-                        if ($data["StatusPeminjaman"] === "Dipinjam") {
+                        if ($data["StatusPeminjaman"] === "dipinjam") {
                             echo "<span class='badge bg-warning text-dark'>DIPINJAM</span>";
-                        } else if ($data["StatusPeminjaman"] === "Dikembalikan") {
+                        } else if ($data["StatusPeminjaman"] === "dikembalikan") {
                             echo "<span class='badge bg-success'>DIKEMBALIKAN</span>";
                         } else {
                             echo "<span class='badge bg-secondary'>TIDAK DIKETAHUI</span>";
