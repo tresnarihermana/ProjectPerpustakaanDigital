@@ -75,10 +75,10 @@
         <div class="col-md-3 footer-section mb-4">
           <h6>Tentang</h6>
           <ul>
-            <li><a href="about-us.php">Tentang Kami</a></li>
-            <li><a href="#">Fitur</a></li>
-            <li><a href="#">Testimoni</a></li>
-            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="tentang-kami.php">Tentang Kami</a></li>
+            <li><a href="fitur.php">Fitur</a></li>
+            <li><a href="semua-ulasan.php">Review terbaru</a></li>
+            <li><a href="kebijakan-privasi.php">Kebijakan Privasi</a></li>
           </ul>
         </div>
 
@@ -86,9 +86,9 @@
         <div class="col-md-3 footer-section mb-4">
           <h6>Layanan</h6>
           <ul>
-            <li><a href="#">Riwayat Pinjam Buku</a></li>
+            <li><a href="daftar-peminjaman.php">Riwayat Pinjam Buku</a></li>
             <li><a href="daftar-buku.php">Daftar Buku</a></li>
-            <li><a href="#">Koleksi Pribadi</a></li>
+            <li><a href="koleksi-pribadi.php">Koleksi Pribadi</a></li>
             <li><a href="daftar-kategori.php">Daftar Kategori</a></li>
           </ul>
         </div>
@@ -98,7 +98,7 @@
           <h6>Bantuan</h6>
           <ul>
             <li><a href="FAQ.php">FAQ</a></li>
-            <li><a href="contact-us.php">Hubungi Kami</a></li>
+            <li><a href="hubungi-kami.php">Hubungi Kami</a></li>
             <li><a href="syarat-dan-ketentuan.php">Syarat & Ketentuan</a></li>
           </ul>
         </div>
