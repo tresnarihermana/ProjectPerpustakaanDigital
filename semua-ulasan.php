@@ -14,6 +14,7 @@ $query = mysqli_query($koneksi, "
   FROM ulasanbuku
   JOIN buku ON ulasanbuku.BukuID = buku.BukuID
   JOIN user ON ulasanbuku.UserID = user.UserID
+  ORDER BY ulasanID Desc
   
 ");
 ?>
