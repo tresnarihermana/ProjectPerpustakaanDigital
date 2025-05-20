@@ -9,7 +9,7 @@ if (mysqli_num_rows($data) == 0) {
     header("location: ulasan.php?pesan=gagal");
 } else {
     $query = "DELETE FROM ulasanbuku WHERE UlasanID = '$UlasanID'";
-    if (mysqli_query($koneksi, $query) && $UlasanID){
+    if (mysqli_query($koneksi, $query)){
         header("location: ulasan.php?pesan=berhasil");
     } else {
         header("location: ulasan.php?pesan=gagal");

@@ -61,9 +61,11 @@ include '../koneksi.php';
 
         <!-- Tombol Cetak -->
         <div class="top-bar">
-            <div></div>
-            <a href="cetak-print.php?id=<?= $id ?>" target="_blank" class="btn btn-primary btn-print">
-                <i class="fa fa-print"></i> CETAK
+            <a href="cetak-print.php?id=<?= $id ?>" target="_blank" class="btn btn-primary btn-print ms-2">
+                <i class="fa fa-print"></i> CETAK PDF
+            </a>
+            <a href="cetak-excel.php?id=<?= $id ?>" target="_blank" class="btn btn-success btn-print">
+                <i class="fa fa-print"></i> CETAK XLSX
             </a>
         </div>
 

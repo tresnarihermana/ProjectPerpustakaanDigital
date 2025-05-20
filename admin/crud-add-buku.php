@@ -11,7 +11,7 @@ function generatorRandom($length = 10) {
     return $randomString;
 }
 
-$judul = $_POST['Judul'];
+$judul = mysqli_real_escape_string($koneksi, $_POST['Judul']);
 $deskripsi = mysqli_real_escape_string($koneksi, $_POST['Deskripsi']);
 $penulis = $_POST['Penulis'];
 $penerbit = $_POST['Penerbit'];

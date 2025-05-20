@@ -71,9 +71,6 @@ $query = mysqli_query($koneksi, "
   <?php if ($dari && $sampai): ?>
     <div class="alert alert-info">
       Menampilkan data peminjaman dari <strong><?= htmlspecialchars($dari) ?></strong> sampai <strong><?= htmlspecialchars($sampai) ?></strong>.
-      <a href="cetak.php?dari=<?= $dari ?>&sampai=<?= $sampai ?>" target="_blank" class="btn btn-sm btn-outline-primary ms-3">
-        <i class="fa fa-print"></i> Cetak
-      </a>
     </div>
   <?php endif; ?>
 
@@ -81,7 +78,7 @@ $query = mysqli_query($koneksi, "
   <div class="card shadow-sm mb-4">
     <div class="card-body p-0">
       <div class="table-responsive">
-        <table class="table table-bordered mb-0">
+        <table class="table table-bordered mb-0" style="width: 105%;">
           <thead>
             <tr>
               <th>No</th>
@@ -117,7 +114,7 @@ $query = mysqli_query($koneksi, "
                   <td>
                     <a href="peminjaman-edit.php?id=<?= $row['PeminjamanID'] ?>" class="btn btn-info btn-sm me-1">Ubah</a>
                     <a href="crud-delete-peminjaman.php?id=<?= $row['PeminjamanID'] ?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm me-1">Hapus</a>
-                    <a href="cetak.php?id=<?= $row['PeminjamanID'] ?>" class="btn btn-success btn-sm"><i class="fa fa-print"></i> Cetak</a>
+                    <a href="cetak.php?id=<?= $row['PeminjamanID'] ?>" class="btn btn-success btn-sm me-1"><i class="fa fa-print"></i> Cetak</a>
                   </td>
                 </tr>
             <?php endwhile; endif; ?>
