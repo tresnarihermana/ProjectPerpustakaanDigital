@@ -71,10 +71,6 @@ $query = mysqli_query($koneksi, "
   <?php if ($dari && $sampai): ?>
     <div class="alert alert-info">
       Menampilkan data peminjaman dari <strong><?= htmlspecialchars($dari) ?></strong> sampai <strong><?= htmlspecialchars($sampai) ?></strong>.
-      <a href="cetak.php?dari=<?= $dari ?>&sampai=<?= $sampai ?>" target="_blank" class="btn btn-sm btn-outline-primary ms-3">
-
-        <i class="fa fa-print"></i> Cetak
-      </a>
     </div>
   <?php endif; ?>
 
