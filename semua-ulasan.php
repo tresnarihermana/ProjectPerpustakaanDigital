@@ -23,7 +23,6 @@ $query = mysqli_query($koneksi, "
 <head>
   <meta charset="UTF-8">
   <title>Semua Ulasan Buku</title>
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
   <style>
     .star-rating {
@@ -60,6 +59,5 @@ $query = mysqli_query($koneksi, "
 </div>
 
 <?php include 'layout/footer.php'; ?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
