@@ -86,9 +86,9 @@
         <div class="col-md-3 footer-section mb-4">
           <h6>Layanan</h6>
           <ul>
-            <li><a href="#">Riwayat Pinjam Buku</a></li>
+            <li><a href="daftar-peminjaman.php">Riwayat Pinjam Buku</a></li>
             <li><a href="daftar-buku.php">Daftar Buku</a></li>
-            <li><a href="#">Koleksi Pribadi</a></li>
+            <li><a href="koleksi-pribadi.php">Koleksi Pribadi</a></li>
             <li><a href="daftar-kategori.php">Daftar Kategori</a></li>
           </ul>
         </div>
