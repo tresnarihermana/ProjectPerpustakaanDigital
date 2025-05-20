@@ -1,8 +1,19 @@
 {
-    "name": "fahmirizki/project-perpustakaan-digital",
-    "description": "proyek sekolah",
+    "name": "tresh/project-perpustakaan-digital",
+    "description": "project perpustakaan",
+    "autoload": {
+        "psr-4": {
+            "Tresh\\ProjectPerpustakaanDigital\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Tresnarihermana",
+            "email": "tresnarihermana@gmail.com"
+        }
+    ],
     "require": {
-        "phpoffice/phpspreadsheet": "^4.2",
-        "dompdf/dompdf": "^3.1"
+        "dompdf/dompdf": "^3.1",
+        "phpoffice/phpspreadsheet": "^4.2"
     }
 }
