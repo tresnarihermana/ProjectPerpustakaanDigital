@@ -1,0 +1,8 @@
+{
+    "name": "fahmirizki/project-perpustakaan-digital",
+    "description": "proyek sekolah",
+    "require": {
+        "phpoffice/phpspreadsheet": "^4.2",
+        "dompdf/dompdf": "^3.1"
+    }
+}
