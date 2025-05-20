@@ -8,10 +8,10 @@
 
 
 
-## Deskripsi Umum
+# Deskripsi Umum
 Perpustakaan Digital adalah sebuah platform perpustakaan digital yang menawarkan pesngalaman terbaik bagi Pengguna untuk meminjam,mengembalikan buku yang tersedia. Platform ini juga memungkinkan Admin maupun Petugas perpustakaan untuk melakukan aktivitas manajemen perpustakaan. 
 
-## Fitur Utama
+# Fitur Utama
 
 ### 1. Peminjaman dan Pengembalian
 - **Pengguna (User):** Pengguna dapat melakukan peminjaman dan pengembalian buku melalui antarmuka yang ramah pengguna di situs web.
