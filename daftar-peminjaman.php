@@ -84,7 +84,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <?php endif; ?>
 
     <div class="text-center mt-4">
-        <a href="koleksi.php" class="btn btn-primary">Lihat Semua Koleksi Buku</a>
+        <a href="daftar-buku.php" class="btn btn-primary">Lihat Semua Koleksi Buku</a>
     </div>
 </div>
 

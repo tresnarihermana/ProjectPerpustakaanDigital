@@ -136,7 +136,7 @@ $cek = mysqli_fetch_assoc($data);
                 <a class="nav-link" href="koleksi-pribadi.php">Koleksi</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">About us</a>
+                <a class="nav-link" href="tentang-kami.php">About us</a>
             </li>
         </ul>
     </div>
