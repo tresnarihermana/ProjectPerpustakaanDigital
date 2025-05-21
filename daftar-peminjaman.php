@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['status'])) {
-    header('Location: ../login.php');
+    header('Location: login.php');
     exit;
 }
 
@@ -16,7 +16,7 @@ $query = "
         b.BukuID,
         b.Judul AS judul,
         b.imagecover,
-        p.peminjamanID,
+        p.peminjamanID AS pinjamid,
         p.TanggalPeminjaman AS tgl_pinjam,
         p.TanggalPengembalian AS tgl_kembali,
         p.StatusPeminjaman
@@ -27,7 +27,7 @@ $query = "
 ";
 
 $result = mysqli_query($koneksi, $query);
-
+$pinjam = mysqli_fetch_assoc($result);
 $riwayat = [];
 while ($row = mysqli_fetch_assoc($result)) {
     // Hitung status di PHP
@@ -75,6 +75,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <?php elseif ($buku['status'] == 'belum'): ?>
                             <span class="btn btn-danger btn-sm">Belum Dikembalikan ⚠️</span>
                         <?php endif; ?>
+                        <a href="kembalikan-buku.php?id=<?=$pinjam['pinjamid']?>" class="btn btn-success btn-sm ms-2">Kembalikan Buku</a>
                     </div>
                 </div>
             </div>
