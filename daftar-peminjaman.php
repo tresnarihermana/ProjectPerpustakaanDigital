@@ -27,7 +27,6 @@ $query = "
 ";
 
 $result = mysqli_query($koneksi, $query);
-$pinjam = mysqli_fetch_assoc($result);
 $riwayat = [];
 while ($row = mysqli_fetch_assoc($result)) {
     // Hitung status di PHP
@@ -75,7 +74,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <?php elseif ($buku['status'] == 'belum'): ?>
                             <span class="btn btn-danger btn-sm">Belum Dikembalikan ⚠️</span>
                         <?php endif; ?>
-                        <a href="kembalikan-buku.php?id=<?=$pinjam['pinjamid']?>" class="btn btn-success btn-sm ms-2">Kembalikan Buku</a>
+                        <a href="kembalikan-buku.php?id=<?=$buku['pinjamid']?>" class="btn btn-success btn-sm ms-2">Kembalikan Buku</a>
                     </div>
                 </div>
             </div>

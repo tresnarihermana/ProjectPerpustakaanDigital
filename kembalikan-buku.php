@@ -23,7 +23,7 @@ $hari_ini = date('Y-m-d');
 ?>
 
 <div class="mx-5 mt-4">
-  <h2 class="mb-3 fw-bold">Pinjam "<?= htmlspecialchars($buku['Judul']) ?>"</h2>
+  <h2 class="mb-3 fw-bold">Kembalikan "<?= htmlspecialchars($buku['Judul']) ?>"</h2>
   <div class="card shadow-sm p-4 d-flex flex-row flex-wrap">
     
     <!-- Gambar Buku -->
