@@ -22,7 +22,7 @@ $query = "
         p.StatusPeminjaman
     FROM peminjaman p
     JOIN buku b ON p.BukuID = b.BukuID
-    WHERE p.UserID = '$user_id'
+    WHERE p.UserID = '$user_id' AND StatusPeminjaman != 'dikembalikan'
     ORDER BY p.peminjamanID DESC
 ";
 
