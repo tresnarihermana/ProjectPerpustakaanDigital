@@ -23,6 +23,7 @@ if (!isset($_SESSION['status'])) {
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
     <style>
         body {
@@ -114,36 +115,89 @@ if (!isset($_SESSION['status'])) {
                 font-size: 12px;
             }
         }
+    .swiper {
+            width: 100%;
+            height: auto;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .swiper-slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        .swiper-button-next, .swiper-button-prev {
+            color: #000;
+        }
+
+        .swiper-pagination-bullet {
+            background: #000;
+        }
+
+        @media (max-width: 576px) {
+            .swiper-slide img {
+                height: 200px;
+            }
+        }
     </style>
 </head>
 <body>
-    <!-- carousel -->
-    <div class="container">
-        <div id="carouselExampleAutoplaying" class="carousel slide mt-4" data-ride="carousel">
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <a href="#"><img src="storage/img/carousel1.png" class="d-block w-100" alt="..."></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#"><img src="storage/img/carousel2.png" class="d-block w-100" alt="..."></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#"><img src="storage/img/carousel3.png" class="d-block w-100" alt="..."></a>
-                </div>
-                <div class="carousel-item">
-                    <a href="#"><img src="storage/img/carousel4.png" class="d-block w-100" alt="..."></a>
-                </div>
+
+
+<!-- Container untuk Swiper Carousel -->
+<div class="container mt-5">
+
+    <div class="swiper mySwiper">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <a href="#"><img src="storage/img/carousel1.png" alt="Banner 1"></a>
             </div>
-            <button class="carousel-control-prev" type="button" data-target="#carouselExampleAutoplaying" data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-target="#carouselExampleAutoplaying" data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-            </button>
+            <div class="swiper-slide">
+                <a href="#"><img src="storage/img/carousel2.png" alt="Banner 2"></a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#"><img src="storage/img/carousel3.png" alt="Banner 3"></a>
+            </div>
+            <div class="swiper-slide">
+                <a href="#"><img src="storage/img/carousel4.png" alt="Banner 4"></a>
+            </div>
         </div>
+
+        <!-- Navigasi & Pagination -->
+        <div class="swiper-pagination"></div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
     </div>
+</div>
+
+
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+<!-- Konfigurasi Swiper -->
+<script>
+    const swiper = new Swiper(".mySwiper", {
+        loop: true,
+        speed: 900,
+        autoplay: {
+            delay: 2000,
+            disableOnInteraction: false,
+        },
+        pagination: {
+            el: ".swiper-pagination",
+            clickable: true,
+        },
+        navigation: {
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev",
+        },
+    });
+</script>
+
     <!-- akhir carousel -->
 
 <div class="container mt-5">
@@ -161,7 +215,7 @@ if (!isset($_SESSION['status'])) {
 
         while ($data = mysqli_fetch_assoc($kategori)) :
         ?>
-            <div class="col-lg-3 col-md-6 col-sm-12 mb-3">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-4">
                 <div class="card" style="cursor: pointer;" onclick="location.href='daftar-buku-kategori.php?id=<?= $data['KategoriID']; ?>'">
                     <img src="storage/upload/<?= htmlspecialchars($data['coverkategori']); ?>" class="card-img-top" alt="<?= htmlspecialchars($data['Namakategori']); ?>">
                     <span class="white-box"><?= strtoupper(htmlspecialchars($data['Namakategori'])); ?></span>
