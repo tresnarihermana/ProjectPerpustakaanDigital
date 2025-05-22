@@ -7,5 +7,5 @@ $Alamat = $_POST['Alamat'];
 $NamaLengkap = $_POST['NamaLengkap'];
 $role = 'user';
 $data = mysqli_query($koneksi, "INSERT INTO user VALUES ('', '$username', '$password', '$Email', '$NamaLengkap', '$Alamat', '$role')");
-header("location: index.php");
+header("location: login.html");
 ?>
