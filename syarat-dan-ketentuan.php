@@ -48,6 +48,29 @@ require 'layout/navbar.php';
         </div>
       </div>
 
+<!-- Peminjaman dan Pengembalian Buku -->
+<div class="accordion-item">
+  <h2 class="accordion-header" id="headingSix">
+    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix">
+      Peminjaman dan Pengembalian Buku
+    </button>
+  </h2>
+  <div id="collapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionSyarat">
+    <div class="accordion-body">
+      <ul>
+        <li>Setiap pengguna terdaftar dapat meminjam maksimal <strong>3 buku</strong> dalam waktu bersamaan.</li>
+        <li>Masa peminjaman buku adalah selama <strong>7 hari</strong> terhitung dari tanggal peminjaman.</li>
+        <li>Buku wajib dikembalikan sebelum atau pada tanggal pengembalian yang tercantum.</li>
+        <li>Jika pengguna terlambat mengembalikan buku, maka akan diberikan <strong>peringatan</strong> atau pembatasan hak akses sementara.</li>
+        <li>Pengembalian dilakukan melalui halaman "Riwayat Peminjaman" dengan menekan tombol <strong>Kembalikan Buku</strong>.</li>
+        <li>Petugas perpustakaan berhak memverifikasi pengembalian buku sebelum sistem mencatatnya sebagai "Dikembalikan".</li>
+        <li>Apabila buku rusak atau hilang, pengguna bertanggung jawab atas <strong>penggantian buku</strong> sesuai ketentuan perpustakaan.</li>
+        
+      </ul>
+    </div>
+  </div>
+</div>
+
       <!-- Akun Anda -->
       <div class="accordion-item">
         <h2 class="accordion-header" id="headingThree">
