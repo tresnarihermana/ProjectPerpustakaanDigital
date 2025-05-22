@@ -19,7 +19,6 @@ WHERE peminjaman.peminjamanID = '$id_buku'
 
 );
 $buku = mysqli_fetch_assoc($data);
-$hari_ini = date('Y-m-d');
 ?>
 
 <div class="mx-5 mt-4">
@@ -52,13 +51,14 @@ $hari_ini = date('Y-m-d');
 
         <div class="mb-3">
           <label for="tanggal_kembali" class="form-label">Tanggal Pengembalian</label>
-          <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" min ="<?=htmlspecialchars($hari_ini)?>" required>
+          <input type="text" class="form-control" name="tanggal_kembali" value="<?= date('m/d/Y') ?>" readonly>
+
         </div>
 
         <p class="text-muted">
-          <span style="color:black;">Apakah anda ingin mengembalikan buku ini yang a<i>tanggal_kembali</i>?<br>
-          <span style="color:grey;">Penjelasan singkat tentang S&K peminjaman buku dan penalti jika tidak mengembalikan,</span>
-          <a href="#" class="text-danger">baca lengkap S&K</a>.
+          <span style="color:black;"> Dengan menekan tombol "<strong>Kembalikan Buku</strong>",<br>
+          <span style="color:grey;">Anda menyatakan bahwa Anda akan mengembalikan buku ini sesuai dengan informasi yang tertera</span>
+          <a href="syarat-dan-ketentuan.php" class="text-danger">baca lengkap S&K</a>.
         </p>
 
         <div class="form-check mb-3">
@@ -75,23 +75,35 @@ $hari_ini = date('Y-m-d');
   </div>
 </div>
 
-<div class="modal fade" id="ModalBarcode" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="exampleModalLabel">Barcode Peminjaman</h1>
-        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+<div class="modal fade" id="ModalBarcode" tabindex="-1" aria-labelledby="ModalBarcodeLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered"> <!-- Tengah secara vertikal -->
+    <div class="modal-content shadow-lg rounded-4 border-0">
+      <div class="modal-header bg-primary text-white rounded-top">
+        <h5 class="modal-title d-flex align-items-center gap-2" id="ModalBarcodeLabel">
+          <i class="fa-solid fa-qrcode fa-lg"></i> Barcode Peminjaman
+        </h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body text-center">
-        <svg id="barcode"></svg>
-        <p class="mt-3">ID Peminjaman: <strong><?= $buku['peminjamanID'] ?></strong></p>
+        <div class="mb-4">
+          <svg id="barcode" class="mx-auto" style="width: 220px; height: 80px;"></svg>
+        </div>
+        <p class="fs-5 fw-semibold mb-1">ID Peminjaman:</p>
+        <p class="fs-4 text-primary fw-bold mb-3"><?= htmlspecialchars($buku['peminjamanID']) ?></p>
+        <div class="alert alert-info d-flex align-items-center justify-content-center gap-2 py-3">
+          <i class="fa-solid fa-info-circle fa-xl"></i>
+          <span class="fs-6">Tunggu petugas untuk memindai barcode ini.</span>
+        </div>
       </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-outline-primary px-4" data-bs-dismiss="modal">
+          <i class="fa-solid fa-xmark me-2"></i> Tutup
+        </button>
       </div>
     </div>
   </div>
 </div>
+
 
 <script>
   const modal = document.getElementById('ModalBarcode');

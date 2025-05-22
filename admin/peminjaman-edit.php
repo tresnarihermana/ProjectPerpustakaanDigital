@@ -2,15 +2,13 @@
 require 'config/session.php';
 require '../koneksi.php';
 
-// Proses hapus peminjaman jika diminta
-// if (isset($_GET['hapus'])) {
-//     $id = (int) $_GET['hapus'];
-//     mysqli_query($koneksi, "DELETE FROM peminjaman WHERE PeminjamanID = $id") or die("Gagal hapus: " . mysqli_error($koneksi));
-//     header('Location: peminjaman.php');
-//     exit;
-// }
+// Ambil data peminjaman berdasarkan ID
+if (!isset($_GET['id'])) {
+    header("Location: peminjaman.php");
+    exit;
+}
 
-// Ambil data peminjaman buku
+$id = $_GET['id'];
 $query = mysqli_query($koneksi, "
     SELECT 
         peminjaman.PeminjamanID AS PinjamID,
@@ -22,9 +20,11 @@ $query = mysqli_query($koneksi, "
     FROM peminjaman
     JOIN user ON peminjaman.UserID = user.UserID
     JOIN buku ON peminjaman.BukuID = buku.BukuID
+    WHERE peminjaman.PeminjamanID = '$id'
 ") or die("Query gagal: " . mysqli_error($koneksi));
+
 $data = mysqli_fetch_assoc($query);
-// Layout
+
 include '../layout/sidebar-navbar-footbar.php';
 include '../layout/alert.php';
 ?>
@@ -42,69 +42,85 @@ include '../layout/alert.php';
   <div class="card shadow-sm">
     <div class="card-body">
       <form method="post" action="crud-edit-peminjaman.php" class="p-4">
+
+        <!-- User -->
         <div class="mb-3 row">
-          <label for="UserID" class="col-sm-3 col-form-label">User</label>
+          <label for="user" class="col-sm-3 col-form-label">User</label>
           <div class="col-sm-9">
-           <select name="user" id="user" class="form-control bg-light" required>
-              <option value="" disabled selected>-- Pilih User --</option>
+            <select name="user" id="user" class="form-control bg-light" required>
+              <option value="" disabled>-- Pilih User --</option>
               <?php
-              $user = mysqli_query($koneksi, "SELECT * FROM user WHERE role = 'user'");
-              while ($data = mysqli_fetch_array($user)) {
-                  echo "<option value='$data[UserID]'>$data[UserID]. $data[Username]</option>";
+              $userList = mysqli_query($koneksi, "SELECT * FROM user WHERE role = 'user'");
+              while ($u = mysqli_fetch_array($userList)) {
+                  $selected = ($u['UserID'] == $data['UserID']) ? 'selected' : '';
+                  echo "<option value='$u[UserID]' $selected>$u[UserID]. $u[Username]</option>";
               }
               ?>
             </select>
           </div>
         </div>
 
+        <!-- Buku -->
         <div class="mb-3 row">
-          <label for="BukuID" class="col-sm-3 col-form-label">Buku</label>
+          <label for="buku" class="col-sm-3 col-form-label">Buku</label>
           <div class="col-sm-9">
             <select name="buku" id="buku" class="form-control bg-light" required>
-              <option value="" disabled selected>-- Pilih Buku --</option>
+              <option value="" disabled>-- Pilih Buku --</option>
               <?php
-              $buku = mysqli_query($koneksi, "SELECT * FROM buku");
-              while ($data = mysqli_fetch_array($buku)) {
-                  echo "<option value='$data[BukuID]'>$data[BukuID]. $data[Judul]</option>";
+              $bukuList = mysqli_query($koneksi, "SELECT * FROM buku");
+              while ($b = mysqli_fetch_array($bukuList)) {
+                  $selected = ($b['BukuID'] == $data['BukuID']) ? 'selected' : '';
+                  echo "<option value='$b[BukuID]' $selected>$b[BukuID]. $b[Judul]</option>";
               }
               ?>
             </select>
           </div>
         </div>
 
+        <!-- Tanggal Peminjaman -->
         <div class="mb-3 row">
           <label for="TanggalPeminjaman" class="col-sm-3 col-form-label">Tanggal Peminjaman</label>
           <div class="col-sm-9">
-            <input type="date" class="form-control bg-light" id="TanggalPeminjaman" name="TanggalPeminjaman" 
-              value="<?php echo htmlspecialchars($data['TanggalPeminjaman']); ?>" required>
+            <input type="date" class="form-control bg-light" id="TanggalPeminjaman" name="TanggalPeminjaman"
+              value="<?= htmlspecialchars($data['TanggalPeminjaman']); ?>" required>
           </div>
         </div>
 
+        <!-- Tanggal Pengembalian -->
         <div class="mb-3 row">
           <label for="TanggalPengembalian" class="col-sm-3 col-form-label">Tanggal Pengembalian</label>
           <div class="col-sm-9">
-            <input type="date" class="form-control bg-light" id="TanggalPengembalian" name="TanggalPengembalian" 
-              value="<?php echo htmlspecialchars($data['TanggalPengembalian']); ?>" required>
+            <input type="date" class="form-control bg-light" id="TanggalPengembalian" name="TanggalPengembalian"
+              value="<?= htmlspecialchars($data['TanggalPengembalian']); ?>" required>
           </div>
         </div>
 
+        <!-- Status -->
         <div class="mb-3 row">
           <label for="StatusPeminjaman" class="col-sm-3 col-form-label">Status Pengembalian</label>
           <div class="col-sm-9">
             <select class="form-control bg-light" id="StatusPeminjaman" name="StatusPeminjaman" required>
-              <option value="dipinjam" <?php if ($data['StatusPeminjaman'] = 'Dipinjam') echo 'selected'; ?>>Dipinjam</option>
-              <option value="dikembalikan" <?php if ($data['StatusPeminjaman'] = 'Dikembalikan') echo 'selected'; ?>>Dikembalikan</option>
+              <option value="" disabled>-- Pilih Status --</option>
+              <option value="Dipinjam" <?= $data['StatusPeminjaman'] == 'Dipinjam' ? 'selected' : '' ?>>Dipinjam</option>
+              <option value="Dikembalikan" <?= $data['StatusPeminjaman'] == 'Dikembalikan' ? 'selected' : '' ?>>Dikembalikan</option>
             </select>
           </div>
         </div>
-            <label for="hiddenTextInput" class="form-label"></label>
-            <input type="hidden" class="form-control" id="hiddenTextInput" aria-describedby="nameHelp" required value="<?php echo htmlspecialchars($_GET['id']); ?>" name="PeminjamanID">
-            <div id="nameHelp" class="form-text"></div>
+
+        <!-- Hidden Input untuk ID -->
+        <input type="hidden" name="PeminjamanID" value="<?= htmlspecialchars($data['PinjamID']); ?>">
+
+        <!-- Tombol -->
         <div class="text-end">
           <button type="submit" class="btn btn-primary">Simpan</button>
           <button type="reset" class="btn btn-secondary">Reset</button>
           <a href="peminjaman.php" class="btn btn-danger">Kembali</a>
+          <button type="submit" name="selesaikan" 
+          class="btn btn-success ms-2">
+          <i class="fa fa-check-circle"></i> Selesaikan Peminjaman
+        </a>
         </div>
+
       </form>
     </div>
   </div>

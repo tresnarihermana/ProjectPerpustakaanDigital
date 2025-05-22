@@ -26,6 +26,16 @@ $query = "
     ORDER BY p.peminjamanID DESC
 ";
 
+if (isset($_GET['pesan'])) {
+    if ($_GET['pesan'] == 'maxpinjam') {
+        echo "<div class='alert alert-warning'>Anda sudah mencapai batas maksimal 3 buku yang sedang dipinjam.</div>";
+    } else if ($_GET['pesan'] == 'harimaksimal') {
+        echo "<div class='alert alert-warning'>Tanggal pengembalian tidak boleh lebih dari 7 hari.</div>";
+    } else if ($_GET['pesan'] == 'duplikat') {
+        echo "<div class='alert alert-danger'>Buku ini sudah Anda pinjam dan belum dikembalikan.</div>";
+    }
+}
+
 $result = mysqli_query($koneksi, $query);
 $pinjam = mysqli_fetch_assoc($result);
 $riwayat = [];
@@ -64,8 +74,10 @@ while ($row = mysqli_fetch_assoc($result)) {
                            <input type="text" class="form-control" value="<?= date('d M Y', strtotime($buku['tgl_pinjam'])) ?>" readonly>
                         </div>
                         <div class="mb-2">
-                           <label for="">Tanggal Pengembalian</label>
-                           <input type="text" class="form-control" value="<?= date('d M Y', strtotime($buku['tgl_kembali'])) ?>" readonly>
+                        <label for="">Tanggal Pengembalian</label>
+                        <input type="text" class="form-control" value="<?= date('d M Y', strtotime($buku['tgl_kembali'])) ?>" readonly>
+                        
+                                
                         </div>
                         <a href="detail-buku.php?id=<?= $buku['BukuID'] ?>" class="btn btn-primary btn-sm me-2">Kunjungi Halaman</a>
                         <?php if ($buku['status'] == 'hampir'): ?>
@@ -75,7 +87,7 @@ while ($row = mysqli_fetch_assoc($result)) {
                         <?php elseif ($buku['status'] == 'belum'): ?>
                             <span class="btn btn-danger btn-sm">Belum Dikembalikan ⚠️</span>
                         <?php endif; ?>
-                        <a href="kembalikan-buku.php?id=<?=$pinjam['pinjamid']?>" class="btn btn-success btn-sm ms-2">Kembalikan Buku</a>
+                        <a href="kembalikan-buku.php?id=<?=$buku['pinjamid']?>" class="btn btn-success btn-sm ms-2">Kembalikan Buku</a>
                     </div>
                 </div>
             </div>
