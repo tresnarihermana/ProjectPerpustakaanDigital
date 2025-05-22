@@ -40,6 +40,7 @@ $query = mysqli_query($koneksi, "
 <div class="mx-5 mt-4">
   <h1 class="mb-3">Laporan Peminjaman Buku</h1>
   <a href="peminjaman-add.php" class="btn btn-success mb-4">+ Tambah</a>
+  <a href="scan-barcode.php" class="btn btn-primary mb-4"><i class="fa-solid fa-qrcode"></i> Scan barcode</a>
 
   <!-- Filter Form -->
   <div class="card shadow-sm mb-4">

@@ -27,12 +27,12 @@ require 'layout/navbar.php';
     <div class="accordion-item">
       <h2 class="accordion-header" id="faqHeadingOne">
         <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseOne">
-          Apa itu Perpustakaan Digital?
+          Bagaimana cara meminjam buku di Perpustakaan Digital?
         </button>
       </h2>
       <div id="faqCollapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-          Perpustakaan Digital adalah layanan yang menyediakan akses ke berbagai konten digital seperti buku, majalah, dan koran yang dapat dibeli, disewa, atau dilanggan oleh pengguna akhir.
+          Anda dapat meminjam buku dengan login ke akun Anda, memilih buku yang tersedia, lalu klik tombol <strong>"Pinjam Buku"</strong>. Pastikan Anda belum melebihi batas maksimal peminjaman.
         </div>
       </div>
     </div>
@@ -41,12 +41,12 @@ require 'layout/navbar.php';
     <div class="accordion-item">
       <h2 class="accordion-header" id="faqHeadingTwo">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseTwo">
-          Siapa saja yang bisa menggunakan layanan ini?
+          Berapa lama durasi peminjaman buku?
         </button>
       </h2>
       <div id="faqCollapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-          Layanan hanya dapat digunakan oleh individu berusia 17 tahun ke atas. Anak-anak di bawah usia tersebut harus mendapat izin dan pendampingan dari orang tua atau wali.
+          Durasi peminjaman buku adalah <strong>7 hari</strong> sejak tanggal peminjaman. Tanggal pengembalian akan tertera otomatis pada halaman riwayat peminjaman Anda.
         </div>
       </div>
     </div>
@@ -55,12 +55,12 @@ require 'layout/navbar.php';
     <div class="accordion-item">
       <h2 class="accordion-header" id="faqHeadingThree">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseThree">
-          Apa yang harus saya lakukan jika lupa kata sandi?
+          Bagaimana cara mengembalikan buku?
         </button>
       </h2>
       <div id="faqCollapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-          Silakan gunakan fitur "Lupa Kata Sandi" pada halaman login untuk mereset kata sandi Anda. Petunjuk pemulihan akan dikirimkan ke email yang terdaftar.
+          Untuk mengembalikan buku, masuk ke halaman <strong>Riwayat Peminjaman</strong>, lalu klik tombol <strong>"Kembalikan Buku"</strong> pada buku yang ingin Anda kembalikan. Proses akan diselesaikan setelah diverifikasi oleh petugas.
         </div>
       </div>
     </div>
@@ -69,12 +69,12 @@ require 'layout/navbar.php';
     <div class="accordion-item">
       <h2 class="accordion-header" id="faqHeadingFour">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFour">
-          Apakah saya bisa mengakses konten dari perangkat berbeda?
+          Apa yang terjadi jika saya terlambat mengembalikan buku?
         </button>
       </h2>
       <div id="faqCollapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-          Setiap akun hanya dapat terhubung ke satu perangkat aktif pada satu waktu. Jika Anda ingin menggunakan perangkat lain, silakan keluar dari perangkat sebelumnya terlebih dahulu.
+          Jika Anda mengembalikan buku setelah batas waktu yang ditentukan, akun Anda akan mendapatkan peringatan. Pengulangan keterlambatan bisa menyebabkan pembatasan hak akses sementara.
         </div>
       </div>
     </div>
@@ -83,12 +83,26 @@ require 'layout/navbar.php';
     <div class="accordion-item">
       <h2 class="accordion-header" id="faqHeadingFive">
         <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseFive">
-          Apakah langganan bisa dibatalkan?
+          Apakah saya bisa meminjam lebih dari satu buku?
         </button>
       </h2>
       <div id="faqCollapseFive" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-          Setelah proses pembayaran dilakukan, langganan tidak dapat dibatalkan dan tidak tersedia pengembalian dana. Pastikan untuk membaca detail langganan sebelum melanjutkan pembayaran.
+          Ya, setiap pengguna dapat meminjam hingga <strong>3 buku</strong> dalam waktu bersamaan, selama semua buku tersedia dan Anda tidak sedang memiliki buku yang terlambat dikembalikan.
+        </div>
+      </div>
+    </div>
+
+    <!-- FAQ 6 -->
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="faqHeadingSix">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseSix">
+          Bagaimana jika buku yang saya pinjam rusak atau hilang?
+        </button>
+      </h2>
+      <div id="faqCollapseSix" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+          Anda bertanggung jawab atas buku yang Anda pinjam. Jika buku rusak atau hilang, Anda wajib menggantinya sesuai dengan ketentuan yang berlaku di Perpustakaan Digital. Hubungi petugas untuk proses lebih lanjut.
         </div>
       </div>
     </div>
@@ -96,8 +110,6 @@ require 'layout/navbar.php';
   </div>
 </div>
 
-<?php
-include 'layout/footer.php'
-?>
+<?php include 'layout/footer.php' ?>
 </body>
 </html>

@@ -52,7 +52,7 @@ $buku = mysqli_fetch_assoc($data);
         <p class="text-muted">
           <span style="color:black;">Apakah anda ingin meminjam buku ini dari <i>tanggal_pinjam</i> sampai <i>tanggal_kembali</i>?<br>
           <span style="color:grey;">Penjelasan singkat tentang S&K peminjaman buku dan penalti jika tidak mengembalikan,</span>
-          <a href="#" class="text-danger">baca lengkap S&K</a>.
+          <a href="syarat-dan-ketentuan.php" class="text-danger">baca lengkap S&K</a>.
         </p>
 
         <div class="form-check mb-3">

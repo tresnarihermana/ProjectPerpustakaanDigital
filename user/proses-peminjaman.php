@@ -1,30 +1,48 @@
 <?php
 session_start();
-
 require '../koneksi.php';
 
-// Ambil UserID dari session (bukan dari form)
 $user_id = $_SESSION['UserID'];
-
-// Ambil data dari form
 $buku = mysqli_real_escape_string($koneksi, $_POST['buku_id']);
 $tgl_pinjam = $_POST['tanggal_pinjam'];
 $tgl_kembali = $_POST['tanggal_kembali'];
 $status = "Dipinjam";
 
-$cek = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE BukuID = '$buku' && UserID = '$user_id' && StatusPeminjaman = '$status'");
-if(mysqli_num_rows($cek) > 0){
+// Cek apakah user sudah meminjam buku ini dan belum dikembalikan
+$cek_duplikat = mysqli_query($koneksi, "SELECT * FROM peminjaman 
+    WHERE BukuID = '$buku' AND UserID = '$user_id' AND StatusPeminjaman = '$status'");
+if (mysqli_num_rows($cek_duplikat) > 0) {
     header('Location: ../daftar-peminjaman.php?pesan=duplikat');
-} else{
+    exit;
+}
+
+// Cek jumlah buku yang sedang dipinjam oleh user
+$cek_jumlah = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM peminjaman 
+    WHERE UserID = '$user_id' AND StatusPeminjaman = '$status'");
+$data = mysqli_fetch_assoc($cek_jumlah);
+
+if ($data['total'] >= 3) {
+    header('Location: ../daftar-peminjaman.php?pesan=maxpinjam');
+    exit;
+}
+
+// Validasi selisih hari maksimal 7 hari
+$start_date = new DateTime($tgl_pinjam);
+$end_date = new DateTime($tgl_kembali);
+$selisih_hari = $start_date->diff($end_date)->days;
+
+if ($selisih_hari > 7) {
+    header('Location: ../daftar-peminjaman.php?pesan=harimaksimal');
+    exit;
+}
+
+// Jika lolos semua validasi, lakukan peminjaman
 $query = "INSERT INTO peminjaman (UserID, BukuID, TanggalPeminjaman, TanggalPengembalian, StatusPeminjaman) 
           VALUES ('$user_id', '$buku', '$tgl_pinjam', '$tgl_kembali', '$status')";
 
 if (mysqli_query($koneksi, $query)) {
     header('Location: ../daftar-peminjaman.php?pesan=berhasil');
-    exit;
 } else {
     header('Location: ../daftar-peminjaman.php?pesan=gagal');
 }
-}
-
 ?>

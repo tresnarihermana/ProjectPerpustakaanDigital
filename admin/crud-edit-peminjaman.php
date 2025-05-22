@@ -7,14 +7,20 @@ $BukuID = $_POST['buku'];
 $TanggalPeminjaman = $_POST['TanggalPeminjaman'];
 $TanggalPengembalian = $_POST['TanggalPengembalian'];
 $StatusPeminjaman = $_POST['StatusPeminjaman'];
-// var_dump($peminjamanID, $UserID, $BukuID, $TanggalPeminjaman, $TanggalPengembalian, $StatusPeminjaman);
+
+// Cek apakah tombol "Selesaikan Peminjaman" ditekan
+if (isset($_POST['selesaikan'])) {
+    $StatusPeminjaman = 'dikembalikan';
+    $TanggalPengembalian = date('Y-m-d'); // Tanggal hari ini
+}
+
 $query = "UPDATE peminjaman SET 
             UserID = '$UserID',
             BukuID = '$BukuID',
             TanggalPeminjaman = '$TanggalPeminjaman',
             TanggalPengembalian = '$TanggalPengembalian',
             StatusPeminjaman = '$StatusPeminjaman'
-          WHERE peminjamanID = '$peminjamanID'";
+          WHERE PeminjamanID = '$peminjamanID'";
 
 if (mysqli_query($koneksi, $query)) {
     header("Location: peminjaman.php?pesan=berhasil");
