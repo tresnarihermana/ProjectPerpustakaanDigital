@@ -54,10 +54,13 @@
         <form action="" method="post">
             <div class="mb-3">
                 <label for="scan-result" class="form-label fw-semibold">Hasil Scan:</label>
-                <input type="text" id="scan-result" name="id" class="form-control form-control-lg text-center" readonly placeholder="Kode buku akan muncul di sini...">
+                <input type="text" id="scan-result" name="id" class="form-control form-control-lg text-center"  placeholder="Scan kode peminjaman atau Masukan secara manual...">
             </div>
             <button type="submit" class="btn btn-success w-100">
                 <i class="fa-solid fa-search"></i> Cari Buku
+            </button>
+            <button type="button" id="reset-scan" class="btn btn-secondary w-100 mt-2 d-none">
+                <i class="fa-solid fa-arrows-rotate"></i> Ulangi Scan
             </button>
         </form>
     </div>
@@ -65,18 +68,38 @@
 
 <!-- Script QR Scanner -->
 <script>
+    let html5QrcodeScanner;
+
     function onScanSuccess(decodedText, decodedResult) {
         document.getElementById('scan-result').value = decodedText;
-        html5QrcodeScanner.clear(); // Stop scanning after first result
+
+        // Hentikan scanner setelah berhasil scan
+        html5QrcodeScanner.clear().then(() => {
+            // Tampilkan tombol reset
+            document.getElementById('reset-scan').classList.remove('d-none');
+        }).catch(error => {
+            console.error('Gagal menghentikan scanner:', error);
+        });
     }
 
-    const html5QrcodeScanner = new Html5QrcodeScanner("reader", {
+    // Inisialisasi scanner
+    html5QrcodeScanner = new Html5QrcodeScanner("reader", {
         fps: 10,
         qrbox: { width: 300, height: 300 }
     }, false);
 
     html5QrcodeScanner.render(onScanSuccess);
+
+    // Logika tombol reset
+    document.getElementById('reset-scan').addEventListener('click', function() {
+        document.getElementById('scan-result').value = '';
+        this.classList.add('d-none');
+
+        // Mulai ulang scanner
+        html5QrcodeScanner.render(onScanSuccess);
+    });
 </script>
+
 
 </body>
 </html>
