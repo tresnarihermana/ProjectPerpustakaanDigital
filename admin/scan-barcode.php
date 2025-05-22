@@ -45,7 +45,7 @@
 
 <div class="container scanner-container">
     <div class="scanner-box">
-        <h3 class="text-center mb-4"><i class="fa-solid fa-barcode"></i> Scan Barcode Buku</h3>
+        <h3 class="text-center mb-4"><i class="fa-solid fa-barcode"></i> Scan Barcode Peminjam</h3>
 
         <!-- Tempat Kamera -->
         <div id="reader" class="mb-4"></div>
