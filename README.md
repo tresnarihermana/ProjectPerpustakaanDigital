@@ -25,7 +25,8 @@ Perpustakaan Digital adalah sebuah platform perpustakaan digital yang menawarkan
 ![image](https://github.com/user-attachments/assets/73bd282a-f22d-471d-8ff3-eb042db9fe9c)
 
 ## ERD Perpustakaan Digital
-![ER Diagram Perpustakaan Digital-Page-2 drawio](https://github.com/user-attachments/assets/9f6448b6-a71e-4287-ba79-22632d5bce58)
+![image](https://github.com/user-attachments/assets/af35b3aa-67e2-400b-8225-2b3b93060704)
+
 
 
 
