@@ -7,6 +7,12 @@ $password = $_POST['Password'];
 $email = $_POST['Email'];
 $namalengkap = $_POST['NamaLengkap'];
 $alamat = $_POST['Alamat'];
+$email = $_POST['Email'] ?? '';
+
+if (!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$/', $email)) {
+    header("location:../edit-profile.php?pesan=gagal");
+    die;
+}else{
 
 $data = mysqli_query($koneksi, "SELECT * FROM user WHERE Username = '$username' AND UserID != '$id'");
 $cek = mysqli_fetch_assoc($data);
@@ -24,5 +30,5 @@ if (mysqli_num_rows($data) > 0) {
 }
 
 
-
+}
 ?>
