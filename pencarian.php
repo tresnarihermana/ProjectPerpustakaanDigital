@@ -34,7 +34,6 @@ if ($keyword) {
 </style>
 
 <div class="mx-5 mt-4">
-  <a href="javascript:history.back()">&lt; back</a>
 
   <?php if ($keyword): ?>
     <?php if (count($result) > 0): ?>

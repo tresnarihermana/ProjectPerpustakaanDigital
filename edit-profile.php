@@ -102,7 +102,9 @@ if (!$data) {
 
             <div class="mb-3">
               <label for="Email" class="form-label">Email</label>
-              <input type="email" class="form-control" id="Email" name="Email" value="<?= htmlspecialchars($data['Email']); ?>" required>
+              <input type="email" class="form-control" id="Email" name="Email"
+              value="<?=htmlspecialchars($data['Email'])?>" pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$" required>
+
             </div>
 
             <div class="mb-3">
