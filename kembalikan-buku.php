@@ -19,6 +19,10 @@ WHERE peminjaman.peminjamanID = '$id_buku'
 
 );
 $buku = mysqli_fetch_assoc($data);
+if ($buku['StatusPeminjaman'] == 'dikembalikan') {
+    echo "<h2 class='text-danger'>Buku ini sudah dikembalikan</h2>";
+    exit;
+}
 ?>
 
 <div class="mx-5 mt-4">
