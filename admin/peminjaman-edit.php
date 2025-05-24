@@ -50,7 +50,7 @@ include '../layout/alert.php';
             <select name="user" id="user" class="form-control bg-light" required>
               <option value="" disabled>-- Pilih User --</option>
               <?php
-              $userList = mysqli_query($koneksi, "SELECT * FROM user WHERE role = 'user'");
+              $userList = mysqli_query($koneksi, "SELECT * FROM user");
               while ($u = mysqli_fetch_array($userList)) {
                   $selected = ($u['UserID'] == $data['UserID']) ? 'selected' : '';
                   echo "<option value='$u[UserID]' $selected>$u[UserID]. $u[Username]</option>";
