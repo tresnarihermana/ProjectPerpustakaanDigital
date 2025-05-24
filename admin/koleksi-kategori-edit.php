@@ -79,7 +79,7 @@ include '../layout/alert.php';
         <div class="text-end">
           <button type="submit" class="btn btn-primary">Simpan</button>
           <button type="reset" class="btn btn-secondary">Reset</button>
-          <a href="kategori-buku.php" class="btn btn-danger">Kembali</a>
+          <a href="koleksi-kategori.php" class="btn btn-danger">Kembali</a>
         </div>
 
       </form>

@@ -38,7 +38,7 @@ include '../layout/alert.php';
 
 <div class="mx-5 mt-4">
   <h1 class="mb-3">Ulasan Buku</h1>
-  <a href="ulasan-add.php" class="btn btn-success mb-4">+ Tambah</a>
+  <!-- <a href="ulasan-add.php" class="btn btn-success mb-4">+ Tambah</a> -->
   <br>
 
   <div class="card shadow-sm mb-4">

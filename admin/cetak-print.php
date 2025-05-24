@@ -33,7 +33,7 @@ $data = mysqli_fetch_assoc($query);
 function badgeStatusPdf($status) {
     if ($status === "Dipinjam") {
         return "<span class='badge badge-warning'>DIPINJAM</span>";
-    } elseif ($status === "Dikembalikan") {
+    } elseif ($status === "dikembalikan") {
         return "<span class='badge badge-success'>DIKEMBALIKAN</span>";
     }
     return "<span class='badge badge-secondary'>TIDAK DIKETAHUI</span>";
