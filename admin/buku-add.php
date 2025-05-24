@@ -74,6 +74,13 @@ require '../layout/sidebar-navbar-footbar.php';
             <input type="text" class="form-control bg-light" id="TahunTerbit" name="TahunTerbit" required>
           </div>
         </div>
+        
+        <div class="mb-3 row">
+          <label for="stok" class="col-sm-2 col-form-label">Stok buku</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control bg-light" id="stok" name="stok" required>
+          </div>
+        </div>
         <div class="mb-3 row">
   <label for="image" class="col-sm-2 col-form-label">Upload Image</label>
   <div class="col-sm-10">

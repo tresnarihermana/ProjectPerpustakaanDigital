@@ -49,6 +49,7 @@ include '../layout/alert.php';
               <th>Penulis</th>
               <th>Penerbit</th>
               <th>Tahun Terbit</th>
+              <th>Stok</th>
               <th style="width:20%">Aksi</th>
             </tr>
           </thead>
@@ -68,6 +69,7 @@ include '../layout/alert.php';
                   <td><?= htmlspecialchars($row['Penulis']) ?></td>
                   <td><?= htmlspecialchars($row['penerbit']) ?></td>
                   <td><?= htmlspecialchars($row['TahunTerbit']) ?></td>
+                  <td><?= htmlspecialchars($row['stok']) ?></td>
                   <td>
                     <a href="buku-edit.php?id=<?= $row['BukuID'] ?>" class="btn btn-info btn-sm me-1">Ubah</a>
                     <a href="crud-delete-buku.php?id=<?= $row['BukuID'] ?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm">Hapus</a>
