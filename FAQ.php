@@ -112,6 +112,21 @@ require 'layout/navbar.php';
       </div>
     </div>
 
+    <!-- FAQ 7  -->
+        <div class="accordion-item">
+      <h2 class="accordion-header" id="faqHeadingSix">
+        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faqCollapseSeven">
+          Dari mana Ebook dari web ini berasal?
+        </button>
+      </h2>
+      <div id="faqCollapseSeven" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
+        <div class="accordion-body">
+          Buku-buku digital yang tersedia di situs ini sebagian besar diperoleh dari <a href="https://www.gutenberg.org/">Project Gutenberg</a>, sebuah proyek nirlaba yang menyediakan lebih dari 60.000 eBook domain publik secara gratis.
+          Project Gutenberg memfokuskan diri pada pelestarian karya-karya klasik sastra dunia yang telah masuk ke dalam domain publik, artinya hak ciptanya telah kedaluwarsa dan dapat disebarluaskan secara bebas.
+        </div>
+      </div>
+    </div>
+
   </div>
 </div>
 
