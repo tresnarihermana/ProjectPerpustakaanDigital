@@ -7,6 +7,7 @@ if (!isset($_SESSION['status'])) {
 
 require 'koneksi.php';
 require 'layout/navbar.php';
+require 'layout/alert.php';
 $user_id = $_SESSION['UserID'];
 
 // Ambil data peminjaman user (hanya yang masih dipinjam)
@@ -25,15 +26,7 @@ $query = "
     ORDER BY p.peminjamanID DESC
 ";
 
-if (isset($_GET['pesan'])) {
-    if ($_GET['pesan'] == 'maxpinjam') {
-        echo "<div class='alert alert-warning'>Anda sudah mencapai batas maksimal 3 buku yang sedang dipinjam.</div>";
-    } else if ($_GET['pesan'] == 'harimaksimal') {
-        echo "<div class='alert alert-warning'>Tanggal pengembalian tidak boleh lebih dari 7 hari.</div>";
-    } else if ($_GET['pesan'] == 'duplikat') {
-        echo "<div class='alert alert-danger'>Buku ini sudah Anda pinjam dan belum dikembalikan.</div>";
-    }
-}
+
 
 $result = mysqli_query($koneksi, $query);
 $riwayat = [];
