@@ -1,7 +1,7 @@
 <?php
 session_start();
 if (!isset($_SESSION['status'])) {
-    header('Location: ../login.php');
+    header('Location: login.html');
     exit;
 }
 
@@ -13,7 +13,12 @@ include 'layout/navbar.php';
 $id_buku = $_GET['id'];
 $data = mysqli_query($koneksi, "SELECT * FROM buku WHERE BukuID = '$id_buku'");
 $buku = mysqli_fetch_assoc($data);
+$min_date = date('Y-m-d');
 
+if ($buku['stok'] <= 0) {
+    echo "<h2 class='mx-5 mt-4'>Buku ini tidak tersedia untuk dipinjam!</h2>";
+    exit;
+}
 ?>
 
 <div class="mx-5 mt-4">
@@ -41,18 +46,17 @@ $buku = mysqli_fetch_assoc($data);
 
         <div class="mb-3">
           <label for="tanggal_pinjam" class="form-label">Tanggal Peminjaman</label>
-          <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam" required>
+          <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam" min="<?= $min_date?>" required>
         </div>
 
         <div class="mb-3">
           <label for="tanggal_kembali" class="form-label">Tanggal Pengembalian</label>
-          <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" required>
+          <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" min="<?= $min_date?>"  required>
         </div>
 
         <p class="text-muted">
           <span style="color:black;">Apakah anda ingin meminjam buku ini dari <i>tanggal_pinjam</i> sampai <i>tanggal_kembali</i>?<br>
           <span style="color:grey;">Penjelasan singkat tentang S&K peminjaman buku dan penalti jika tidak mengembalikan,</span>
-          <a href="syarat-dan-ketentuan.php" class="text-danger">baca lengkap S&K</a>.
         </p>
 
         <div class="form-check mb-3">
