@@ -18,7 +18,7 @@ if ($dari && $sampai) {
 $query = mysqli_query($koneksi, "
     SELECT 
         peminjaman.PeminjamanID,
-        user.namalengkap AS Username,
+        user.username AS Username,
         buku.Judul AS Judul,
         peminjaman.TanggalPeminjaman,
         peminjaman.TanggalPengembalian,
@@ -83,7 +83,7 @@ $query = mysqli_query($koneksi, "
           <thead>
             <tr>
               <th>No</th>
-              <th>User</th>
+              <th width="10%">Username</th>
               <th>Buku</th>
               <th>Tanggal Peminjaman</th>
               <th>Tanggal Pengembalian</th>

@@ -14,7 +14,7 @@ require '../koneksi.php';
 $query = mysqli_query($koneksi, "
     SELECT 
         ulasanbuku.UlasanID,
-        user.namalengkap AS NamaUser,
+        user.username AS NamaUser,
         buku.Judul AS JudulBuku,
         ulasanbuku.Ulasan,
         ulasanbuku.Rating
@@ -48,7 +48,7 @@ include '../layout/alert.php';
           <thead>
             <tr>
               <th style="width:5%">No</th>
-              <th>Nama User</th>
+              <th>Username</th>
               <th>Judul Buku</th>
               <th>Ulasan</th>
               <th>Rating</th>
