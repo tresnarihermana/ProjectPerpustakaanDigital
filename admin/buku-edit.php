@@ -53,8 +53,8 @@ $kategoriTerpilih = $data['KategoriID'] ?? ''; // pastikan sesuai struktur tabel
         <div class="mb-3 row">
           <label for="kategori" class="col-sm-2 col-form-label">Nama Kategori</label>
           <div class="col-sm-10">
-            <select name="kategori" id="kategori" class="form-control bg-light" required>
-              <option value="" disabled>-- Pilih kategori --</option>
+            <select name="kategori" id="kategori" class="form-control bg-light">
+              <option value="">-- Pilih kategori --</option>
               <?php
               $dataKategori = mysqli_query($koneksi, "SELECT * FROM kategoribuku");
               while ($k = mysqli_fetch_array($dataKategori)) {
@@ -84,6 +84,13 @@ $kategoriTerpilih = $data['KategoriID'] ?? ''; // pastikan sesuai struktur tabel
           <label for="TahunTerbit" class="col-sm-2 col-form-label">Tahun Terbit</label>
           <div class="col-sm-10">
             <input type="text" class="form-control bg-light" id="TahunTerbit" name="TahunTerbit" value="<?= htmlspecialchars($data['TahunTerbit']); ?>" required>
+          </div>
+        </div>
+
+        <div class="mb-3 row">
+          <label for="stok" class="col-sm-2 col-form-label">Stok buku</label>
+          <div class="col-sm-10">
+            <input type="number" class="form-control bg-light" id="stok" name="stok" value="<?= htmlspecialchars($data['stok'])?>" required>
           </div>
         </div>
 

@@ -18,6 +18,7 @@ $penulis    = $_POST['Penulis'];
 $penerbit   = $_POST['penerbit'];
 $tahun      = $_POST['TahunTerbit'];
 $kategoriID = $_POST['kategori'];
+$stok      = $_POST['stok'];
 
 $update_image = '';
 $new_image_name = '';
@@ -58,7 +59,8 @@ $query = "UPDATE buku SET
             Deskripsi = '$deskripsi',
             Penulis = '$penulis',
             Penerbit = '$penerbit',
-            TahunTerbit = '$tahun'
+            TahunTerbit = '$tahun',
+            stok = '$stok'
             $update_image
           WHERE BukuID = '$bukuID'";
 
@@ -68,15 +70,19 @@ if (!$result) {
     exit;
 }
 
-// Cek apakah relasi sudah ada
-$cekRelasi = mysqli_query($koneksi, "SELECT * FROM Kategoribuku_relasi WHERE BukuID = '$bukuID'");
-if (mysqli_num_rows($cekRelasi) > 0) {
-    // Update relasi
-    mysqli_query($koneksi, "UPDATE Kategoribuku_relasi SET KategoriID = '$kategoriID' WHERE BukuID = '$bukuID'");
-} else {
-    // Insert relasi baru
-    mysqli_query($koneksi, "INSERT INTO Kategoribuku_relasi (BukuID, KategoriID) VALUES ('$bukuID', '$kategoriID')");
+// Cek apakah kategori diisi (opsional)
+if (!empty($kategoriID)) {
+    // Cek apakah relasi sudah ada
+    $cekRelasi = mysqli_query($koneksi, "SELECT * FROM Kategoribuku_relasi WHERE BukuID = '$bukuID'");
+    if (mysqli_num_rows($cekRelasi) > 0) {
+        // Update relasi
+        mysqli_query($koneksi, "UPDATE Kategoribuku_relasi SET KategoriID = '$kategoriID' WHERE BukuID = '$bukuID'");
+    } else {
+        // Insert relasi baru
+        mysqli_query($koneksi, "INSERT INTO Kategoribuku_relasi (BukuID, KategoriID) VALUES ('$bukuID', '$kategoriID')");
+    }
 }
+
 
 header("location: buku.php?pesan=berhasil");
 exit;
