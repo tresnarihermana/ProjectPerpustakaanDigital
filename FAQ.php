@@ -17,7 +17,12 @@ require 'layout/navbar.php';
   <title>FAQ | Perpustakaan Digital</title>
 </head>
 <body>
-
+<style>
+    .accordion-button:not(.collapsed) {
+      background-color: #0d6efd;
+      color: white;
+    }
+</style>
 <div class="container my-5">
   <h1 class="mb-4 text-center">FAQ (Pertanyaan yang Sering Diajukan)</h1>
 

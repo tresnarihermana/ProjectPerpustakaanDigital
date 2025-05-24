@@ -16,6 +16,12 @@ require 'layout/navbar.php';
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Syarat dan Ketentuan | Perpustakaan Digital</title>
 <body>
+  <style>
+      .accordion-button:not(.collapsed) {
+      background-color: #0d6efd;
+      color: white;
+    }
+  </style>
   <div class="container my-5">
     <h1 class="mb-4 text-center">Syarat dan Ketentuan Perpustakaan Digital</h1>
     <div class="accordion" id="accordionSyarat">
