@@ -21,8 +21,8 @@ $query = "UPDATE peminjaman SET
             TanggalPengembalian = '$TanggalPengembalian',
             StatusPeminjaman = '$StatusPeminjaman'
           WHERE PeminjamanID = '$peminjamanID'";
-
-if (mysqli_query($koneksi, $query)) {
+$stok = mysqli_query($koneksi, "UPDATE buku SET Stok = Stok + 1 WHERE BukuID = '$BukuID'");
+if (mysqli_query($koneksi, $query) && $stok) {
     header("Location: peminjaman.php?pesan=berhasil");
 } else {
     header("Location: peminjaman.php?pesan=gagal");
