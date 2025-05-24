@@ -7,7 +7,6 @@ if (!isset($_SESSION['status'])) {
 
 require 'koneksi.php';
 require 'layout/navbar.php';
-include 'layout/alert.php';
 $user_id = $_SESSION['UserID'];
 
 // Ambil data peminjaman user (hanya yang masih dipinjam)
