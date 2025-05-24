@@ -110,10 +110,29 @@ include 'layout/navbar.php';
         <th class="text-muted">Penerbit</th>
         <td><a href="pencarian.php?keyword=<?=$buku['penerbit']?>">: <?= htmlspecialchars($buku['penerbit']) ?></a></td>
       </tr>
+      </tr>
+      <tr>
+        <th class="text-muted">Stok buku</th>
+        <td>: <?php if($buku['stok'] <= 0){
+         echo '<span class="text-danger">Tidak Tersedia</span>'; 
+        }else{
+         echo htmlspecialchars($buku['stok']);
+        }
+        ?></td>
+      </tr>
     </table>
 
     <div class="d-flex gap-2">
-      <a href="pinjam-buku.php?id=<?=$buku['BukuID']?>" class="btn btn-primary"><i class="bi bi-book"></i> Pinjam</a>
+     <?php if ($buku['stok'] <= 0): ?>
+      <a href="#" class="btn btn-secondary disabled" aria-disabled="true" tabindex="-1">
+        <i class="bi bi-x-circle"></i> Stok Habis
+      </a>
+    <?php else: ?>
+      <a href="pinjam-buku.php?id=<?= $buku['BukuID'] ?>" class="btn btn-primary">
+        <i class="bi bi-book"></i> Pinjam
+      </a>
+    <?php endif; ?>
+
       <form action="" method="post">
       <button type="submit" name="proses" class="btn btn-outline-success"><i class="bi bi-bookmark-heart"></i> Simpan ke Koleksi</button>
       </form>
