@@ -22,6 +22,11 @@ include '../layout/alert.php';
   @media (min-width: 992px) {
     body { margin-left: 240px; }
   }
+
+  .accordion-button:not(.collapsed) {
+      background-color: #0d6efd;
+      color: white;
+    }
 </style>
 
 <div class="mx-5 mt-4">
