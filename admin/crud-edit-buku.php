@@ -12,13 +12,14 @@ function generatorRandom($length = 10) {
 }
 
 $bukuID     = $_POST['BukuID'];
-$judul      = $_POST['Judul'];
+$judul      = mysqli_real_escape_string($koneksi, $_POST['Judul']);
 $deskripsi = mysqli_real_escape_string($koneksi, $_POST['Deskripsi']);
 $penulis    = $_POST['Penulis'];
 $penerbit   = $_POST['penerbit'];
 $tahun      = $_POST['TahunTerbit'];
 $kategoriID = $_POST['kategori'];
 $stok      = $_POST['stok'];
+$ebook     = $_POST['ebook'];
 
 $update_image = '';
 $new_image_name = '';
@@ -60,7 +61,8 @@ $query = "UPDATE buku SET
             Penulis = '$penulis',
             Penerbit = '$penerbit',
             TahunTerbit = '$tahun',
-            stok = '$stok'
+            stok = '$stok',
+            ebook = '$ebook'
             $update_image
           WHERE BukuID = '$bukuID'";
 

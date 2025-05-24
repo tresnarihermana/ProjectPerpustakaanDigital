@@ -17,6 +17,7 @@ $penulis = $_POST['Penulis'];
 $penerbit = $_POST['Penerbit'];
 $tahun = $_POST['TahunTerbit'];
 $stok = $_POST['stok'];
+$ebook =$_POST['ebook'];
 $kategoriID = $_POST['kategori'];
 $target_dir = "../storage/upload/";
 $image_name = basename($_FILES["image"]["name"]);
@@ -44,8 +45,8 @@ if (!move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
 
 // Simpan ke tabel buku
 mysqli_report(MYSQLI_REPORT_OFF);
-$query = mysqli_query($koneksi, "INSERT INTO buku (Judul, Deskripsi, Penulis, Penerbit, TahunTerbit, stok, imagecover) 
-    VALUES ('$judul', '$deskripsi', '$penulis', '$penerbit', '$tahun', '$stok', '$new_image_name')");
+$query = mysqli_query($koneksi, "INSERT INTO buku (Judul, Deskripsi, Penulis, Penerbit, TahunTerbit, stok, ebook, imagecover) 
+    VALUES ('$judul', '$deskripsi', '$penulis', '$penerbit', '$tahun', '$stok','$ebook', '$new_image_name')");
 
 if (!$query) {
     // Jika gagal insert karena duplikat atau lainnya

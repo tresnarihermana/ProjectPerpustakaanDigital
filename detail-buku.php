@@ -23,7 +23,7 @@ if(isset($_POST['proses'])){
  } else{
    $koleksi = mysqli_query($koneksi, "INSERT INTO koleksipribadi (KoleksiID, BukuID, UserID) VALUES ('','$id_buku','$user')");
  } if($koleksi){
-  header('Location: koleksi-pribadi.php');
+  header('Location: koleksi-pribadi.php?pesan=berhasil');
  }
 }
 
@@ -65,6 +65,12 @@ include 'layout/navbar.php';
         color :rgb(0, 136, 255);
         text-decoration: none;
       }
+          .pdf-frame {
+      width: 100%;
+      height: 70vh;
+      border: none;
+      border-radius: 10px;
+    }
     </style>
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -119,7 +125,11 @@ include 'layout/navbar.php';
          echo htmlspecialchars($buku['stok']);
         }
         ?></td>
-      </tr>
+       <th class="text-muted">Ebook</th>
+        <td>: <?php
+        echo $buku['ebook']? "Tersedia" : "Tidak Tersedia";
+        ?></td>  
+    </tr>
     </table>
 
     <div class="d-flex gap-2">
@@ -128,13 +138,20 @@ include 'layout/navbar.php';
         <i class="bi bi-x-circle"></i> Stok Habis
       </a>
     <?php else: ?>
-      <a href="pinjam-buku.php?id=<?= $buku['BukuID'] ?>" class="btn btn-primary">
+      <a href="pinjam-buku.php?id=<?= $buku['BukuID'] ?>" class="btn btn-outline-primary">
         <i class="bi bi-book"></i> Pinjam
       </a>
     <?php endif; ?>
 
       <form action="" method="post">
       <button type="submit" name="proses" class="btn btn-outline-success"><i class="bi bi-bookmark-heart"></i> Simpan ke Koleksi</button>
+      <?php
+      if($buku['ebook']){
+    echo '<button type="button" class="btn btn-outline-danger" data-bs-toggle="modal" data-bs-target="#pdfModal">
+      📚 Baca eBook
+    </button>';
+      };
+      ?>
       </form>
     </div>
   </div>
@@ -240,5 +257,23 @@ include 'layout/navbar.php';
     </form>
   </div>
 </div>
+<!-- Modal untuk ebook -->
+<div class="modal fade" id="pdfModal" tabindex="-1" aria-labelledby="pdfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl modal-dialog-centered modal-dialog-scrollable">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="pdfModalLabel">Baca eBook: Judul Buku</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
+        </div>
+        <div class="modal-body">
+          <iframe src="<?= htmlspecialchars($buku['ebook'])?>" class="pdf-frame"></iframe>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </body>
 </html>

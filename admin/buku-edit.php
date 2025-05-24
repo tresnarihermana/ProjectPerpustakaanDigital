@@ -94,6 +94,13 @@ $kategoriTerpilih = $data['KategoriID'] ?? ''; // pastikan sesuai struktur tabel
           </div>
         </div>
 
+          <div class="mb-3 row">
+          <label for="ebook" class="col-sm-2 col-form-label">Link Ebook</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control bg-light" id="ebook" name="ebook" value=<?= htmlspecialchars($data['ebook'])?>>
+          </div>
+        </div>
+
         <div class="mb-3 row">
           <label for="image" class="col-sm-2 col-form-label">Upload Gambar Baru</label>
           <div class="col-sm-10">

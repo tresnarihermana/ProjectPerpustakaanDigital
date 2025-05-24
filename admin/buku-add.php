@@ -81,6 +81,14 @@ require '../layout/sidebar-navbar-footbar.php';
             <input type="number" class="form-control bg-light" id="stok" name="stok" required>
           </div>
         </div>
+
+        <div class="mb-3 row">
+          <label for="ebook" class="col-sm-2 col-form-label">Link Ebook</label>
+          <div class="col-sm-10">
+            <input type="url" class="form-control bg-light" id="ebook" name="ebook">
+          </div>
+        </div>
+
         <div class="mb-3 row">
   <label for="image" class="col-sm-2 col-form-label">Upload Image</label>
   <div class="col-sm-10">
