@@ -154,6 +154,73 @@ include 'layout/navbar.php';
       ?>
       </form>
     </div>
+          <!-- rating -->
+<?php
+$rating_result = mysqli_query($koneksi, "SELECT AVG(Rating) as rata_rating FROM ulasanbuku WHERE BukuID = '$id_buku'");
+$rating_data = mysqli_fetch_assoc($rating_result);
+$rata_rating = round($rating_data['rata_rating'], 1); // dibulatkan 1 angka di belakang koma
+?>
+<div class="d-flex flex-wrap align-items-start">
+<div class="rating-card p-3 ms-2">
+  <p class="mb-1 fw-bold ms-4">Rating Buku</p>
+  <div class="d-flex align-items-center mb-1 ms-3" style="scale: 1.5;">
+    <?php
+    $fullStars = floor($rata_rating);
+    $halfStar = ($rata_rating - $fullStars) >= 0.5;
+    $emptyStars = 5 - $fullStars - ($halfStar ? 1 : 0);
+
+    for ($i = 0; $i < $fullStars; $i++) {
+        echo '<i class="bi bi-star-fill text-warning fs-4 me-1"></i>';
+    }
+    if ($halfStar) {
+        echo '<i class="bi bi-star-half text-warning fs-4 me-1"></i>';
+    }
+    for ($i = 0; $i < $emptyStars; $i++) {
+        echo '<i class="bi bi-star text-secondary fs-4 me-1"></i>';
+    }
+    ?>
+  </div>
+  <span class="text-muted fw-semibold ms-3"><?= $rata_rating ?> out of 5 stars</span>
+</div>
+</div>
+
+
+<style>
+    .star-rating {
+        direction: rtl;
+        display: inline-block;
+        cursor: pointer;
+    }
+
+    .star-rating input {
+        display: none;
+    }
+
+    .star-rating label {
+        color: #ddd;
+        font-size: 24px;
+        padding: 0 2px;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .star-rating label:hover,
+    .star-rating label:hover~label,
+    .star-rating input:checked~label {
+        color: #ffc107;
+    }
+</style>
+
+<script>
+    document.querySelectorAll('.star-rating:not(.readonly) label').forEach(star => {
+        star.addEventListener('click', function() {
+            this.style.transform = 'scale(1.2)';
+            setTimeout(() => {
+                this.style.transform = 'scale(1)';
+            }, 200);
+        });
+    });
+</script>
   </div>
 </div>
 
@@ -223,7 +290,7 @@ include 'layout/navbar.php';
     <?php
     include 'layout/footer.php';
     ?>
-
+<!-- MODAL ULASAN -->
 <div class="modal fade" id="modalUlasan" tabindex="-1" aria-labelledby="modalUlasanLabel" aria-hidden="true">
   <div class="modal-dialog">
     <form action="crud-tambah-ulasan.php" method="POST" class="modal-content">
