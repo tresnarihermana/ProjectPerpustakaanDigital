@@ -9,16 +9,16 @@
 
 
 # Deskripsi Umum
-Perpustakaan Digital adalah sebuah platform perpustakaan digital yang menawarkan pengalaman terbaik bagi Pengguna untuk meminjam,mengembalikan serta membaca buku dalam bentuk ebook yang tersedia. Platform ini juga memungkinkan Admin maupun Petugas perpustakaan untuk melakukan aktivitas manajemen perpustakaan secara mudah dan efisien. 
+Perpustakaan Digital adalah proyek membuat platform berbasis PHP dimana User dapat meminjam,mengembalikan serta membaca buku dalam bentuk ebook yang tersedia. Platform ini juga memungkinkan Admin dan Petugas untuk mengelola dan memanajemen segala data perpustakaan dengan mudah. 
 
 # Fitur Utama
 
 ### 1. Peminjaman dan Pengembalian 🧾
-- **Pengguna (User):** Pengguna dapat melakukan peminjaman dan pengembalian buku melalui antarmuka yang ramah pengguna di situs web.
-- **Admin:** Admin memiliki kontrol penuh terhadap peminjaman dan pengembalian, memungkinkan mereka untuk mengelola inventaris dengan efisien.
+- **Pengguna (User):** User dapat melakukan peminjaman dan pengembalian buku.
+- **Admin:** Admin memiliki kontrol penuh terhadap peminjaman dan pengembalian.
 
 ### 2. Manajemen Buku 📚
-- **Admin & Petugas:** Admin dan Petugas perpustakaan dapat menambahkan, mengedit, atau menghapus buku dari Katalog. Mereka juga dapat melacak status peminjaman dan pengembalian serta melihat laporan berupa statistik seputar perpustakaan.'
+- **Admin & Petugas:** Admin dan Petugas perpustakaan dapat menambahkan, mengedit, atau menghapus buku dari Katalog. Mereka juga dapat melacak status peminjaman dan pengembalian perpustakaan.'
 
 ### 3. Baca Ebook 🎉
 - **User:** Pengguna dapat membaca buku dalam bentuk ebook yang tersedia di web kami. Terima kasih kepada <a href="https://www.gutenberg.org/">Project Gutenberg</a> yang sudah menyediakan buku secara gratis dan legal
