@@ -259,6 +259,38 @@ $data = mysqli_query($koneksi, "SELECT * FROM buku");
         <?php endwhile; ?>
     </div>
 </div>
+<?php
+$data = mysqli_query($koneksi, "SELECT * FROM buku WHERE ebook != ''");
+?>
+<div class="container mt-5">
+    <div class="text-center mb-4">
+        <h2 class="fw-bold">📚 Ebook Gratis Siap Baca Di Tempat</h2>
+        <p class="text-muted">Baca buku dimana saja dengan ebook-ebook pilihan kami.</p>
+
+    </div>
+
+    <div class="book-slider">
+        <?php while ($book = mysqli_fetch_assoc($data)): ?>
+            <?php
+                $image = !empty($book['imagecover']) && file_exists('storage/upload/' . $book['imagecover']) 
+                    ? 'storage/upload/' . htmlspecialchars($book['imagecover']) 
+                    : 'storage/img/default-cover.jpg';
+            ?>
+            <div class="px-2">
+                <div class="card h-100 shadow-sm border-0"  style="cursor: pointer;" onclick="location.href='detail-buku.php?id=<?= $book['BukuID']; ?>'">
+                    <div style="height: 300px; overflow: hidden;">
+                        <img src="<?= $image; ?>" class="card-img-top rounded-top w-100 h-100" alt="cover buku" style="object-fit: contain;">
+                    </div>
+                    <div class="card-body text-center">
+                        <h6 class="card-title text-dark fw-semibold mb-1"><?= htmlspecialchars($book['Judul']); ?></h6>
+                        <p class="text-muted small mb-0"><?= htmlspecialchars($book['Penulis'] ?? 'Penulis tidak diketahui'); ?></p>
+                        <a href="detail-buku.php?id=<?= $book['BukuID']; ?>" class="btn btn-sm btn-primary mt-3">Detail Buku</a>
+                    </div>
+                </div>
+            </div>
+        <?php endwhile; ?>
+    </div>
+</div>
 
 <script>
 $(document).ready(function(){
