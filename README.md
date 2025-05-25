@@ -28,10 +28,14 @@ Perpustakaan Digital adalah proyek membuat platform berbasis PHP dimana User dap
 
 
 ## Rancangan Database <a href="https://drive.google.com/file/d/15EHjidInHzv11ouUHfS5w1DIcoaoTOF1/view?usp=sharing">Download Database Kami</a>
-![image](https://github.com/user-attachments/assets/73bd282a-f22d-471d-8ff3-eb042db9fe9c)
+![image](https://github.com/user-attachments/assets/34b00a6e-6a03-432b-a2b8-3b5411af02e1)
+
 
 ## ERD Perpustakaan Digital
-![image](https://github.com/user-attachments/assets/af35b3aa-67e2-400b-8225-2b3b93060704)
+![image](https://github.com/user-attachments/assets/87d567dc-b73f-44ed-8436-1ef65ba84e01)
+
+
+
 
 
 
