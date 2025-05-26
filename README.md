@@ -69,15 +69,15 @@ Perpustakaan Digital adalah proyek membuat platform berbasis PHP dimana User dap
 # Default Akun Untuk Login
 ### Admin Default Akun ###
 - Username: Admin
-- Password: admin123
+- Password: 123
 
 ### Petugas Default Akun ###
 - Username : Petugas
-- Password : petugas123
+- Password : 123
 
 ### Pengguna Default Akun ###
 - Username: User
-- Password: user123
+- Password: 123
 
 <h1>Antarmuka</h1>
 
