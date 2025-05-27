@@ -8,6 +8,7 @@ if (!isset($_SESSION['status'])) {
 require 'koneksi.php';
 require 'layout/navbar.php';
 require 'layout/alert.php';
+include 'layout/scrolltop.php';
 
 $user_id = $_SESSION['UserID'];
 

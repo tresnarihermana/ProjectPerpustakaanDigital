@@ -7,6 +7,7 @@ if (!isset($_SESSION['status'])) {
 
 require 'koneksi.php';
 require 'layout/navbar.php';
+include 'layout/scrolltop.php';
 ?>
 
 <!DOCTYPE html>
