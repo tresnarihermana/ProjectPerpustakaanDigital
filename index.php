@@ -5,6 +5,8 @@ if (!isset($_SESSION['status'])) {
     exit;
 } else {
     include 'layout/navbar.php';
+    include 'layout/scrolltop.php';
+
 }
 ?>
 <!DOCTYPE html>

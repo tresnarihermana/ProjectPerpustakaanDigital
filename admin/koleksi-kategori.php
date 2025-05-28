@@ -64,7 +64,11 @@ include '../layout/alert.php';
           foreach ($kategoriData as $kategoriID => $kategori): ?>
             <div class="accordion-item">
               <h2 class="accordion-header" id="heading<?= $kategoriID ?>">
-                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<?= $kategoriID ?>" aria-expanded="true" aria-controls="collapse<?= $kategoriID ?>">
+                <button class="accordion-button collapsed" type="button" 
+                  data-bs-toggle="collapse" 
+                  data-bs-target="#collapse<?= $kategoriID ?>" 
+                  aria-expanded="false" 
+                  aria-controls="collapse<?= $kategoriID ?>">
                   <?= htmlspecialchars($kategori['kategori']) ?>
                 </button>
               </h2>

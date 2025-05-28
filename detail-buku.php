@@ -6,7 +6,7 @@ if (!isset($_SESSION['status'])) {
     exit;
 } else {
     include 'koneksi.php';
-    include 'layout/alert.php';
+
 }
 $id_buku = $_GET['id'];
 $data = mysqli_query($koneksi, "SELECT * FROM buku WHERE BukuID = '$_GET[id]'");
@@ -54,6 +54,7 @@ include 'layout/navbar.php';
       }
 
     </style>
+    <?php include_once 'layout/alert.php'; ?>
 </head>
 <body>
 <div class="mx-5 mt-4">
