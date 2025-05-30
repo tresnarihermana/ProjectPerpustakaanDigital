@@ -49,7 +49,7 @@ require '../layout/sidebar-navbar-footbar.php';
         <!-- Tombol submit dan reset -->
         <button type="submit" class="btn btn-success">Simpan</button>
         <button type="reset" class="btn btn-light">Reset</button>
-        <a href="kategori.php" class="btn btn-danger">Kembali</a>
+        <a href="koleksi-kategori.php" class="btn btn-danger">Kembali</a>
 
       </form>
     </div>
