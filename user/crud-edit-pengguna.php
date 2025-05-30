@@ -3,7 +3,7 @@ session_start();
 include '../koneksi.php';
 $id = $_POST['UserID'];
 $username = $_POST['Username'];
-$password = $_POST['Password'];
+$password = md5($_POST['Password']);
 $email = $_POST['Email'];
 $namalengkap = $_POST['NamaLengkap'];
 $alamat = $_POST['Alamat'];
