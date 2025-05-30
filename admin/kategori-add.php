@@ -17,7 +17,7 @@ require '../layout/sidebar-navbar-footbar.php';
       <form method="post" action="crud-add-kategori.php" class="p-4" enctype="multipart/form-data">
         <div class="mb-3">
           <label for="formFile" class="form-label">Default file input example</label>
-          <input class="form-control" type="file" id="formFile" name="image" accept="image/*">
+          <input class="form-control" type="file" id="formFile" name="image" accept="image/*" required>
         </div>
         <div class="mb-3">
           <label for="nama_kategori" class="form-label">Nama Kategori</label>
