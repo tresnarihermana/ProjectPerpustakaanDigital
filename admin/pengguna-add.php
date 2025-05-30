@@ -40,7 +40,7 @@ if (!isset($_SESSION['status']) || $_SESSION['role'] !== 'admin') {
         </div>
         <button type="submit" class="btn btn-success">Simpan</button>
         <button type="reset" class="btn btn-light">Reset</button>
-        <a href="kategori.php" class="btn btn-danger">Kembali</a>
+        <a href="pengguna.php" class="btn btn-danger">Kembali</a>
       </form>
     </div>
   </div>
