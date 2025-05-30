@@ -46,7 +46,26 @@ $result = mysqli_query($koneksi, $query);
                 Tahun Terbit : <?= htmlspecialchars($buku['TahunTerbit'])?> </br>
               </small></p>
               <a href="detail-buku.php?id=<?= $buku['BukuID'] ?>" class="btn btn-primary btn-sm me-2">Lihat Detail Buku</a>
-              <a href="user/hapus-koleksi.php?id=<?=$buku['koleksiID'] ?>" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus buku ini dari koleksi?')">Hapus</a>
+              <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+              <button type="button" class="btn btn-danger btn-sm" id="hapusbutton">hapus</button>
+              <script>
+                document.getElementById('hapusbutton').addEventListener('click', function() {
+                  Swal.fire({
+                    title: 'Hapus Koleksi?',
+                    text: "Kamu yakin ingin menghapus buku ini dari koleksi pribadimu?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = "user/hapus-koleksi.php?id=<?= $buku['koleksiID'] ?>";
+                    }
+                  });
+                });
+                </script>
             </div>
           </div>
         </div>
