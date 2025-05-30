@@ -1,11 +1,16 @@
 <?php
 include '../koneksi.php';
 $username = $_POST['username'];
-$password = $_POST['password'];
+$password = md5($_POST['password']);
 $email = $_POST['email'];
 $namaLengkap = $_POST['namalengkap'];
 $alamat = $_POST['alamat'];
 $role = $_POST['role'];
+
+if (!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$/', $email)) {
+    header("location:pengguna.php?pesan=gagal");
+    die;
+}
 
 $data = mysqli_query($koneksi, "SELECT * FROM user WHERE Username = '$username'");
 $cek = mysqli_fetch_assoc($data);
