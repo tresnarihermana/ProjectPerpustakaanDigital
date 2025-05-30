@@ -58,7 +58,7 @@ if ($keyword) {
                 : 'storage/img/default-cover.png';
           ?>
           <div class="col">
-            <a href="detail-buku.php?id=<?= $row['BukuID'] ?>">
+            <a style="text-decoration: none;" href="detail-buku.php?id=<?= $row['BukuID'] ?>">
               <div class="card h-100 shadow-sm border-0">
                 <div class="ratio">
                   <img src="<?= $image; ?>" class="card-img-top rounded" alt="cover buku" style="object-fit: cover;">
