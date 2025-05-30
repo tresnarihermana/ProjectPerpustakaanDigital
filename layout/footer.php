@@ -55,12 +55,11 @@
     <div class="container">
       <div class="row">
         <!-- Logo dan Sosial Media -->
-        <div class="col-md-3 mb-4">
+        <div class="col-md-12 col-lg-3 mb-4">
           <div class="d-flex align-items-center mb-3" style="cursor: pointer;" onclick="window.location.href='#'">
             <img src="storage/img/logo.svg" alt="Perpustakaan Digital" class="footer-logo me-2">
             <div class="libre-baskerville-regular">
-              <h5 class="mb-0">Perpustakaan</h5>
-              <h5 class="mb-0">Digital</h5>
+              <span class="fs-4">Perpustakaan Digital</span>
             </div>
           </div>
           <div class="footer-icons mt-3">
@@ -72,7 +71,7 @@
         </div>
 
         <!-- Informasi -->
-        <div class="col-md-3 footer-section mb-4">
+        <div class="col-md-4 col-lg-3 footer-section mb-4">
           <h6>Tentang</h6>
           <ul>
             <li><a href="tentang-kami.php">Tentang Kami</a></li>
@@ -83,7 +82,7 @@
         </div>
 
         <!-- Layanan -->
-        <div class="col-md-3 footer-section mb-4">
+        <div class="col-md-4 col-lg-3 footer-section mb-4">
           <h6>Layanan</h6>
           <ul>
             <li><a href="riwayat-peminjaman.php">Riwayat Pinjam Buku</a></li>
@@ -94,7 +93,7 @@
         </div>
 
         <!-- Bantuan -->
-        <div class="col-md-3 footer-section mb-4">
+        <div class="col-md-4 col-lg-3 footer-section mb-4">
           <h6>Bantuan</h6>
           <ul>
             <li><a href="FAQ.php">FAQ</a></li>
