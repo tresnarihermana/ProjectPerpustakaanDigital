@@ -26,6 +26,9 @@ if(isset($_POST['proses'])){
   header('Location: koleksi-pribadi.php?pesan=berhasil');
  }
 }
+$data_peminjaman = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE UserID = '$user' AND BukuID = '$id_buku' AND StatusPeminjaman = 'dipinjam'");
+$p = mysqli_fetch_assoc($data_peminjaman);
+$p_max = mysqli_num_rows($data_peminjaman);
 
 $data_ulasan = mysqli_query($koneksi, "
   SELECT ulasanbuku.*, user.Username
@@ -83,8 +86,8 @@ include 'layout/navbar.php';
 </nav>
   <h2 class="mb-3 fw-bold">Detail Buku</h2>
   <div class="card shadow-sm mb-4">
-  <div class="card-body d-flex flex-wrap align-items-start">
-  <div class="me-4 mb-3" style="max-width: 200px;">
+  <div class="card-body d-flex flex-nowrap align-items-start">
+  <div class="me-4 mb-3 flex-wrap" style="max-width: 200px;">
     <img 
       src="storage/upload/<?= htmlspecialchars($buku['imagecover']) ?>" 
       alt="Cover Buku" 
@@ -133,10 +136,18 @@ include 'layout/navbar.php';
     </tr>
     </table>
 
-    <div class="d-flex gap-2">
+    <div class="d-flex gap-2 flex-row flex-nowrap">
      <?php if ($buku['stok'] <= 0): ?>
       <a href="#" class="btn btn-secondary disabled" aria-disabled="true" tabindex="-1">
         <i class="bi bi-x-circle"></i> Stok Habis
+      </a>
+    <?php elseif (isset($p['StatusPeminjaman']) && $p['StatusPeminjaman'] == 'dipinjam'): ?>
+      <a href="?id=<?=$buku['BukuID']?>&pesan=sudahdipinjam" class="btn btn-danger">
+        <i class="bi bi-x-circle"></i> Pinjam
+      </a>
+    <?php elseif ($p_max <= 3): ?>
+      <a href="?id=<?=$buku['BukuID']?>&pesan=maxpinjam" class="btn btn-warning">
+        <i class="bi bi-x-circle"></i> Pinjam
       </a>
     <?php else: ?>
       <a href="pinjam-buku.php?id=<?= $buku['BukuID'] ?>" class="btn btn-outline-primary">
@@ -227,17 +238,54 @@ $rata_rating = round($rating_data['rata_rating'], 1); // dibulatkan 1 angka di b
 
   </div>
 
-  <div class="card shadow-sm mb-4 border-0">
+<?php
+$deskripsiFull = nl2br(htmlspecialchars($buku['Deskripsi']));
+$deskripsiShort = nl2br(htmlspecialchars(substr($buku['Deskripsi'], 0, 500))); // Potong 200 karakter
+?>
+
+<div class="card shadow-sm mb-4 border-0">
   <div class="card-body bg-light rounded-3">
     <div class="d-flex align-items-center mb-3">
       <i class="bi bi-book text-primary fs-3 me-2"></i>
       <h5 class="fw-bold mb-0">Deskripsi Buku</h5>
     </div>
-    <p class="text-secondary fs-6" style="line-height: 1.7;">
-      <?= nl2br(htmlspecialchars($buku['Deskripsi'])) ?>
+
+    <!-- Short Description -->
+    <p id="deskripsi-short" class="text-secondary fs-6" style="line-height: 1.7;">
+      <?= $deskripsiShort ?>...
     </p>
+
+    <!-- Full Description (hidden by default) -->
+    <p id="deskripsi-full" class="text-secondary fs-6 d-none" style="line-height: 1.7;">
+      <?= $deskripsiFull ?>
+    </p>
+
+    <!-- Toggle Button -->
+    <?php if (strlen($buku['Deskripsi']) > 200): ?>
+    <button class="btn btn-link p-0 mt-2" id="toggle-deskripsi" onclick="toggleDeskripsi()">Lihat Selengkapnya</button>
+    <?php endif; ?>
   </div>
 </div>
+
+<!-- Toggle Script -->
+<script>
+  function toggleDeskripsi() {
+    const shortDesc = document.getElementById('deskripsi-short');
+    const fullDesc = document.getElementById('deskripsi-full');
+    const btn = document.getElementById('toggle-deskripsi');
+
+    if (fullDesc.classList.contains('d-none')) {
+      shortDesc.classList.add('d-none');
+      fullDesc.classList.remove('d-none');
+      btn.innerText = 'Sembunyikan';
+    } else {
+      fullDesc.classList.add('d-none');
+      shortDesc.classList.remove('d-none');
+      btn.innerText = 'Lihat Selengkapnya';
+    }
+  }
+</script>
+
   <div class="d-flex justify-content-end mb-3">
   <button class="btn btn-outline-primary" data-bs-toggle="modal" data-bs-target="#modalUlasan">
     <i class="bi bi-plus-circle me-1"></i> Tambah Ulasan
