@@ -58,6 +58,14 @@ if (isset($_GET['pesan'])) {
             text: 'Tampaknya stok buku ini sedang kosong. Coba lain kali',
             icon: 'error'});
             </script>";
+            break;
+        case 'komenduplikasi';
+             echo "<script>
+            Swal.fire({
+            title: 'Duplikasi data terdeteksi!',
+            text: 'Anda hanya dapat komen satu kali',
+            icon: 'warning'});
+            </script>";
     }
 }
 
