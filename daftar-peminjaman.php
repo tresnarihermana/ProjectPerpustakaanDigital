@@ -57,8 +57,10 @@ while ($row = mysqli_fetch_assoc($result)) {
     <?php if (count($riwayat) > 0): ?>
         <?php foreach ($riwayat as $buku): ?>
             <div class="card shadow-sm mb-4 p-3">
-                <div class="card-body d-flex align-items-start">
+                <div class="card-body d-flex align-items-start flex-wrap justify-content-center">
+                    <div class="col-md-2 justify-content-center d-flex align-items-center">
                     <img src="storage/upload/<?= htmlspecialchars($buku['imagecover']) ?>" alt="cover buku" class="me-3" style="width: 130px; height: auto;">
+                    </div>
                     <div class="flex-grow-1">
                         <h5 class="fw-bold"><?= htmlspecialchars($buku['judul']) ?></h5>
                         <div class="mb-2">

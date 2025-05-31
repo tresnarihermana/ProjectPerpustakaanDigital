@@ -26,9 +26,10 @@ if(isset($_POST['proses'])){
   header('Location: koleksi-pribadi.php?pesan=berhasil');
  }
 }
-$data_peminjaman = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE UserID = '$user' AND BukuID = '$id_buku' AND StatusPeminjaman = 'dipinjam'");
+$data_peminjaman = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE UserID = '$user' AND StatusPeminjaman = 'dipinjam' AND BukuID = '$id_buku'");
 $p = mysqli_fetch_assoc($data_peminjaman);
-$p_max = mysqli_num_rows($data_peminjaman);
+$batas_peminjaman = mysqli_query($koneksi, "SELECT * FROM peminjaman WHERE UserID = '$user' AND StatusPeminjaman = 'dipinjam'");
+$p_max = mysqli_num_rows($batas_peminjaman);
 
 $data_ulasan = mysqli_query($koneksi, "
   SELECT ulasanbuku.*, user.Username
@@ -75,6 +76,17 @@ include 'layout/navbar.php';
       border: none;
       border-radius: 10px;
     }
+    @media (max-width: 850px) {
+      .card-body{
+        justify-content: center;
+        font-size: 15px;
+      }
+      @media (max-width: 612px){
+        .card-body{
+          font-size: 13px;
+        }
+      }
+    }
     </style>
     <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
   <ol class="breadcrumb">
@@ -86,8 +98,8 @@ include 'layout/navbar.php';
 </nav>
   <h2 class="mb-3 fw-bold">Detail Buku</h2>
   <div class="card shadow-sm mb-4">
-  <div class="card-body d-flex flex-nowrap align-items-start">
-  <div class="me-4 mb-3 flex-wrap" style="max-width: 200px;">
+  <div class="card-body d-flex flex-wrap align-items-start">
+  <div class="me-4 mb-3" style="max-width: 200px;">
     <img 
       src="storage/upload/<?= htmlspecialchars($buku['imagecover']) ?>" 
       alt="Cover Buku" 
@@ -145,7 +157,7 @@ include 'layout/navbar.php';
       <a href="?id=<?=$buku['BukuID']?>&pesan=sudahdipinjam" class="btn btn-danger">
         <i class="bi bi-x-circle"></i> Pinjam
       </a>
-    <?php elseif ($p_max <= 3): ?>
+    <?php elseif ($p_max >= 3) : ?>
       <a href="?id=<?=$buku['BukuID']?>&pesan=maxpinjam" class="btn btn-warning">
         <i class="bi bi-x-circle"></i> Pinjam
       </a>

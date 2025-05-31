@@ -23,7 +23,6 @@ if (!isset($_SESSION['status'])) {
             display: flex;
             flex-wrap: wrap;
             justify-content: center;
-            gap: 20px;
         }
 
         .card {
@@ -76,7 +75,7 @@ if (!isset($_SESSION['status'])) {
 
         while ($data = mysqli_fetch_assoc($kategori)) :
         ?>
-            <div class="col-lg-3 col-md-4 col-sm-12 mb-3">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-4">
                 <div class="card" style="cursor: pointer;" onclick="location.href='daftar-buku-kategori.php?id=<?= $data['KategoriID']; ?>'">
                     <img src="storage/upload/<?= htmlspecialchars($data['coverkategori']); ?>" class="card-img-top" alt="<?= htmlspecialchars($data['Namakategori']); ?>">
                     <span class="white-box"><?= strtoupper(htmlspecialchars($data['Namakategori'])); ?></span>
