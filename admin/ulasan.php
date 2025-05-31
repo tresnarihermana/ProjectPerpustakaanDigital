@@ -69,7 +69,27 @@ include '../layout/alert.php';
                   <td><?= htmlspecialchars($row['Rating']) ?></td>
                   <td>
                     <a href="ulasan-edit.php?id=<?= $row['UlasanID'] ?>" class="btn btn-info btn-sm me-1">Ubah</a>
-                    <a href="crud-delete-ulasan.php?id=<?= $row['UlasanID'] ?>" onclick="return confirm('Yakin ingin menghapus?')" class="btn btn-danger btn-sm">Hapus</a>
+                    <?php $buttonId = 'hapusbutton_' . $row['UlasanID']; ?>
+                    <button type="button" class="btn btn-danger btn-sm" id="<?= $buttonId ?>">Hapus</button>
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    <script>
+                      document.getElementById('<?= $buttonId ?>').addEventListener('click', function() {
+                        Swal.fire({
+                          title: 'Hapus Ulasan?',
+                          text: "Kamu yakin ingin menghapus ulasan ini?",
+                          icon: 'warning',
+                          showCancelButton: true,
+                          confirmButtonColor: '#d33',
+                          cancelButtonColor: '#3085d6',
+                          confirmButtonText: 'Ya, Hapus!',
+                          cancelButtonText: 'Batal'
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            window.location.href = 'crud-delete-ulasan.php?id=<?= $row['UlasanID'] ?>';
+                          }
+                        });
+                      });
+                    </script>
                   </td>
                 </tr>
             <?php endwhile; endif; ?>

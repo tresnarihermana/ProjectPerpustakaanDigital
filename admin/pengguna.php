@@ -64,9 +64,27 @@ $result = mysqli_query(
                   <td>
                     <a href="pengguna-edit.php?id=<?= $row['UserID'] ?>"
                        class="btn btn-info btn-sm me-1">Ubah</a>
-                    <a href="crud-delete-pengguna.php?id=<?= $row['UserID'] ?>"
-                       onclick="return confirm('Yakin ingin menghapus?')"
-                       class="btn btn-danger btn-sm">Hapus</a>
+                       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+              <?php $buttonId = 'hapusbutton_' . $row['UserID']; ?>
+              <button type="button" class="btn btn-danger btn-sm" id="<?= $buttonId ?>">hapus</button>
+              <script>
+                document.getElementById('<?= $buttonId ?>').addEventListener('click', function() {
+                  Swal.fire({
+                    title: 'Hapus User?',
+                    text: "Kamu yakin ingin menghapus User ini?",
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#d33',
+                    cancelButtonColor: '#3085d6',
+                    confirmButtonText: 'Ya, Hapus!',
+                    cancelButtonText: 'Batal'
+                  }).then((result) => {
+                    if (result.isConfirmed) {
+                      window.location.href = "crud-delete-pengguna.php?id=<?= $row['UserID'] ?>";
+                    }
+                  });
+                });
+              </script>
                   </td>
                 </tr>
             <?php endwhile; endif; ?>

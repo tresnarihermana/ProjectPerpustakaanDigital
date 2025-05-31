@@ -51,9 +51,27 @@ include '../layout/alert.php';
                   <td>
                     <a href="kategori-edit.php?id=<?= $row['KategoriID'] ?>"
                        class="btn btn-info btn-sm me-1">Ubah</a>
-                    <a href="crud-delete-kategori.php?id=<?= $row['KategoriID'] ?>"
-                       onclick="return confirm('Yakin ingin menghapus?')"
-                       class="btn btn-danger btn-sm">Hapus</a>
+                       <?php $buttonId = 'hapusbutton_' . $row['KategoriID']; ?>
+                    <button type="button" class="btn btn-danger btn-sm" id="<?= $buttonId ?>">Hapus</button>
+                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+                    <script>
+                      document.getElementById('<?= $buttonId ?>').addEventListener('click', function() {
+                        Swal.fire({
+                          title: 'Hapus Kategori?',
+                          text: "Kamu yakin ingin menghapus kategori ini?",
+                          icon: 'warning',
+                          showCancelButton: true,
+                          confirmButtonColor: '#d33',
+                          cancelButtonColor: '#3085d6',
+                          confirmButtonText: 'Hapus',
+                          cancelButtonText: 'Batal'
+                        }).then((result) => {
+                          if (result.isConfirmed) {
+                            window.location.href = 'crud-delete-kategori.php?id=<?= $row['KategoriID'] ?>';
+                          }
+                        });
+                      });
+                    </script>
                   </td>
                 </tr>
             <?php endwhile; endif; ?>
