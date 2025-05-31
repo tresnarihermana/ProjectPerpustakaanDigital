@@ -82,7 +82,8 @@ Perpustakaan Digital adalah proyek membuat platform berbasis PHP dimana User dap
 <h1>Antarmuka</h1>
 
 ### Tampilan Antarmuka Admin
-![image](https://github.com/user-attachments/assets/c2455624-23aa-4c48-a387-ab3d9b1b6290)
+![image](https://github.com/user-attachments/assets/b3488167-ba0c-40e3-b98f-bc72ab475f26)
+
 
 ### tampilan Antarmuka User
 ![localhost_projectperpustakaandigital_index php (342](https://github.com/user-attachments/assets/c2efc04d-b437-42ef-b9e5-01f3ad6a46b6)
@@ -99,4 +100,4 @@ Perpustakaan Digital adalah proyek membuat platform berbasis PHP dimana User dap
 | **[Tresnariyadi Hermana](https://github.com/tresnarihermana)**   | Projek Manajer |
 | **[Fahmi](https://github.com/ikanemo)**  | Member |
 | **[Nadya](https://github.com/nadyanafisah)**  | Member |
-| **[Moch.yanuar](link profil github)**   | Member |
+| **[Moch.yanuar](https://github.com/yanuarganteng)**   | Member |
