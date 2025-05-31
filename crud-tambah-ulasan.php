@@ -12,7 +12,7 @@ $cek = mysqli_query($koneksi, "
 SELECT * FROM ulasanbuku 
 WHERE UserID = '$user' AND BukuID = '$buku'");
 if (mysqli_num_rows($cek) > 0){
-    header("location: detail-buku.php?id=$buku&pesan=duplikat");
+    header("location: detail-buku.php?id=$buku&pesan=komenduplikasi");
 }else{
 // Simpan ke database
 mysqli_query($koneksi, "
