@@ -1,0 +1,5 @@
+# Aktifkan mod_rewrite
+RewriteEngine On
+
+# Redirect ke halaman 404.php saat file tidak ditemukan
+ErrorDocument 404 /ProjectPerpustakaanDigital/404.php
