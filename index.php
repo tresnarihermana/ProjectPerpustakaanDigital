@@ -354,7 +354,7 @@ if (!isset($_SESSION['status'])) {
 <div class="container mt-5">
     <div class="text-center mb-4">
         <h2 class="fw-bold">📖 Jelajahi Kategori Buku</h2>
-        <p class="text-muted">Temukan buku favoritmu berdasarkan kategori yang telah kami sediakan.</p>
+        <p class="text-muted">Temukan buku favoritmu berdasarkan kategori yang sudah kami sediakan.</p>
     </div>
 
     <div class="row baris">
