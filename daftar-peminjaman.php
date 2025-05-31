@@ -51,7 +51,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 ?>
 
 <div class="mx-5 mt-4">
-    <h2 class="mb-3 fw-bold">Riwayat Peminjaman</h2>
+    <h2 class="mb-3 fw-bold">Daftar Peminjaman</h2>
     <p>Hai, <?= htmlspecialchars($_SESSION['username']); ?>! Berikut buku yang sedang kamu pinjam:</p>
 
     <?php if (count($riwayat) > 0): ?>
