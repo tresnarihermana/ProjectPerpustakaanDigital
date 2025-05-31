@@ -15,7 +15,8 @@ $cek = mysqli_fetch_assoc($data);
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Homepage</title>
+    <title>PerpustakaanDigital</title>
+    <link rel="icon" href="storage/img/logo.svg" type="image/x-icon" sizes="32x32" />
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" 
         integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous" />

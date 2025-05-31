@@ -7,7 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-SgOJa3DmI69IUzQ2PVdRZhwQ+dy64/BUtbMJw1MZ8t5HZApcHrRKUc4W0kG879m7" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <title>Dashboard Admin</title>
+    <title>DashboardAdmin</title>
+    <link rel="icon" href="../storage/img/logo.svg" type="image/x-icon">
 </head>
 <style>
 html {
@@ -92,6 +93,7 @@ body {
         <a href="peminjaman.php" class="list-group-item list-group-item-action py-2">
           <i class="fas fa-book-open-reader fa-fw me-3"></i><span>PEMINJAMAN</span>
         </a>
+
         <?php
         if (($_SESSION['role'] == 'admin')) {
             // echo '<a href="petugas.php" class="list-group-item list-group-item-action py-2"><i class="fas fa-user-shield fa-fw me-3"></i><span>PETUGAS</span></a>';
@@ -100,7 +102,12 @@ body {
         }
         
         ?>
-        
+        <a href="../index.php" class="list-group-item list-group-item-action d-lg-none py-2">
+          <i class="fa-solid fa-right-from-bracket fa-fw me-3"></i><span>HALAMAN UTAMA</span>
+        </a>
+        <a href="../logout.php" class="list-group-item list-group-item-action d-lg-none py-2">
+          <i class="fa-solid fa-power-off fa-fw me-3"></i><span>LOGOUT</span>
+        </a>
       </div>
     </div>
   </nav>
