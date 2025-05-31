@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Scan Barcode Buku</title>
+    <link rel="icon" href="../storage/img/logo.svg" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Bootstrap & Font Awesome -->

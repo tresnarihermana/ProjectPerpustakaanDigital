@@ -57,7 +57,7 @@
         <!-- book Card -->
         <div class="col-12 col-md-6 col-lg-3">
             <div class="card stat-card border-0 shadow-sm">
-                <div class="card-body">
+                <div class="card-body" onclick="window.location.href='buku.php'">
                     <div class="d-flex align-items-center mb-3">
                         <div class="stat-icon bg-primary bg-opacity-10 text-primary">
                             <i class="fas fa-book"></i>
