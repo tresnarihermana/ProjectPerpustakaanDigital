@@ -14,7 +14,7 @@ if (!isset($_SESSION['status'])) {
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Halaman User</title>
+    <title>Perpustakaan Digital</title>
 
 
     <!-- Slick Carousel CSS -->
@@ -104,6 +104,7 @@ if (!isset($_SESSION['status'])) {
             .card {
                 max-width: none;
             }
+            
         }
 
         @media (max-width: 576px) {
@@ -116,14 +117,14 @@ if (!isset($_SESSION['status'])) {
             .white-box {
                 font-size: 12px;
             }
+            
         }
-      .swiper {
+    .swiper {
             width: 100%;
             height: auto;
             border-radius: 10px;
             overflow: hidden;
-            box-shadow: var(--box-shadow);
-            margin: 0 auto;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
 
         .swiper-slide img {
@@ -134,18 +135,7 @@ if (!isset($_SESSION['status'])) {
         }
 
         .swiper-button-next, .swiper-button-prev {
-            color: #fff;
-            background: rgba(0,0,0,0.5);
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .swiper-button-next::after, .swiper-button-prev::after {
-            font-size: 20px;
+            color: #000;
         }
 
         .swiper-pagination-bullet {
@@ -214,20 +204,37 @@ if (!isset($_SESSION['status'])) {
             .book-slider .card {
                 min-height: 380px;
             }
-        }
+                        .card{
+                height: 100%;
+                width: 100%;
+                margin-left: auto;
+                margin-right: auto;
 
+            }
+            .baris{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0 !important;
+            }
+        }
+        
         @media (max-width: 768px) {
-            .section-title {
-                font-size: 1.5rem;
+            .col-xl-3, .col-lg-4, .col-md-6 {
+                flex: 0 0 50%;
+                max-width: 50%;
             }
             
             .swiper-slide img {
                 height: 250px;
             }
             
-            
             .book-slider .card {
                 min-height: 360px;
+            }
+            
+            .section-title {
+                font-size: 1.5rem;
             }
         }
 
@@ -259,6 +266,12 @@ if (!isset($_SESSION['status'])) {
             
             .section-title {
                 font-size: 1.3rem;
+            }
+            .baris{
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 0 !important;
             }
         }
 
@@ -353,7 +366,7 @@ if (!isset($_SESSION['status'])) {
 
         while ($data = mysqli_fetch_assoc($kategori)) :
         ?>
-            <div class="col-xl-3 col-lg-4 col-md-6 col-12 mb-4">
+            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6 mb-4">
                 <div class="card" style="cursor: pointer;" onclick="location.href='daftar-buku-kategori.php?id=<?= $data['KategoriID']; ?>'">
                     <img src="storage/upload/<?= htmlspecialchars($data['coverkategori']); ?>" class="card-img-top" alt="<?= htmlspecialchars($data['Namakategori']); ?>">
                     <span class="white-box"><?= strtoupper(htmlspecialchars($data['Namakategori'])); ?></span>
