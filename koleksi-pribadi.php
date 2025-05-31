@@ -47,9 +47,10 @@ $result = mysqli_query($koneksi, $query);
               </small></p>
               <a href="detail-buku.php?id=<?= $buku['BukuID'] ?>" class="btn btn-primary btn-sm me-2">Lihat Detail Buku</a>
               <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-              <button type="button" class="btn btn-danger btn-sm" id="hapusbutton">hapus</button>
+              <?php $buttonId = 'hapusbutton_' . $buku['koleksiID']; ?>
+              <button type="button" class="btn btn-danger btn-sm" id="<?= $buttonId ?>">hapus</button>
               <script>
-                document.getElementById('hapusbutton').addEventListener('click', function() {
+                document.getElementById('<?= $buttonId ?>').addEventListener('click', function() {
                   Swal.fire({
                     title: 'Hapus Koleksi?',
                     text: "Kamu yakin ingin menghapus buku ini dari koleksi pribadimu?",
@@ -65,7 +66,7 @@ $result = mysqli_query($koneksi, $query);
                     }
                   });
                 });
-                </script>
+              </script>
             </div>
           </div>
         </div>
