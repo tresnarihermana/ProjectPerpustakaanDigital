@@ -6,8 +6,15 @@ if (!isset($_SESSION['status'])) {
 }
 
 require 'koneksi.php';
-require 'layout/navbar.php';
 include 'layout/alert.php';
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['check_status']) && isset($_POST['id'])) {
+    $id = mysqli_real_escape_string($koneksi, $_POST['id']);
+    $query = mysqli_query($koneksi, "SELECT StatusPeminjaman FROM peminjaman WHERE peminjamanID = '$id'");
+    $result = mysqli_fetch_assoc($query);
+    echo json_encode(['status' => $result['StatusPeminjaman']]);
+    exit;
+}
+
 $user_id = $_SESSION['UserID'];
 $id_buku = $_GET['id'];
 $data = mysqli_query($koneksi, 
@@ -16,15 +23,14 @@ JOIN buku ON peminjaman.BukuID = buku.BukuID
 JOIN user ON peminjaman.UserID = user.userID
 WHERE peminjaman.peminjamanID = '$id_buku'
 "
-
 );
 $buku = mysqli_fetch_assoc($data);
 if ($buku['StatusPeminjaman'] == 'dikembalikan') {
-    echo "<h2 class='text-danger'>Buku ini sudah dikembalikan</h2>";
+    header("Location: daftar-peminjaman.php?pesan=berhasil");
     exit;
 }
+require 'layout/navbar.php';
 ?>
-
 <div class="mx-5 mt-4">
   <h2 class="mb-3 fw-bold">Kembalikan "<?= htmlspecialchars($buku['Judul']) ?>"</h2>
   <div class="card shadow-sm p-4 d-flex flex-row flex-wrap">
@@ -122,7 +128,28 @@ if ($buku['StatusPeminjaman'] == 'dikembalikan') {
   });
 </script>
 
+<script>
+  const peminjamanID = "<?= $buku['peminjamanID'] ?>";
 
+  // Cek status pengembalian setiap 3 detik
+  const intervalID = setInterval(() => {
+    fetch("", {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/x-www-form-urlencoded'
+      },
+      body: `check_status=1&id=${peminjamanID}`
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.status === 'dikembalikan') {
+        clearInterval(intervalID);
+
+        window.location.href = "daftar-peminjaman.php?pesan=berhasil";
+      }
+    });
+  }, 3000);
+</script>
 <?php include 'layout/footer.php'; ?>
 <script src="https://cdn.jsdelivr.net/npm/jsbarcode@3.11.5/dist/JsBarcode.all.min.js"></script>
 
