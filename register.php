@@ -68,7 +68,9 @@
   </style>
 </head>
 <body>
-
+<?php
+include 'layout/alert.php';
+?>
 <div class="container py-5">
   <div class="row justify-content-center">
     <div class="col-md-7 col-lg-6">
@@ -78,7 +80,7 @@
           <small>Perpustakaan Digital</small>
         </div>
         <div class="card-body">
-          <form action="register.php" method="post">
+          <form action="proses_register.php" method="post">
             <div class="mb-3">
               <label for="Username" class="form-label">Username</label>
               <input type="text" class="form-control" id="Username" name="Username" placeholder="Masukkan username" required>
@@ -108,7 +110,7 @@
 
             <div class="d-flex justify-content-between mt-4">
               <button type="submit" class="btn btn-primary w-50 me-2">Daftar</button>
-              <button type="button" class="btn btn-danger w-50 ms-2" onclick="window.location.href='login.html'">Sudah Punya Akun</button>
+              <button type="button" class="btn btn-danger w-50 ms-2" onclick="window.location.href='login.php'">Sudah Punya Akun</button>
             </div>
           </form>
         </div>
