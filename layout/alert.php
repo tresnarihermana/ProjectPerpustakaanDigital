@@ -66,6 +66,32 @@ if (isset($_GET['pesan'])) {
             text: 'Anda hanya dapat komen satu kali',
             icon: 'warning'});
             </script>";
+            break;
+        case 'gagallogin':
+            echo "<script>
+            Swal.fire({
+            title: 'Gagal Login!',
+            text: 'Username atau password salah.',
+            icon: 'error'});
+            </script>";
+            break;
+        case 'berhasildaftar':
+            echo "<script>
+            Swal.fire({
+            title: 'Berhasil Daftar!',
+            text: 'Akun Anda telah berhasil dibuat.',
+            icon: 'success'});
+            </script>";
+            break;
+        case 'datainvalid':
+            echo "<script>
+            Swal.fire({
+            title: 'Data Tidak Valid!',
+            text: 'Pastikan semua field terisi dengan benar.',
+            icon: 'warning'});
+            </script>";
+            break;
+            
     }
 }
 
