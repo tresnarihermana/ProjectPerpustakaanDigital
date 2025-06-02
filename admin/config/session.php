@@ -4,7 +4,7 @@ if (
     !isset($_SESSION['status']) || 
     ($_SESSION['role'] !== 'admin' && $_SESSION['role'] !== 'petugas')
 ) {
-    header('Location: ../login.html');
+    header('Location: ../403.php');
     exit;
 }
 ?>
