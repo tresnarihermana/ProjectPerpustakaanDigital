@@ -31,7 +31,7 @@ $data = mysqli_fetch_assoc($query);
 
 // Fungsi badgeStatus yang pakai kelas CSS
 function badgeStatusPdf($status) {
-    if ($status === "Dipinjam") {
+    if ($status === "dipinjam") {
         return "<span class='badge badge-warning'>DIPINJAM</span>";
     } elseif ($status === "dikembalikan") {
         return "<span class='badge badge-success'>DIKEMBALIKAN</span>";
