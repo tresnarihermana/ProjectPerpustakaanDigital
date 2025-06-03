@@ -67,7 +67,7 @@ body {
     <!--Main Navigation-->
 <header>
   <!-- Sidebar -->
-  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white">
+  <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse bg-white z-0">
     <div class="position-sticky">
       <div class="list-group list-group-flush mx-3 mt-4 ">
         <a
@@ -155,14 +155,12 @@ body {
 <main style="margin-top: 58px;">
   <div class="container pt-4"></div>
 </main>
-<!--Main layout-->
-<footer class="bg-body-tertiary text-center text-lg-start fixed-bottom">
+
+<!-- <footer class="bg-body-tertiary text-center text-lg-start fixed-bottom">
     <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
       © 2025 Copyright:
       <a class="text-dark" href="#">Perpustakaan Digital</a>
-</footer>
-    
-</div>
+</footer> -->
 <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.4.2/mdb.min.js"></script> -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.5/dist/js/bootstrap.bundle.min.js" integrity="sha384-k6d4wzSIapyDyv1kpU366/PK5hCdSbCRGRCMv+eplOQJWyd1fbcAu9OCUj5zNLiq" crossorigin="anonymous"></script>
 </body>
