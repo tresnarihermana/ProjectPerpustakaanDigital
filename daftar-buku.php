@@ -22,7 +22,7 @@ $total_data = $row_total['total'];
 $total_pages = ceil($total_data / $limit);
 
 // Ambil buku untuk halaman sekarang
-$books = mysqli_query($koneksi, "SELECT * FROM buku LIMIT $limit OFFSET $offset");
+$books = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY BukuID DESC LIMIT $limit OFFSET $offset");
 ?>
 
 <style>

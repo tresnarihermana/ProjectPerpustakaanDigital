@@ -27,7 +27,7 @@ $result = mysqli_query(
     JOIN buku ON Kategoribuku_relasi.BukuID = buku.BukuID
     JOIN Kategoribuku ON Kategoribuku_relasi.KategoriID = Kategoribuku.KategoriID
     WHERE Kategoribuku_relasi.KategoriID = $kategoriID
-    ORDER BY buku.Judul ASC"
+    ORDER BY buku.BukuID DESC"
 ) or die("Query gagal: " . mysqli_error($koneksi));
 ?>
 
