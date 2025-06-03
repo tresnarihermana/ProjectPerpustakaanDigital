@@ -142,5 +142,8 @@
     <!-- Activity Section -->
    
 </div>
+<?php
+include '../layout/admin-footer.php';
+?>
 </body>
 </html>
