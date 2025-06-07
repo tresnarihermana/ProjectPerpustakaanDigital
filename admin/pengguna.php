@@ -94,6 +94,8 @@ $result = mysqli_query(
     </div>
   </div>
 </div>
-
+<?php
+include '../layout/admin-footer.php';
+?>
 </body>
 </html>

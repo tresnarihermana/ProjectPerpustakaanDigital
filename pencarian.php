@@ -14,7 +14,9 @@ if ($keyword) {
     $query = mysqli_query($koneksi, "SELECT * FROM buku 
         WHERE Judul LIKE '%$keyword%' 
         OR Penulis LIKE '%$keyword%' 
-        OR Penerbit LIKE '%$keyword%'");
+        OR Penerbit LIKE '%$keyword%'
+        OR TahunTerbit LIKE '%$keyword%'
+        ");
 
     if ($query && mysqli_num_rows($query) > 0) {
         while ($row = mysqli_fetch_assoc($query)) {

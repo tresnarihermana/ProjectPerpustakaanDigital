@@ -128,7 +128,7 @@ include 'layout/navbar.php';
       </tr>
       <tr>
         <th class="text-muted">Tahun Terbit</th>
-        <td>: <?= htmlspecialchars($buku['TahunTerbit']) ?></td>
+        <td><a href="pencarian.php?keyword=<?=$buku['TahunTerbit']?>">: <?= htmlspecialchars($buku['TahunTerbit']) ?></a></td>
         <th class="text-muted">Penerbit</th>
         <td><a href="pencarian.php?keyword=<?=$buku['penerbit']?>">: <?= htmlspecialchars($buku['penerbit']) ?></a></td>
       </tr>

@@ -81,6 +81,8 @@ include '../layout/alert.php';
     </div>
   </div>
 </div>
-
+<?php
+include '../layout/admin-footer.php';
+?>
 </body>
 </html>
