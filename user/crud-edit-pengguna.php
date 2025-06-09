@@ -1,34 +1,45 @@
 <?php
 session_start();
 include '../koneksi.php';
+
 $id = $_POST['UserID'];
-$username = $_POST['Username'];
-$password = md5($_POST['Password']);
-$email = $_POST['Email'];
-$namalengkap = $_POST['NamaLengkap'];
-$alamat = $_POST['Alamat'];
-$email = $_POST['Email'] ?? '';
+$username = trim($_POST['Username']);
+$email = trim($_POST['Email']);
+$namalengkap = trim($_POST['NamaLengkap']);
+$alamat = trim($_POST['Alamat']);
 
-if (!preg_match('/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.com$/', $email)) {
-    header("location:../edit-profile.php?pesan=gagal");
-    die;
-}else{
+$oldpass = md5($_POST['oldpass']); // Hash inputan password lama
+$passwordBaru = md5($_POST['Password']);
+$confpass = md5($_POST['confpass']);
 
-$data = mysqli_query($koneksi, "SELECT * FROM user WHERE Username = '$username' AND UserID != '$id'");
-$cek = mysqli_fetch_assoc($data);
+// Ambil data user dari DB
+$user = mysqli_fetch_assoc(mysqli_query($koneksi, "SELECT * FROM user WHERE UserID = '$id'"));
 
-if (mysqli_num_rows($data) > 0) {
-    header("location:../edit-profile.php?pesan=duplikat");
+// Cek apakah password lama cocok
+if ($oldpass !== $user['Password']) {
+    header("Location:../edit-profile.php?pesan=password_salah");
+    exit;
+}
+
+// Cek konfirmasi password
+if ($passwordBaru !== $confpass) {
+    header("Location:../edit-profile.php?pesan=konfirmasi_gagal");
+    exit;
+}
+
+// Lanjut update
+$update = mysqli_query($koneksi, "UPDATE user SET 
+    Username = '$username', 
+    Email = '$email', 
+    NamaLengkap = '$namalengkap', 
+    Alamat = '$alamat', 
+    Password = '$passwordBaru' 
+    WHERE UserID = '$id'
+");
+
+if ($update) {
+    $_SESSION['username'] = $username;
+    header("Location:../edit-profile.php?pesan=berhasil");
 } else {
-    $query = "UPDATE user SET Username = '$username', Password = '$password', Email = '$email', NamaLengkap = '$namalengkap', Alamat = '$alamat' WHERE UserID = '$id'";
-    if (mysqli_query($koneksi, $query)) {
-        $_SESSION['username'] = $username;
-        header("location:../edit-profile.php?pesan=berhasil");
-    } else {
-        header("location:../edit-profile.php?pesan=gagal");
-    }
+    header("Location:../edit-profile.php?pesan=gagal");
 }
-
-
-}
-?>

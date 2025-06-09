@@ -118,8 +118,16 @@ if (!$data) {
             </div>
 
             <div class="mb-3">
-              <label for="Password" class="form-label">Password</label>
-              <input type="password" class="form-control" id="Password" name="Password" value="<?= htmlspecialchars($data['Password']); ?>" required>
+              <label for="Password" class="form-label">Password Lama</label>
+              <input type="password" class="form-control form-control-lg" id="Password" name="oldpass" required>
+            </div>
+            <div class="mb-3">
+              <label for="Password" class="form-label">Password Baru</label>
+              <input type="password" class="form-control form-control-lg" id="Password" name="Password">
+            </div>
+            <div class="mb-3">
+              <label for="Password" class="form-label">Konfirmasi Password</label>
+              <input type="password" class="form-control form-control-lg" id="Password" name="confpass">
             </div>
 
             <input type="hidden" name="UserID" value="<?= htmlspecialchars($data['UserID']); ?>">
