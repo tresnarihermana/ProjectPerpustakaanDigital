@@ -24,6 +24,7 @@ $query = mysqli_query($koneksi, "
 ") or die("Query gagal: " . mysqli_error($koneksi));
 
 $data = mysqli_fetch_assoc($query);
+$date = date('Y-m-d');
 
 include '../layout/sidebar-navbar-footbar.php';
 include '../layout/alert.php';
@@ -91,7 +92,7 @@ include '../layout/alert.php';
           <label for="TanggalPengembalian" class="col-sm-3 col-form-label">Tanggal Pengembalian</label>
           <div class="col-sm-9">
             <input type="date" class="form-control bg-light" id="TanggalPengembalian" name="TanggalPengembalian"
-              value="<?= htmlspecialchars($data['TanggalPengembalian']); ?>" required>
+              value="<?= htmlspecialchars($date); ?>" required>
           </div>
         </div>
 
