@@ -37,8 +37,8 @@ $query = mysqli_query($koneksi, "
 
   <?php if (mysqli_num_rows($query) > 0): ?>
     <?php while ($ulasan = mysqli_fetch_assoc($query)): ?>
-      <div class="card mb-4 shadow-sm border-0">
-        <div class="card-body">
+      <div class="card mb-4 shadow-sm border-0" style="cursor:pointer;">
+        <div class="card-body" onclick="location.href='detail-buku.php?id=<?= $ulasan['BukuID']; ?>'">
           <div class="d-flex justify-content-between align-items-center mb-2">
             <h5 class="card-title mb-0"><?= htmlspecialchars($ulasan['Judul']) ?></h5>
             <div class="star-rating">
