@@ -23,9 +23,6 @@ Perpustakaan Digital adalah proyek membuat platform berbasis PHP dimana User dap
 ### 3. Baca Ebook 🎉
 - **User:** Pengguna dapat membaca buku dalam bentuk ebook yang tersedia di web kami. Terima kasih kepada <a href="https://www.gutenberg.org/">Project Gutenberg</a> yang sudah menyediakan buku secara gratis dan legal
 
-### 4. Tampilan UI yang menarik ✨
-- UI dibuat semenarik mungkin dengan menggunakan bootstrap dan Sweetalert2
-
 
 ## Rancangan Database <a href="https://drive.google.com/file/d/15EHjidInHzv11ouUHfS5w1DIcoaoTOF1/view?usp=sharing">Download Database Kami</a>
 ![image](https://github.com/user-attachments/assets/34b00a6e-6a03-432b-a2b8-3b5411af02e1)
