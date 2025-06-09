@@ -79,7 +79,7 @@ require 'layout/navbar.php';
         </div>
 
         <button type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#ModalBarcode">Kembalikan Buku</button>
-        <a href="koleksi.php" class="btn btn-danger" style="float: right;">Kembali</a>
+        <a href="daftar-peminjaman.php" class="btn btn-danger" style="float: right;">Kembali</a>
       </form>
     </div>
   </div>
