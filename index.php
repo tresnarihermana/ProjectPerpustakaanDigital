@@ -378,13 +378,13 @@ if (!isset($_SESSION['status'])) {
 
 
 <?php
-$data = mysqli_query($koneksi, "SELECT * FROM buku");
+$data = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY BukuID DESC LIMIT 12");
 ?>
 
 <div class="container mt-5">
     <div class="text-center mb-4">
-        <h2 class="fw-bold">📚 Koleksi Buku Terpopuler</h2>
-        <p class="text-muted">Jelajahi berbagai kategori buku yang tersedia di perpustakaan digital kami.</p>
+        <h2 class="fw-bold">📚 Koleksi Buku Terbaru</h2>
+        <p class="text-muted">Jelajahi berbagai  buku-buku yang tersedia di perpustakaan digital kami.</p>
 
     </div>
 
@@ -411,7 +411,7 @@ $data = mysqli_query($koneksi, "SELECT * FROM buku");
     </div>
 </div>
 <?php
-$data = mysqli_query($koneksi, "SELECT * FROM buku WHERE ebook != ''");
+$data = mysqli_query($koneksi, "SELECT * FROM buku WHERE ebook != ''  ORDER BY BukuID DESC LIMIT 12");
 ?>
 <div class="container mt-5">
     <div class="text-center mb-4">
