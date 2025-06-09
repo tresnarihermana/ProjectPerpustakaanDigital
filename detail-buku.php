@@ -54,7 +54,10 @@ include 'layout/navbar.php';
     <style>
       a {
         text-decoration: none;
-        color: black;
+        color:black;
+      }
+      a:hover{
+        color: rgb(0, 136, 255);
       }
 
     </style>
@@ -394,9 +397,10 @@ $deskripsiShort = nl2br(htmlspecialchars(substr($buku['Deskripsi'], 0, 500))); /
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Tutup"></button>
         </div>
         <div class="modal-body">
-          <iframe src="<?= htmlspecialchars($buku['ebook'])?>" class="pdf-frame"></iframe>
+          <iframe src="<?= htmlspecialchars($buku['ebook'])?> " class="pdf-frame" sandbox="allow-scripts allow-same-origin"></iframe>
         </div>
         <div class="modal-footer">
+          <a href="<?=htmlspecialchars($buku['ebook'])?>" class="btn btn-primary">Kunjungi Sumber</a>
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Tutup</button>
         </div>
       </div>
