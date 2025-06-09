@@ -14,7 +14,8 @@ if (isset($_GET['hapus'])) {
 $rows_per_page = isset($_GET['rows_per_page']) ? (int) $_GET['rows_per_page'] : 10; // Default 10 rows per page
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; // Default to page 1 if not set
 $offset = ($page - 1) * $rows_per_page;
-$result = mysqli_query($koneksi, "SELECT * FROM buku
+$order = isset($_GET['order']) ? $_GET['order'] : 'BukuID ASC';
+$result = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY $order
 LIMIT $rows_per_page OFFSET $offset
 ") or die("Query gagal: " . mysqli_error($koneksi));
 $total_query = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM buku") or die("Query gagal: " . mysqli_error($koneksi));
@@ -42,7 +43,21 @@ include '../layout/alert.php';
 
 <div class="mx-5 mt-4">
   <h1 class="mb-3">Buku</h1>
+  <div class="d-flex">
   <a href="buku-add.php" class="btn btn-success mb-4">+ Tambah Buku</a>
+<div class="dropdown btn-sm ms-3">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Sortir berdasarkan
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="?order=BukuID DESC&rows_per_page=<?= $rows_per_page ?>">Terbaru</a></li>
+    <li><a class="dropdown-item" href="?order=BukuID ASC&rows_per_page=<?= $rows_per_page ?>">Terlama</a></li>
+    <li><a class="dropdown-item" href="?order=Judul ASC&rows_per_page=<?= $rows_per_page ?>">Judul (A-Z)</a></li>
+    <li><a class="dropdown-item" href="?order=Judul DESC&rows_per_page=<?= $rows_per_page ?>">Judul (Z-A)</a></li>
+  </ul>
+</div>
+</div>
+
 
   <div class="card shadow-sm mb-4">
     <div class="card-body p-0">
@@ -179,15 +194,15 @@ include '../layout/alert.php';
         }
         </style>
   <div class="pagination-minimal">
-    <a href="?page=1&rows_per_page=<?= $rows_per_page ?>" class="page-link">First</a>
-    <a href="?page=<?= max(1, $page - 1) ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link">Previous</a>
+    <a href="?page=1&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>" class="page-link">First</a>
+    <a href="?page=<?= max(1, $page - 1) ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>" class="page-link">Previous</a>
 
     <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-      <a href="?page=<?= $i ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link"><?= $i ?></a>
+      <a href="?page=<?= $i ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>" class="page-link"><?= $i ?></a>
     <?php endfor; ?>
 
-    <a href="?page=<?= min($total_pages, $page + 1) ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link">Next</a>
-    <a href="?page=<?= $total_pages ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link">Last</a>
+    <a href="?page=<?= min($total_pages, $page + 1) ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>" class="page-link">Next</a>
+    <a href="?page=<?= $total_pages ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>" class="page-link">Last</a>
     <form action="" method="get">
       <input type="number" name="rows_per_page" class="form-control form-control-sm" value="<?= $rows_per_page ?>" min="10" max="100">
     </form>
