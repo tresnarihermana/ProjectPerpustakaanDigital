@@ -20,9 +20,16 @@ $result_total = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM buku");
 $row_total = mysqli_fetch_assoc($result_total);
 $total_data = $row_total['total'];
 $total_pages = ceil($total_data / $limit);
+$order = isset($_GET['order']) ? mysqli_real_escape_string($koneksi, $_GET['order']) : 'BukuID DESC';
+$ebook = isset($_GET['ebook']) ? mysqli_real_escape_string($koneksi, $_GET['ebook']) : '';
+// if(isset($ebook)){
+//   $books = mysqli_query($koneksi, "SELECT * FROM buku WHERE ebook != '' ORDER BY $order LIMIT $limit OFFSET $offset");
+// }else{
+  $books = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY $order LIMIT $limit OFFSET $offset");
+// }
+
 
 // Ambil buku untuk halaman sekarang
-$books = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY BukuID DESC LIMIT $limit OFFSET $offset");
 ?>
 
 <style>
@@ -108,7 +115,23 @@ $books = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY BukuID DESC LIMIT $
       <li class="breadcrumb-item active" aria-current="page">Books</li>
     </ol>
   </nav>
-  <h2 class="fw-bold mt-3">Koleksi Buku</h2>
+  <div class="d-flex flex-row justify-content-between">
+    <h2 class="fw-bold mt-3">Koleksi Buku</h2>
+    <div class="dropdown btn-sm ms-3">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Sortir berdasarkan
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="?order=BukuID DESC">Terbaru</a></li>
+    <li><a class="dropdown-item" href="?order=BukuID ASC">Terlama</a></li>
+    <li><a class="dropdown-item" href="?order=Judul ASC">Judul (A-Z)</a></li>
+    <li><a class="dropdown-item" href="?order=Judul DESC">Judul (Z-A)</a></li>
+    <li><a class="dropdown-item" href="daftar-ebook.php">Ebook</a></li>
+  </ul>
+</div>
+  </div>
+  
+  
 
   <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 mt-3">
   <?php while ($row = mysqli_fetch_assoc($books)): ?>
@@ -137,7 +160,7 @@ $books = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY BukuID DESC LIMIT $
   <nav aria-label="Page navigation example" class="mt-4">
     <ul class="pagination justify-content-center">
       <?php if($page > 1): ?>
-        <li class="page-item"><a class="page-link" href="?page=<?= $page-1 ?>">Previous</a></li>
+        <li class="page-item"><a class="page-link" href="?page=<?= $page-1 ?>&order=<?= $order;?>">Previous</a></li>
       <?php endif; ?>
 
       <?php for($i=1; $i <= $total_pages; $i++): ?>
@@ -146,12 +169,12 @@ $books = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY BukuID DESC LIMIT $
             <span class="page-link"><?= $i ?></span>
           </li>
         <?php else: ?>
-          <li class="page-item"><a class="page-link" href="?page=<?= $i ?>"><?= $i ?></a></li>
+          <li class="page-item"><a class="page-link" href="?page=<?= $i ?>&order=<?= $order;?>"><?= $i ?></a></li>
         <?php endif; ?>
       <?php endfor; ?>
 
       <?php if($page < $total_pages): ?>
-        <li class="page-item"><a class="page-link" href="?page=<?= $page+1 ?>">Next</a></li>
+        <li class="page-item"><a class="page-link" href="?page=<?= $page+1 ?>&order=<?= $order;?>">Next</a></li>
       <?php endif; ?>
     </ul>
   </nav>
