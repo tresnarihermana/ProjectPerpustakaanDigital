@@ -52,6 +52,7 @@ if ($keyword) {
 
   <?php if ($keyword): ?>
     <?php if (count($result) > 0): ?>
+      <div class="nav">Menampilkan hasil pencarian <strong>"<?php echo htmlspecialchars($keyword); ?>"</strong></div>
       <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 mt-2">
         <?php foreach ($result as $row): ?>
           <?php
