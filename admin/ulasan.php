@@ -66,7 +66,7 @@ include '../layout/alert.php';
             <?php if (mysqli_num_rows($query) === 0): ?>
               <tr><td colspan="6" class="text-center">Belum ada ulasan.</td></tr>
             <?php else:
-              $no = 1;
+              $no = $offset + 1;
               while ($row = mysqli_fetch_assoc($query)): ?>
                 <tr>
                   <td><?= $no++ ?></td>
