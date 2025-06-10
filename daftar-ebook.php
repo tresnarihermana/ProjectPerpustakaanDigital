@@ -151,7 +151,18 @@ $total_pages = ceil($total_data / $limit);
     </div>
   <?php endwhile; ?>
   </div>
+  <?php
+$visible_limit = 5; // Maksimal jumlah halaman yang ditampilkan
 
+// Hitung halaman awal dan akhir yang akan ditampilkan
+$start_page = max(1, $page - floor($visible_limit / 2));
+$end_page = min($start_page + $visible_limit - 1, $total_pages);
+
+// Jika end_page kurang dari visible_limit dan masih ada halaman sebelumnya
+if ($end_page - $start_page + 1 < $visible_limit) {
+    $start_page = max(1, $end_page - $visible_limit + 1);
+}
+?>
   <!-- Pagination -->
   <nav aria-label="Page navigation example" class="mt-4">
     <ul class="pagination justify-content-center">
@@ -159,7 +170,7 @@ $total_pages = ceil($total_data / $limit);
         <li class="page-item"><a class="page-link" href="?page=<?= $page-1 ?>&order=<?= $order;?>">Previous</a></li>
       <?php endif; ?>
 
-      <?php for($i=1; $i <= $total_pages; $i++): ?>
+      <?php for($i=$start_page; $i <= $end_page; $i++): ?>
         <?php if($i == $page): ?>
           <li class="page-item active" aria-current="page">
             <span class="page-link"><?= $i ?></span>
