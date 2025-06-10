@@ -147,27 +147,28 @@
 $data = [['Minggu', 'Peminjaman', 'Pengembalian']];
 
 for ($i = 5; $i >= 0; $i--) {
-  $start = date('Y-m-d', strtotime("monday -$i week"));
-  $end   = date('Y-m-d', strtotime("sunday -$i week"));
+    $start = date('Y-m-d', strtotime("monday -$i week"));
+    $end   = date('Y-m-d', strtotime("$start +6 days")); // <- perbaikan di sini
 
-  $label = date('d M', strtotime($start)) . ' - ' . date('d M', strtotime($end));
+    $label = date('d M', strtotime($start)) . ' - ' . date('d M', strtotime($end));
 
-  // Hitung jumlah peminjaman
-  $peminjamanQuery = "SELECT COUNT(*) AS total FROM peminjaman 
-                      WHERE DATE(TanggalPeminjaman) BETWEEN '$start' AND '$end'";
-  $peminjamanResult = mysqli_query($koneksi, $peminjamanQuery);
-  $peminjamanRow = mysqli_fetch_assoc($peminjamanResult);
-  $jumlahPeminjaman = (int)$peminjamanRow['total'];
+    // Hitung jumlah peminjaman
+    $peminjamanQuery = "SELECT COUNT(*) AS total FROM peminjaman 
+                        WHERE DATE(TanggalPeminjaman) BETWEEN '$start' AND '$end'";
+    $peminjamanResult = mysqli_query($koneksi, $peminjamanQuery);
+    $peminjamanRow = mysqli_fetch_assoc($peminjamanResult);
+    $jumlahPeminjaman = (int)$peminjamanRow['total'];
 
-  // Hitung jumlah pengembalian
-  $pengembalianQuery = "SELECT COUNT(*) AS total FROM peminjaman 
-                        WHERE DATE(TanggalPengembalian) BETWEEN '$start' AND '$end' AND StatusPeminjaman='dikembalikan'";
-  $pengembalianResult = mysqli_query($koneksi, $pengembalianQuery);
-  $pengembalianRow = mysqli_fetch_assoc($pengembalianResult);
-  $jumlahPengembalian = (int)$pengembalianRow['total'];
+    // Hitung jumlah pengembalian
+    $pengembalianQuery = "SELECT COUNT(*) AS total FROM peminjaman 
+                          WHERE DATE(TanggalPengembalian) BETWEEN '$start' AND '$end' AND StatusPeminjaman='dikembalikan'";
+    $pengembalianResult = mysqli_query($koneksi, $pengembalianQuery);
+    $pengembalianRow = mysqli_fetch_assoc($pengembalianResult);
+    $jumlahPengembalian = (int)$pengembalianRow['total'];
 
-  $data[] = [$label, $jumlahPeminjaman, $jumlahPengembalian];
+    $data[] = [$label, $jumlahPeminjaman, $jumlahPengembalian];
 }
+
 ?>
 
 
