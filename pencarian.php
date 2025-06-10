@@ -6,24 +6,41 @@ if (!isset($_SESSION['status'])) {
 }
 require 'koneksi.php';
 require 'layout/navbar.php';
-
+$limit = 20; // misal 20 buku per halaman
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+$offset = ($page - 1) * $limit;
 $keyword = isset($_GET['keyword']) ? mysqli_real_escape_string($koneksi, $_GET['keyword']) : '';
+// Hitung total buku
+$result_total = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM buku WHERE Judul LIKE '%$keyword%' 
+        OR Penulis LIKE '%$keyword%' 
+        OR Penerbit LIKE '%$keyword%'
+        OR TahunTerbit LIKE '%$keyword%'");
+$row_total = mysqli_fetch_assoc($result_total);
+$total_data = $row_total['total'];
+$total_pages = ceil($total_data / $limit);
 $result = [];
 
-if ($keyword) {
+// Jika ada pencarian
+if ($keyword !== '') {
     $query = mysqli_query($koneksi, "SELECT * FROM buku 
         WHERE Judul LIKE '%$keyword%' 
         OR Penulis LIKE '%$keyword%' 
         OR Penerbit LIKE '%$keyword%'
         OR TahunTerbit LIKE '%$keyword%'
-        ");
+        LIMIT $limit OFFSET $offset");
+} else {
+    // Jika keyword kosong, ambil semua buku
+    $query = mysqli_query($koneksi, "SELECT * FROM buku LIMIT $limit OFFSET $offset");
+}
 
-    if ($query && mysqli_num_rows($query) > 0) {
-        while ($row = mysqli_fetch_assoc($query)) {
-            $result[] = $row;
-        }
+// Proses hasil query
+if ($query && mysqli_num_rows($query) > 0) {
+    while ($row = mysqli_fetch_assoc($query)) {
+        $result[] = $row;
     }
 }
+// echo "Keyword: '$keyword'<br>";
 ?>
 
 <style>
@@ -50,9 +67,12 @@ if ($keyword) {
   </ol>
 </nav>
 
-  <?php if ($keyword): ?>
     <?php if (count($result) > 0): ?>
+      <?php if ($_GET['keyword'] == ''): ?>
+      <div class="nav">Menampilkan Seluruh Buku</div>
+      <?php else: ?>
       <div class="nav">Menampilkan hasil pencarian <strong>"<?php echo htmlspecialchars($keyword); ?>"</strong></div>
+      <?php endif; ?>
       <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-5 g-4 mt-2">
         <?php foreach ($result as $row): ?>
           <?php
@@ -78,9 +98,42 @@ if ($keyword) {
     <?php else: ?>
       <div class="alert alert-warning mt-3">Buku tidak ditemukan.</div>
     <?php endif; ?>
-  <?php endif; ?>
 </div>
+ <?php
+$visible_limit = 5; // Maksimal jumlah halaman yang ditampilkan
 
+// Hitung halaman awal dan akhir yang akan ditampilkan
+$start_page = max(1, $page - floor($visible_limit / 2));
+$end_page = min($start_page + $visible_limit - 1, $total_pages);
+
+// Jika end_page kurang dari visible_limit dan masih ada halaman sebelumnya
+if ($end_page - $start_page + 1 < $visible_limit) {
+    $start_page = max(1, $end_page - $visible_limit + 1);
+}
+?>
+  <!-- Pagination -->
+  <nav aria-label="Page navigation example" class="mt-4">
+    <ul class="pagination justify-content-center">
+      <?php if($page > 1): ?>
+        <li class="page-item"><a class="page-link" href="?page=<?= $page-1 ?>&keyword=<?= htmlspecialchars($_GET['keyword']); ?>">Previous</a></li>
+      <?php endif; ?>
+
+      <?php for($i=$start_page; $i <= $end_page; $i++): ?>
+        <?php if($i == $page): ?>
+          <li class="page-item active" aria-current="page">
+            <span class="page-link"><?= $i ?></span>
+          </li>
+        <?php else: ?>
+          <li class="page-item"><a class="page-link" href="?page=<?= $i ?>&keyword=<?= htmlspecialchars($_GET['keyword']); ?>"><?= $i ?></a></li>
+        <?php endif; ?>
+      <?php endfor; ?>
+
+      <?php if($page < $total_pages): ?>
+        <li class="page-item"><a class="page-link" href="?page=<?= $page+1 ?>&keyword=<?= htmlspecialchars($_GET['keyword']); ?>">Next</a></li>
+      <?php endif; ?>
+    </ul>
+  </nav>
+</div>
 <?php include 'layout/footer.php'; ?>
 </body>
 </html>
