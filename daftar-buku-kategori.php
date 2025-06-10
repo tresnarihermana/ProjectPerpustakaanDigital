@@ -13,7 +13,19 @@ if (!isset($_GET['id']) || !is_numeric($_GET['id'])) {
     echo "<h2 class='mx-5 mt-4'>Kategori tidak ditemukan!</h2>";
     exit;
 }
+// Pagination setup
+$limit = 20; // misal 20 buku per halaman
+$page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
+if ($page < 1) $page = 1;
+$offset = ($page - 1) * $limit;
+
+// Hitung total buku
 $kategoriID = $_GET['id'];
+$result_total = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM Kategoribuku_relasi WHERE KategoriID=$kategoriID");
+$row_total = mysqli_fetch_assoc($result_total);
+$total_data = $row_total['total'];
+$total_pages = ceil($total_data / $limit);
+$order = isset($_GET['order']) ? mysqli_real_escape_string($koneksi, $_GET['order']) : 'BukuID DESC';
 // Ambil nama kategori untuk ditampilkan di judul
 $getNamaKategori = mysqli_query($koneksi, "SELECT Namakategori FROM Kategoribuku WHERE KategoriID = $kategoriID");
 $namaKategoriData = mysqli_fetch_assoc($getNamaKategori);
@@ -27,7 +39,7 @@ $result = mysqli_query(
     JOIN buku ON Kategoribuku_relasi.BukuID = buku.BukuID
     JOIN Kategoribuku ON Kategoribuku_relasi.KategoriID = Kategoribuku.KategoriID
     WHERE Kategoribuku_relasi.KategoriID = $kategoriID
-    ORDER BY buku.BukuID DESC"
+    ORDER BY buku.$order LIMIT $limit OFFSET $offset"
 ) or die("Query gagal: " . mysqli_error($koneksi));
 ?>
 
@@ -82,7 +94,28 @@ $result = mysqli_query(
     <?php endwhile; ?>
   </div>
 
+  <!-- Pagination -->
+  <nav aria-label="Page navigation example" class="mt-4">
+    <ul class="pagination justify-content-center">
+      <?php if($page > 1): ?>
+        <li class="page-item"><a class="page-link" href="?page=<?= $page-1 ?>&order=<?= $order;?>&id=<?=$kategoriID?>">Previous</a></li>
+      <?php endif; ?>
 
+      <?php for($i=1; $i <= $total_pages; $i++): ?>
+        <?php if($i == $page): ?>
+          <li class="page-item active" aria-current="page">
+            <span class="page-link"><?= $i ?></span>
+          </li>
+        <?php else: ?>
+          <li class="page-item"><a class="page-link" href="?page=<?= $i ?>&order=<?= $order;?>&id=<?=$kategoriID?>"><?= $i ?></a></li>
+        <?php endif; ?>
+      <?php endfor; ?>
+
+      <?php if($page < $total_pages): ?>
+        <li class="page-item"><a class="page-link" href="?page=<?= $page+1 ?>&order=<?= $order;?>&id=<?=$kategoriID?>">Next</a></li>
+      <?php endif; ?>
+    </ul>
+  </nav>
 </div>
 
 <?php include 'layout/footer.php'; ?>

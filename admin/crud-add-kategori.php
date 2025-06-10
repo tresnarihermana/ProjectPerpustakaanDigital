@@ -11,7 +11,7 @@ function generatorRandom($length = 10) {
     return $randomString;
 }
 
-$namakategori = $_POST['nama_kategori'];
+$namakategori = trim($_POST['nama_kategori']);
 $target_dir = "../storage/upload/";
 $image_name = basename($_FILES["image"]["name"]);
 $file_type = strtolower(pathinfo($image_name, PATHINFO_EXTENSION));
@@ -20,13 +20,25 @@ $random_name = generatorRandom(20);
 $new_image_name = $random_name . "." . $file_type;
 $target_file = $target_dir . $new_image_name;
 
+// Cek apakah kategori sudah ada
+$cek_duplikat = mysqli_query($koneksi, "SELECT * FROM kategoribuku WHERE Namakategori = '$namakategori'");
+if (mysqli_num_rows($cek_duplikat) > 0) {
+    header("location: kategori.php?pesan=duplikat");
+    exit;
+}
+
 // Validasi file
-if ($image_size > 50000000) { // 50MB
+if ($image_size > 5000000) { // 5MB
     echo "File terlalu besar";
     exit;
 }
 if (!in_array($file_type, ['jpg', 'jpeg', 'png', 'gif'])) {
     echo "Format file tidak valid";
+    exit;
+}
+$check = getimagesize($_FILES["image"]["tmp_name"]);
+if ($check === false) {
+    echo "File bukan gambar valid.";
     exit;
 }
 
@@ -42,14 +54,9 @@ $query = mysqli_query($koneksi, "INSERT INTO kategoribuku (KategoriID, Namakateg
 VALUES ('','$namakategori','$new_image_name')");
 
 if (!$query) {
-    // Jika gagal insert karena duplikat atau lainnya
-    if (mysqli_errno($koneksi) == 1062) {
-        header("location: kategori.php?pesan=duplikat");
-    } else {
-        echo "Gagal menambah kategori buku: " . mysqli_error($koneksi);
-    }
+    echo "Gagal menambah kategori buku: " . mysqli_error($koneksi);
     exit;
-}else {
+} else {
     header("location: kategori.php?pesan=berhasil");
 }
 exit;

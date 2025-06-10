@@ -10,7 +10,7 @@ require 'layout/navbar.php';
 include 'layout/scrolltop.php';
 
 // Pagination setup
-$limit = 10; // misal 20 buku per halaman
+$limit = 20; // misal 20 buku per halaman
 $page = isset($_GET['page']) ? (int)$_GET['page'] : 1;
 if ($page < 1) $page = 1;
 $offset = ($page - 1) * $limit;

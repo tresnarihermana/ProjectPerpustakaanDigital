@@ -362,7 +362,7 @@ if (!isset($_SESSION['status'])) {
         <?php
         include 'koneksi.php';
 
-        $kategori = mysqli_query($koneksi, "SELECT * FROM kategoribuku LIMIT 6");
+        $kategori = mysqli_query($koneksi, "SELECT * FROM kategoribuku ORDER BY KategoriID DESC LIMIT 6");
 
         while ($data = mysqli_fetch_assoc($kategori)) :
         ?>

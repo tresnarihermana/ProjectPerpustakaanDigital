@@ -48,7 +48,7 @@ if ($buku['stok'] <= 0) {
 
         <div class="mb-3">
           <label for="tanggal_pinjam" class="form-label">Tanggal Peminjaman</label>
-          <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam" min="<?= $min_date?>" required>
+          <input type="date" class="form-control" id="tanggal_pinjam" name="tanggal_pinjam" min="<?= $min_date?>" max="<?=$max_date?>" required>
         </div>
 
         <div class="mb-3">
