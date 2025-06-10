@@ -173,13 +173,28 @@ include '../layout/alert.php';
             background-color: #0056b3;
             border-color: #0056b3;
         }
+        .page-link.active{
+          color: #007bff;
+        }        
         </style>
+  <?php
+$visible_limit = 5; // Maksimal jumlah halaman yang ditampilkan
+
+// Hitung halaman awal dan akhir yang akan ditampilkan
+$start_page = max(1, $page - floor($visible_limit / 2));
+$end_page = min($start_page + $visible_limit - 1, $total_pages);
+
+// Jika end_page kurang dari visible_limit dan masih ada halaman sebelumnya
+if ($end_page - $start_page + 1 < $visible_limit) {
+    $start_page = max(1, $end_page - $visible_limit + 1);
+}
+?>
   <div class="pagination-minimal">
     <a href="?page=1&rows_per_page=<?= $rows_per_page ?>" class="page-link">First</a>
     <a href="?page=<?= max(1, $page - 1) ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link">Previous</a>
 
-    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-      <a href="?page=<?= $i ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link"><?= $i ?></a>
+    <?php for ($i = $start_page; $i <= $end_page; $i++): ?>
+      <a href="?page=<?= $i ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link <?= ($i == $page) ? 'active' : '' ?>"><?= $i ?></a>
     <?php endfor; ?>
 
     <a href="?page=<?= min($total_pages, $page + 1) ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link">Next</a>

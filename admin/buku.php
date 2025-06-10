@@ -11,7 +11,7 @@ if (isset($_GET['hapus'])) {
 }
 
 // Ambil data buku
-$rows_per_page = isset($_GET['rows_per_page']) ? (int) $_GET['rows_per_page'] : 30; // Default 10 rows per page
+$rows_per_page = isset($_GET['rows_per_page']) ? (int) $_GET['rows_per_page'] : 10; // Default 10 rows per page
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; // Default to page 1 if not set
 $offset = ($page - 1) * $rows_per_page;
 $order = isset($_GET['order']) ? $_GET['order'] : 'BukuID ASC';
@@ -222,21 +222,43 @@ include '../layout/alert.php';
             background-color: #0056b3;
             border-color: #0056b3;
         }
+        .page-link.active {
+          color: #007bff;
+        }
         </style>
-  <div class="pagination-minimal">
-    <a href="?page=1&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>&search=<?=$search?>" class="page-link">First</a>
-    <a href="?page=<?= max(1, $page - 1) ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>&search=<?=$search?>" class="page-link">Previous</a>
+  <?php
+$visible_limit = 5; // Maksimal jumlah halaman yang ditampilkan
 
-    <?php for ($i = 1; $i <= $total_pages; $i++): ?>
-      <a href="?page=<?= $i ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>&search=<?=$search?>" class="page-link"><?= $i ?></a>
+// Hitung halaman awal dan akhir yang akan ditampilkan
+$start_page = max(1, $page - floor($visible_limit / 2));
+$end_page = min($start_page + $visible_limit - 1, $total_pages);
+
+// Jika end_page kurang dari visible_limit dan masih ada halaman sebelumnya
+if ($end_page - $start_page + 1 < $visible_limit) {
+    $start_page = max(1, $end_page - $visible_limit + 1);
+}
+?>
+
+<div class="pagination-minimal">
+    <a href="?page=1&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>&search=<?= $search ?>" class="page-link">First</a>
+    <a href="?page=<?= max(1, $page - 1) ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>&search=<?= $search ?>" class="page-link">Previous</a>
+
+    <?php for ($i = $start_page; $i <= $end_page; $i++): ?>
+        <a href="?page=<?= $i ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>&search=<?= $search ?>"
+           class="page-link <?= $i == $page ? 'active' : '' ?>">
+            <?= $i ?>
+        </a>
     <?php endfor; ?>
 
-    <a href="?page=<?= min($total_pages, $page + 1) ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>&search=<?=$search?>" class="page-link">Next</a>
-    <a href="?page=<?= $total_pages ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>&search=<?=$search?>" class="page-link">Last</a>
+    <a href="?page=<?= min($total_pages, $page + 1) ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>&search=<?= $search ?>" class="page-link">Next</a>
+    <a href="?page=<?= $total_pages ?>&rows_per_page=<?= $rows_per_page ?>&order=<?= $order ?>&search=<?= $search ?>" class="page-link">Last</a>
+
     <form action="" method="get">
-      <input type="number" name="rows_per_page" class="form-control form-control-sm" value="<?= $rows_per_page ?>" min="10" max="100">
+        <input type="hidden" name="order" value="<?= $order ?>">
+        <input type="hidden" name="search" value="<?= $search ?>">
+        <input type="number" name="rows_per_page" class="form-control form-control-sm" value="<?= $rows_per_page ?>" min="10" max="100">
     </form>
-  </div>
+</div>
 </div>
 </div>
 <?php
