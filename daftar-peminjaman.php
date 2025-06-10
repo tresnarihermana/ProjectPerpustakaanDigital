@@ -31,23 +31,25 @@ $query = "
 
 $result = mysqli_query($koneksi, $query);
 $riwayat = [];
+
 while ($row = mysqli_fetch_assoc($result)) {
-    // Hitung status di PHP
-    $today = date('Y-m-d');
-    $tgl_kembali = $row['tgl_kembali'];
+    $today = date('Y-m-d'); 
+    $tgl_kembali = $row['tgl_kembali'];  
 
     if ($row['StatusPeminjaman'] == 'dikembalikan') {
         $row['status'] = 'selesai';
-    } elseif ($today > $tgl_kembali) {
-        $row['status'] = 'belum';
+    } elseif (strtotime($today) > strtotime($tgl_kembali)) {
+        $row['status'] = 'terlambat';  
     } elseif ((strtotime($tgl_kembali) - strtotime($today)) / (60 * 60 * 24) <= 2) {
-        $row['status'] = 'hampir';
+        $row['status'] = 'hampir';  
     } else {
-        $row['status'] = 'belum';
+        $row['status'] = 'dipinjam';
     }
 
     $riwayat[] = $row;
 }
+
+
 ?>
 
 <div class="mx-5 mt-4">
@@ -78,7 +80,9 @@ while ($row = mysqli_fetch_assoc($result)) {
                             <span class="btn btn-warning btn-sm">Hampir Tenggat Waktu ⚠️</span>
                         <?php elseif ($buku['status'] == 'selesai'): ?>
                             <span class="btn btn-success btn-sm">Sudah Dikembalikan ✔</span>
-                        <?php elseif ($buku['status'] == 'belum'): ?>
+                        <?php elseif ($buku['status'] == 'dipinjam'): ?>
+                            <span class="btn btn-primary btn-sm">Sedang Dipinjam 📖</span>
+                        <?php elseif ($buku['status'] == 'terlambat'): ?>
                             <span class="btn btn-danger btn-sm">Belum Dikembalikan ⚠️</span>
                         <?php endif; ?>
                         <a href="kembalikan-buku.php?id=<?=$buku['pinjamid']?>" class="btn btn-success btn-sm ms-2">Kembalikan Buku</a>
@@ -91,7 +95,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     <?php endif; ?>
 
     <div class="text-center mt-4">
-        <a href="daftar-buku.php" class="btn btn-primary">Lihat Semua Daftar Buku</a>
+        <a href="riwayat-peminjaman.php" class="btn btn-primary">Lihat Semua Riwayat Peminajamn Buku</a>
     </div>
 </div>
 

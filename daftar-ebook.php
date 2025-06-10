@@ -16,20 +16,16 @@ if ($page < 1) $page = 1;
 $offset = ($page - 1) * $limit;
 
 // Hitung total buku
-$result_total = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM buku");
-$row_total = mysqli_fetch_assoc($result_total);
-$total_data = $row_total['total'];
-$total_pages = ceil($total_data / $limit);
+
 $order = isset($_GET['order']) ? mysqli_real_escape_string($koneksi, $_GET['order']) : 'BukuID DESC';
-$ebook = isset($_GET['ebook']) ? mysqli_real_escape_string($koneksi, $_GET['ebook']) : '';
-// if(isset($ebook)){
-//   $books = mysqli_query($koneksi, "SELECT * FROM buku WHERE ebook != '' ORDER BY $order LIMIT $limit OFFSET $offset");
-// }else{
-  $books = mysqli_query($koneksi, "SELECT * FROM buku ORDER BY $order LIMIT $limit OFFSET $offset");
-// }
 
 
 // Ambil buku untuk halaman sekarang
+$books = mysqli_query($koneksi, "SELECT * FROM buku WHERE ebook != '' ORDER BY $order LIMIT $limit OFFSET $offset");
+$result_total = mysqli_query($koneksi, "SELECT COUNT(*) AS total FROM buku WHERE ebook != ''");
+$row_total = mysqli_fetch_assoc($result_total);
+$total_data = $row_total['total'];
+$total_pages = ceil($total_data / $limit);
 ?>
 
 <style>
@@ -112,11 +108,11 @@ $ebook = isset($_GET['ebook']) ? mysqli_real_escape_string($koneksi, $_GET['eboo
   <nav style="--bs-breadcrumb-divider: url(&#34;data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='8' height='8'%3E%3Cpath d='M2.5 0L1 1.5 3.5 4 1 6.5 2.5 8l4-4-4-4z' fill='%236c757d'/%3E%3C/svg%3E&#34;);" aria-label="breadcrumb">
     <ol class="breadcrumb">
       <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-      <li class="breadcrumb-item active" aria-current="page">Books</li>
+      <li class="breadcrumb-item active" aria-current="page">Ebooks</li>
     </ol>
   </nav>
   <div class="d-flex flex-row justify-content-between">
-    <h2 class="fw-bold mt-3">Koleksi Buku</h2>
+    <h2 class="fw-bold mt-3">Koleksi Ebook</h2>
     <div class="dropdown btn-sm ms-3">
   <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
     Sortir berdasarkan
@@ -126,7 +122,7 @@ $ebook = isset($_GET['ebook']) ? mysqli_real_escape_string($koneksi, $_GET['eboo
     <li><a class="dropdown-item" href="?order=BukuID ASC">Terlama</a></li>
     <li><a class="dropdown-item" href="?order=Judul ASC">Judul (A-Z)</a></li>
     <li><a class="dropdown-item" href="?order=Judul DESC">Judul (Z-A)</a></li>
-    <li><a class="dropdown-item" href="daftar-ebook.php">Ebook</a></li>
+    <li><a class="dropdown-item" href="daftar-buku.php">Lihat semua</a></li>
   </ul>
 </div>
   </div>

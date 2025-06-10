@@ -140,8 +140,69 @@
     </div>
 
     <!-- Activity Section -->
-   
-</div>
+   <?php
+
+// Ambil data jumlah peminjaman per minggu (6 minggu terakhir)
+// Header chart
+$data = [['Minggu', 'Peminjaman', 'Pengembalian']];
+
+for ($i = 5; $i >= 0; $i--) {
+  $start = date('Y-m-d', strtotime("monday -$i week"));
+  $end   = date('Y-m-d', strtotime("sunday -$i week"));
+
+  $label = date('d M', strtotime($start)) . ' - ' . date('d M', strtotime($end));
+
+  // Hitung jumlah peminjaman
+  $peminjamanQuery = "SELECT COUNT(*) AS total FROM peminjaman 
+                      WHERE DATE(TanggalPeminjaman) BETWEEN '$start' AND '$end'";
+  $peminjamanResult = mysqli_query($koneksi, $peminjamanQuery);
+  $peminjamanRow = mysqli_fetch_assoc($peminjamanResult);
+  $jumlahPeminjaman = (int)$peminjamanRow['total'];
+
+  // Hitung jumlah pengembalian
+  $pengembalianQuery = "SELECT COUNT(*) AS total FROM peminjaman 
+                        WHERE DATE(TanggalPengembalian) BETWEEN '$start' AND '$end' AND StatusPeminjaman='dikembalikan'";
+  $pengembalianResult = mysqli_query($koneksi, $pengembalianQuery);
+  $pengembalianRow = mysqli_fetch_assoc($pengembalianResult);
+  $jumlahPengembalian = (int)$pengembalianRow['total'];
+
+  $data[] = [$label, $jumlahPeminjaman, $jumlahPengembalian];
+}
+?>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script>
+  google.charts.load('current', {'packages':['corechart']});
+  google.charts.setOnLoadCallback(drawChart);
+
+  function drawChart() {
+    const data = google.visualization.arrayToDataTable(<?= json_encode($data); ?>);
+
+    const options = {
+      title: 'Peminjaman & Pengembalian Buku per Minggu',
+      legend: { position: 'bottom' },
+hAxis: {
+  title: 'Periode Mingguan',
+  slantedText: true,
+  slantedTextAngle: 30,
+  textStyle: { fontSize: 12 }
+}
+,
+      vAxis: {
+        title: 'Jumlah',
+        minValue: 0
+      },
+      colors: ['#4285F4', '#0F9D58'] // Biru & Hijau
+    };
+
+    const chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    chart.draw(data, options);
+  }
+</script>
+
+<div id="chart_div" class="chart-container mt-4 d-none d-lg-block"  style="width: 100%; min-width: 700px; height: 400px;"></div>
+
 <?php
 include '../layout/admin-footer.php';
 ?>

@@ -40,7 +40,12 @@ if (isset($_GET['pesan'])) {
             </script>";
             break;
         case 'harimaksimal':
-            // echo "Swal.fire('Tanggal Tidak Valid!', 'Pengembalian tidak boleh lebih dari 7 hari.', 'warning');";
+            echo "<script>
+            Swal.fire({
+            title: 'Tanggal Tidak Valid!',
+            text: 'Tanggal Pengembalian tidak boleh lebih dari 7 hari.',
+            icon: 'error'});
+            </script>";
             break;
         case 'sudahdipinjam':
             // echo "Swal.fire('Sudah Dipinjam!', 'Buku ini sudah Anda pinjam dan belum dikembalikan.', 'error');";
@@ -88,6 +93,22 @@ if (isset($_GET['pesan'])) {
             Swal.fire({
             title: 'Data Tidak Valid!',
             text: 'Pastikan semua field terisi dengan benar.',
+            icon: 'warning'});
+            </script>";
+            break;
+        case 'password_salah':
+            echo "<script>
+            Swal.fire({
+            title: 'Password Salah!',
+            text: 'Pastikan semua password terisi dengan benar.',
+            icon: 'warning'});
+            </script>";
+            break;
+        case 'konfirmasi_gagal':
+            echo "<script>
+            Swal.fire({
+            title: 'Konfirmasi Password Gagal',
+            text: 'Pastikan password konfirmasi terisi dengan benar.',
             icon: 'warning'});
             </script>";
             break;

@@ -14,6 +14,8 @@ $id_buku = $_GET['id'];
 $data = mysqli_query($koneksi, "SELECT * FROM buku WHERE BukuID = '$id_buku'");
 $buku = mysqli_fetch_assoc($data);
 $min_date = date('Y-m-d');
+$max_date = date('Y-m-d', strtotime($min_date . ' +7 days'));
+
 
 if ($buku['stok'] <= 0) {
     echo "<h2 class='mx-5 mt-4'>Buku ini tidak tersedia untuk dipinjam!</h2>";
@@ -51,7 +53,7 @@ if ($buku['stok'] <= 0) {
 
         <div class="mb-3">
           <label for="tanggal_kembali" class="form-label">Tanggal Pengembalian</label>
-          <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" min="<?= $min_date?>"  required>
+          <input type="date" class="form-control" id="tanggal_kembali" name="tanggal_kembali" min="<?= $min_date?>" max="<?=$max_date?>" required>
         </div>
 
         <p class="text-muted">
@@ -67,7 +69,7 @@ if ($buku['stok'] <= 0) {
         </div>
 
         <button type="submit" class="btn btn-primary">Pinjam Buku</button>
-        <a href="koleksi.php" class="btn btn-danger">Kembali</a>
+        <a href="detail-buku.php?id=<?= $buku['BukuID']?>"  class="btn btn-danger">Kembali</a>
       </form>
     </div>
   </div>

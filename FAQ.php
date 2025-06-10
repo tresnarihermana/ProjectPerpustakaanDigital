@@ -37,7 +37,14 @@ require 'layout/navbar.php';
       </h2>
       <div id="faqCollapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-          Anda dapat meminjam buku dengan login ke akun Anda, memilih buku yang tersedia, lalu klik tombol <strong>"Pinjam Buku"</strong>. Pastikan Anda belum melebihi batas maksimal peminjaman.
+          Anda dapat meminjam buku dengan
+        <ol type="1">
+          <li>login ke akun Anda</li>
+          <li>memilih buku yang tersedia di halaman <a href="daftar-buku.php">daftar buku</a></li>
+          <li>Klik tombol <strong>"Pinjam Buku"</strong> pada buku yang ingin Anda pinjam.</li>
+          <li>Isi semua form yang ada, dan pastikan anda sudah membaca <a href="syarat-dan-ketentuan.php">syarat dan ketentuan</a> sebelum melakukan peminjaman.</li>
+          <li>Pastikan anda belum melebihi batas maksimal peminjaman.</li>
+        </ol>
         </div>
       </div>
     </div>
@@ -65,7 +72,16 @@ require 'layout/navbar.php';
       </h2>
       <div id="faqCollapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionFAQ">
         <div class="accordion-body">
-          Untuk mengembalikan buku, masuk ke halaman <strong>Riwayat Peminjaman</strong>, lalu klik tombol <strong>"Kembalikan Buku"</strong> pada buku yang ingin Anda kembalikan. Proses akan diselesaikan setelah diverifikasi oleh petugas.
+        Untuk mengembalikan buku Anda harus
+        <ol type=1>
+          <li>Datang ke perpustakaan dimana Anda meminjam buku</li>
+          <li>Masuk ke halaman <a href="daftar-peminjaman.php">daftar peminjaman Anda</a></li>
+          <li>Lalu klik tombol <strong>"Kembalikan Buku"</strong>Pada buku yang ingin Anda kembalikan.</li>
+          <li>Centang bagian S&K kami, lalu klik lagi tombol <strong>"Kembalikan Buku"</strong></li>
+          <li>Ketika barcode pengembalian sudah muncul, tunjukan ke petugas kami untuk dipindai.</li>
+          <li>tunggu beberapa saat untuk petugas menyetujui pengembalian</li>
+        </ol>  
+        <!-- Untuk mengembalikan buku, masuk ke halaman <strong>Riwayat Peminjaman</strong>, lalu klik tombol <strong>"Kembalikan Buku"</strong> pada buku yang ingin Anda kembalikan. Proses akan diselesaikan setelah diverifikasi oleh petugas. -->
         </div>
       </div>
     </div>

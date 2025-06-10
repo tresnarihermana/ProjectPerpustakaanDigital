@@ -66,7 +66,7 @@
             <i class="bi bi-twitter-x"></i>
             <i class="bi bi-instagram"></i>
             <i class="bi bi-youtube"></i>
-            <i class="bi bi-linkedin"></i>
+            <i class="bi bi-github"></i>
           </div>
         </div>
 
@@ -86,7 +86,7 @@
           <h6>Layanan</h6>
           <ul>
             <li><a href="riwayat-peminjaman.php">Riwayat Pinjam Buku</a></li>
-            <li><a href="daftar-buku.php">Daftar Buku</a></li>
+            <li><a href="daftar-ebook.php">Daftar Ebook</a></li>
             <li><a href="koleksi-pribadi.php">Koleksi Pribadi</a></li>
             <li><a href="daftar-kategori.php">Daftar Kategori</a></li>
           </ul>
