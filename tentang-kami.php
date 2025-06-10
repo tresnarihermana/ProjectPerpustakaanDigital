@@ -89,7 +89,7 @@ include 'layout/scrolltop.php';
     </p>
         </div>
                 <div class="col-md-6 text-center">
-            <img src="https://private-user-images.githubusercontent.com/170852649/452924477-aa84fc2f-369c-4b71-8c41-bfd0e68b855c.jpg?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDk0NTczODksIm5iZiI6MTc0OTQ1NzA4OSwicGF0aCI6Ii8xNzA4NTI2NDkvNDUyOTI0NDc3LWFhODRmYzJmLTM2OWMtNGI3MS04YzQxLWJmZDBlNjhiODU1Yy5qcGc_WC1BbXotQWxnb3JpdGhtPUFXUzQtSE1BQy1TSEEyNTYmWC1BbXotQ3JlZGVudGlhbD1BS0lBVkNPRFlMU0E1M1BRSzRaQSUyRjIwMjUwNjA5JTJGdXMtZWFzdC0xJTJGczMlMkZhd3M0X3JlcXVlc3QmWC1BbXotRGF0ZT0yMDI1MDYwOVQwODE4MDlaJlgtQW16LUV4cGlyZXM9MzAwJlgtQW16LVNpZ25hdHVyZT05YWY4ZmNiN2I4OWU1NTkyNjEyOTY2NDU3NDIyOTk3ODE4NDQ4ZDMzMjI0MDU5MjBkNDllZDY2NWEzM2ZlOGRmJlgtQW16LVNpZ25lZEhlYWRlcnM9aG9zdCJ9.w8Ds3Xh75hn-PzIZBA7n5cFQZtmbW-Z4Y56-398c0RU" class="img-fluid" style="box-shadow: 0 0 15px #eee;width:100%; " alt="">
+            <img src="storage/img/team_photo.jpg" class="img-fluid" style="box-shadow: 0 0 15px #eee;width:100%; " alt="">
         </div>
     </div>
 </div>
