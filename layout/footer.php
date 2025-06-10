@@ -56,7 +56,7 @@
       <div class="row">
         <!-- Logo dan Sosial Media -->
         <div class="col-md-12 col-lg-3 mb-4">
-          <div class="d-flex align-items-center mb-3" style="cursor: pointer;" onclick="window.location.href='#'">
+          <div class="d-flex align-items-center mb-3" style="cursor: pointer;" onclick="window.location.href='index.php'">
             <img src="storage/img/logo.svg" alt="Perpustakaan Digital" class="footer-logo me-2">
             <div class="libre-baskerville-regular">
               <span class="fs-4">Perpustakaan Digital</span>
