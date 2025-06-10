@@ -11,7 +11,7 @@ if (isset($_GET['hapus'])) {
 }
 
 // Ambil data buku
-$rows_per_page = isset($_GET['rows_per_page']) ? (int) $_GET['rows_per_page'] : 10; // Default 10 rows per page
+$rows_per_page = isset($_GET['rows_per_page']) ? (int) $_GET['rows_per_page'] : 30; // Default 10 rows per page
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; // Default to page 1 if not set
 $offset = ($page - 1) * $rows_per_page;
 $order = isset($_GET['order']) ? $_GET['order'] : 'BukuID ASC';
