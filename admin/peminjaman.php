@@ -9,10 +9,21 @@ $dari = isset($_GET['tgl_dari']) ? $_GET['tgl_dari'] : '';
 $sampai = isset($_GET['tgl_sampai']) ? $_GET['tgl_sampai'] : '';
 $rows_per_page = isset($_GET['rows_per_page']) ? (int) $_GET['rows_per_page'] : 10; // Default 10 rows per page
 $page = isset($_GET['page']) ? (int) $_GET['page'] : 1; // Default to page 1 if not set
+$order = isset($_GET['order']) ? mysqli_real_escape_string($koneksi, $_GET['order']) : 'PeminjamanID DESC';
+$search = isset($_GET['search']) ? mysqli_real_escape_string($koneksi, $_GET['search']) : '';
+$conditions = [];
 
-$where = '';
-if ($dari && $sampai) {
-    $where = "WHERE peminjaman.TanggalPeminjaman BETWEEN '$dari' AND '$sampai'";
+if (!empty($search)) {
+    $conditions[] = "(Judul LIKE '%$search%' OR Penulis LIKE '%$search%')";
+}
+
+if (!empty($dari) && !empty($sampai)) {
+    $conditions[] = "peminjaman.TanggalPeminjaman BETWEEN '$dari' AND '$sampai'";
+}
+
+$where_sql = '';
+if (!empty($conditions)) {
+    $where_sql = 'WHERE ' . implode(' AND ', $conditions); // Gunakan AND atau OR sesuai kebutuhan logika
 }
 
 // Get the total number of rows
@@ -21,8 +32,9 @@ $total_query = mysqli_query($koneksi, "
     FROM peminjaman
     JOIN user ON peminjaman.UserID = user.UserID
     JOIN buku ON peminjaman.BukuID = buku.BukuID
-    $where
+    $where_sql
 ") or die("Query gagal: " . mysqli_error($koneksi));
+
 $total_rows = mysqli_fetch_assoc($total_query)['total'];
 $total_pages = ceil($total_rows / $rows_per_page);
 
@@ -41,10 +53,11 @@ $query = mysqli_query($koneksi, "
     FROM peminjaman
     JOIN user ON peminjaman.UserID = user.UserID
     JOIN buku ON peminjaman.BukuID = buku.BukuID
-    $where
-    ORDER BY peminjaman.TanggalPeminjaman DESC
+    $where_sql
+    ORDER BY $order
     LIMIT $rows_per_page OFFSET $offset
 ") or die("Query gagal: " . mysqli_error($koneksi));
+
 ?>
 
 <!-- Pagination and Filter Form -->
@@ -56,9 +69,23 @@ $query = mysqli_query($koneksi, "
 
 <div class="mx-5 mt-4">
   <h1 class="mb-3">Laporan Peminjaman Buku</h1>
-  <a href="peminjaman-add.php" class="btn btn-success mb-4">+ Tambah</a>
-  <a href="scan-barcode.php" class="btn btn-primary mb-4"><i class="fa-solid fa-qrcode"></i> Scan barcode</a>
-
+  <div class="d-flex">
+  <a href="peminjaman-add.php" class="btn btn-success mb-4 ">+ Tambah</a>
+  <a href="scan-barcode.php" class="btn btn-primary mb-4 ms-3"><i class="fa-solid fa-qrcode"></i> Scan barcode</a>
+    <div class="dropdown ms-3">
+  <button class="btn btn-primary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+    Sortir berdasarkan
+  </button>
+  <ul class="dropdown-menu">
+    <li><a class="dropdown-item" href="?order=PeminjamanID DESC&rows_per_page=<?= $rows_per_page ?>">Terbaru</a></li>
+    <li><a class="dropdown-item" href="?order=PeminjamanID ASC&rows_per_page=<?= $rows_per_page ?>">Terlama</a></li>
+    <li><a class="dropdown-item" href="?order=Judul ASC&rows_per_page=<?= $rows_per_page ?>">Judul (A-Z)</a></li>
+    <li><a class="dropdown-item" href="?order=Judul DESC&rows_per_page=<?= $rows_per_page ?>">Judul (Z-A)</a></li>
+    <li><a class="dropdown-item" href="?order=StatusPeminjaman DESC&rows_per_page=<?= $rows_per_page ?>">Dipinjam</a></li>
+    <li><a class="dropdown-item" href="?order=StatusPeminjaman ASC&rows_per_page=<?= $rows_per_page ?>">Dikembalikan</a></li>
+  </ul>
+</div>
+  </div>
   <!-- Filter Form -->
   <div class="card shadow-sm mb-4">
     <div class="card-header fw-bold">Filter Tanggal</div>
@@ -75,6 +102,7 @@ $query = mysqli_query($koneksi, "
           </div>
           <div class="col-md-2">
             <button type="submit" class="btn btn-primary w-100">Filter</button>
+            
           </div>
           <?php if ($dari && $sampai): ?>
             <div class="col-md-2">
@@ -84,6 +112,21 @@ $query = mysqli_query($koneksi, "
         </div>
       </form>
     </div>
+    <div class="container-fluid">
+  <form class="d-flex mb-3" method="get" action="">
+    <input type="hidden" name="rows_per_page" value="<?= $rows_per_page ?>">
+    <div class="input-group">
+      <input
+        class="form-control"
+        type="search"
+        name="search"
+        placeholder="Cari judul/penulis..."
+        value="<?= isset($_GET['search']) ? htmlspecialchars($_GET['search']) : '' ?>"
+      >
+      <button class="btn btn-outline-secondary" type="submit">Cari</button>
+    </div>
+  </form>
+</div>
   </div>
 
   <?php if ($dari && $sampai): ?>
@@ -225,15 +268,15 @@ if ($end_page - $start_page + 1 < $visible_limit) {
 }
 ?>
   <div class="pagination-minimal">
-    <a href="?page=1&rows_per_page=<?= $rows_per_page ?>" class="page-link">First</a>
-    <a href="?page=<?= max(1, $page - 1) ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link">Previous</a>
+    <a href="?page=1&rows_per_page=<?= $rows_per_page ?>&search=<?=$search?>" class="page-link">First</a>
+    <a href="?page=<?= max(1, $page - 1) ?>&rows_per_page=<?= $rows_per_page ?>&search=<?=$search?>" class="page-link">Previous</a>
 
     <?php for ($i = $start_page; $i <= $end_page; $i++): ?>
-      <a href="?page=<?= $i ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link <?= ($i == $page) ? 'active' : '' ?>"><?= $i ?></a>
+      <a href="?page=<?= $i ?>&rows_per_page=<?= $rows_per_page ?>&search=<?=$search?>" class="page-link <?= ($i == $page) ? 'active' : '' ?>"><?= $i ?></a>
     <?php endfor; ?>
 
-    <a href="?page=<?= min($total_pages, $page + 1) ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link">Next</a>
-    <a href="?page=<?= $total_pages ?>&rows_per_page=<?= $rows_per_page ?>" class="page-link">Last</a>
+    <a href="?page=<?= min($total_pages, $page + 1) ?>&rows_per_page=<?= $rows_per_page ?>&search=<?=$search?>" class="page-link">Next</a>
+    <a href="?page=<?= $total_pages ?>&rows_per_page=<?= $rows_per_page ?>&search=<?=$search?>" class="page-link">Last</a>
     <form action="" method="get">
       <input type="number" name="rows_per_page" class="form-control form-control-sm" value="<?= $rows_per_page ?>" min="10" max="100">
     </form>
